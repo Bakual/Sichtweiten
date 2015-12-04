@@ -50,7 +50,7 @@
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_DB_PREFIX_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_PREFIX_DESC"
-			default="jos"
+			default="jos_"
 		/>
 	</fieldset>
 	<fieldset
