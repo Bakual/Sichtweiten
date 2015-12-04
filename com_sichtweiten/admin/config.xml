@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<fieldset
+		name="component"
+	>
+		<field
+			name="list_period"
+			type="number"
+			label="COM_SICHTWEITEN_FIELD_LIST_PERIOD_LABEL"
+			description="COM_SICHTWEITEN_FIELD_LIST_PERIOD_DESC"
+			default="14"
+		/>
+		<field
+			name="db_type"
+			type="list"
+			label="COM_SICHTWEITEN_FIELD_DB_TYPE_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DB_TYPE_DESC"
+			default="mysqli"
+			>
+			<option value="mysql">MySQL</option>
+			<option value="mysqli">MySQLi</option>
+		</field>
+		<field
+			name="db_host"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_DB_HOST_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DB_HOST_DESC"
+			default="localhost"
+		/>
+		<field
+			name="db_database"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_DB_DATABASE_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DB_DATABASE_DESC"
+		/>
+		<field
+			name="db_user"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_DB_USER_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DB_USER_DESC"
+		/>
+		<field
+			name="db_pass"
+			type="password"
+			label="COM_SICHTWEITEN_FIELD_DB_PASS_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DB_PASS_DESC"
+		/>
+		<field
+			name="db_prefix"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_DB_PREFIX_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DB_PREFIX_DESC"
+			default="jos"
+		/>
+	</fieldset>
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+	>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			validate="rules"
+			filter="rules"
+			component="com_sichtweiten"
+			section="component"
+		/>
+
+	</fieldset>
+</config>
