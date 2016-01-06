@@ -99,10 +99,18 @@ class SichtweitenModelLocations extends JModelList
 
 		$query->from('`#__sicht_tauchplatz` AS tp');
 
+		// Filter by a specific location. Needed for single location view.
+		if ($location = (int) $this->getState('filter.location'))
+		{
+			$query->where($db->quoteName('tp.id') . ' = ' . $location);
+		}
+
 		// Join over Gewaesser table
 		$query->select(
-			$db->quoteName('g.name', 'gewaesser_name'),
-			$db->quoteName('g.displayName', 'gewaesser_displayName')
+			array(
+				$db->quoteName('g.name', 'gewaesser_name'),
+				$db->quoteName('g.displayName', 'gewaesser_displayName'),
+			)
 		);
 
 		$query->join('LEFT', '#__sicht_gewaesser AS g ON tp.gewaesser_id = g.id');

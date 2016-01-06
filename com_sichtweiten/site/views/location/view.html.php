@@ -69,6 +69,20 @@ class SichtweitenViewLocation extends JViewLegacy
 
 		$this->params = $this->state->get('params');
 
+		/** @var SichtweitenModelLocations $locations_model */
+		$locations_model = JModelLegacy::getInstance('Locations', 'SichtweitenModel');
+		$this->loc_state = $locations_model->getState();
+		$this->loc_state->set('filter.period', 0);
+		$this->loc_state->set('filter.location', (int) $this->item->id);
+
+		if ($this->loc_state->get('list.ordering') == 'g.displayName')
+		{
+			$this->loc_state->set('list.ordering', 'datum');
+			$this->loc_state->set('list.direction', 'DESC');
+		}
+
+		$this->items = $locations_model->getItems();
+
 		parent::display($tpl);
 	}
 }

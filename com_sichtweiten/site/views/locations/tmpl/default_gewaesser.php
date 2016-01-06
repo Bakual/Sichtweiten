@@ -22,7 +22,7 @@ $listDirn  = $this->state->get('list.direction');
 						<?php endif; ?>
 <?php $gewaesser = $item->gewaesser_name; ?>
 <h3>
-	<?php echo $item->gewaesser_name; ?>
+	<?php echo $item->gewaesser_displayName; ?>
 	<?php if ($item->land_gewaesser_kurzzeichen != 'CH') : ?>
 		<small>(<?php echo $item->land_gewaesser_bezeichnung; ?>)</small>
 	<?php endif; ?>
