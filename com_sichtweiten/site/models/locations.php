@@ -46,6 +46,13 @@ class SichtweitenModelLocations extends JModelList
 			'tp.name',
 			'datum',
 			'kommentar',
+			'g.displayName',
+			'sichtweite_id_0',
+			'sichtweite_id_1',
+			'sichtweite_id_2',
+			'sichtweite_id_3',
+			'sichtweite_id_4',
+			'sichtweite_id_5',
 		);
 
 		$params = JFactory::getApplication()->getParams();
@@ -174,7 +181,7 @@ class SichtweitenModelLocations extends JModelList
 		}
 
 		// Add the list ordering clause.
-		if ($this->getState('list.ordering', 'default') == 'default')
+		if ($this->getState('list.ordering', 'g.displayName') == 'g.displayName')
 		{
 			$query->order('g.displayName ASC, swm.datum DESC');
 		}
@@ -230,7 +237,7 @@ class SichtweitenModelLocations extends JModelList
 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter-search', '', 'STRING');
 		$this->setState('filter.search', $search);
 
-		parent::populateState('default', 'ASC');
+		parent::populateState('g.displayName', 'ASC');
 
 		// Don't use pagination here
 		$this->setState('list.start', 0);
