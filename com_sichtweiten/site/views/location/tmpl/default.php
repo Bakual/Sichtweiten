@@ -41,6 +41,14 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 	<h3><?php echo JText::_('COM_SICHTWEITEN_HISTORY'); ?></h3>
 	<div class="items">
 		<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
+			<div class="filters btn-toolbar">
+				<div class="btn-group pull-right">
+					<label class="element-invisible">
+						<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>
+					</label>
+					<?php echo $this->pagination->getLimitBox(); ?>
+				</div>
+			</div>
 			<?php if (!count($this->items)) : ?>
 				<div class="no_entries alert alert-error"><?php echo JText::sprintf('COM_SICHTWEITEN_NO_ENTRIES', JText::_('COM_SICHTWEITEN_SICHTWEITENMELDUNGEN')); ?></div>
 			<?php else : ?>
@@ -86,6 +94,14 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 					<?php endforeach; ?>
 					</tbody>
 				</table>
+			<?php endif; ?>
+			<?php if ($this->pagination->get('pages.total') > 1) : ?>
+				<div class="pagination">
+					<p class="counter pull-right">
+						<?php echo $this->pagination->getPagesCounter(); ?>
+					</p>
+					<?php echo $this->pagination->getPagesLinks(); ?>
+				</div>
 			<?php endif; ?>
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />

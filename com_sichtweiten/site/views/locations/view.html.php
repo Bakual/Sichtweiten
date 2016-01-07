@@ -53,6 +53,8 @@ class SichtweitenViewLocations extends JViewLegacy
 	{
 		// Get data from the models
 		$this->state      = $this->get('State');
+		$this->state->set('list.start', 0);
+		$this->state->set('list.limit', 0);
 		$this->items      = $this->get('Items');
 
 		// Check for errors

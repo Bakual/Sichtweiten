@@ -246,9 +246,5 @@ class SichtweitenModelLocations extends JModelList
 		$this->setState('filter.search', $search);
 
 		parent::populateState('g.displayName', 'ASC');
-
-		// Don't use pagination here
-		$this->setState('list.start', 0);
-		$this->setState('list.limit', 0);
 	}
 }

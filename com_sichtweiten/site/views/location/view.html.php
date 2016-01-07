@@ -81,7 +81,8 @@ class SichtweitenViewLocation extends JViewLegacy
 			$this->loc_state->set('list.direction', 'DESC');
 		}
 
-		$this->items = $locations_model->getItems();
+		$this->items      = $locations_model->getItems();
+		$this->pagination = $locations_model->getPagination();
 
 		parent::display($tpl);
 	}
