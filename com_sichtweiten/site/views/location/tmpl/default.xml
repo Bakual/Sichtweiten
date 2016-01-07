@@ -3,4 +3,16 @@
 	<layout title="COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_TITLE">
 		<message><![CDATA[COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_DESC]]></message>
 	</layout>
+	<fields name="request">
+		<fieldset name="request"
+			addfieldpath="/administrator/components/com_sichtweiten/models/fields" >
+			<field name="id" type="locationlist"
+				label="COM_SICHTWEITEN_FIELD_LOCATION_ID_LABEL"
+				description="COM_SICHTWEITEN_FIELD_LOCATION_ID_DESC"
+				required="true"
+			/>
+		</fieldset>
+	</fields>
+	<fields name="params">
+	</fields>
 </metadata>
