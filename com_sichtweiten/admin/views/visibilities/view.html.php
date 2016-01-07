@@ -44,13 +44,6 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$layout = $this->getLayout();
-
-		if ($layout !== 'modal')
-		{
-			SichtweitenHelper::addSubmenu('visibilities');
-		}
-
 		$this->state         = $this->get('State');
 		$this->items         = $this->get('Items');
 		$this->pagination    = $this->get('Pagination');
@@ -61,13 +54,6 @@ class SichtweitenViewVisibilities extends JViewLegacy
 		if (count($errors = $this->get('Errors')))
 		{
 			throw new Exception(implode("\n", $errors), 500);
-		}
-
-		// We don't need toolbar in the modal window.
-		if ($layout !== 'modal')
-		{
-			$this->addToolbar();
-			$this->sidebar = JHtmlSidebar::render();
 		}
 
 		return parent::display($tpl);

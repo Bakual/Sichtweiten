@@ -1,0 +1,14 @@
+.sichtweiten-container a.thumbnail {
+	text-decoration: none;
+}
+.sichtweiten-container .thumbnail .icon {
+	font-size: 8em;
+	text-align: center;
+}
+.sichtweiten-container .thumbnail [class^="icon-"] {
+	margin-right: 0;
+	width: auto;
+	height: auto;
+	display: block;
+	line-height: 1.2em;
+}

@@ -25,6 +25,20 @@ class SichtweitenModelVisibilities extends JModelList
 			$config['filter_fields'][] = 'user';
 		}
 
+		$params = JComponentHelper::getParams('com_sichtweiten');
+
+		// Taken from https://docs.joomla.org/Connecting_to_an_external_database
+		$option = array();
+
+		$option['driver']   = $params->get('db_type', 'mysqli');
+		$option['host']     = $params->get('db_host', 'localhost');
+		$option['database'] = $params->get('db_database');
+		$option['user']     = $params->get('db_user');
+		$option['password'] = $params->get('db_pass');
+		$option['prefix']   = $params->get('db_prefix', 'jos_');
+
+		$config['dbo'] = JDatabaseDriver::getInstance($option);
+
 		parent::__construct($config);
 	}
 
@@ -71,7 +85,7 @@ class SichtweitenModelVisibilities extends JModelList
 				)
 			)
 		);
-		$query->from('`#__sicht_sichtweitenmeldungen` AS swm');
+		$query->from('`#__sicht_sichtweitenmeldung` AS swm');
 
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');

@@ -75,6 +75,9 @@ $assoc = JLanguageAssociations::isEnabled();
 					<?php foreach ($this->items as $i => $item) : ?>
 						<tr class="row<?php echo $i % 2; ?>">
 
+							<td>
+								<?php echo JHtml::Date($item->datum, JText::_('DATE_FORMAT_LC2')); ?>
+							</td>
 							<td class="center hidden-phone">
 								<?php echo (int) $item->id; ?>
 							</td>
