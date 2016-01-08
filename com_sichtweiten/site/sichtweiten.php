@@ -17,6 +17,6 @@ $jlang = JFactory::getLanguage();
 $jlang->load('com_sichtweiten', JPATH_COMPONENT, 'en-GB', true);
 $jlang->load('com_sichtweiten', JPATH_COMPONENT, null, true);
 
-$controller	= JControllerLegacy::getInstance('Sichtweiten');
+$controller = JControllerLegacy::getInstance('Sichtweiten');
 $controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();
