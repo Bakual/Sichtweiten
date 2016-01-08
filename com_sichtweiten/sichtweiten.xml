@@ -44,6 +44,7 @@
 			<filename>config.xml</filename>
 			<filename>access.xml</filename>
 			<filename>sichtweiten.php</filename>
+			<filename>sichtweiten.css</filename>
 			<filename>controller.php</filename>
 			<folder>controllers</folder>
 			<folder>layouts</folder>
