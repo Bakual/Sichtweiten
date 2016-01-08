@@ -41,10 +41,6 @@ class SichtweitenModelSichtweitenmeldung extends JModelForm
 		$app    = JFactory::getApplication();
 		$jinput = $app->input;
 
-		// Load state from the request.
-		$pk = $jinput->get('id', 0, 'int');
-		$this->setState('form.id', $pk);
-
 		$return = $jinput->get('return', '', 'base64');
 
 		if (!JUri::isInternal(base64_decode($return)))
@@ -59,5 +55,22 @@ class SichtweitenModelSichtweitenmeldung extends JModelForm
 		$this->setState('params', $params);
 
 		$this->setState('layout', $jinput->get('layout'));
+	}
+
+	/**
+	 * Method to get the record form.
+	 *
+	 * @param   array   $data     Data for the form.
+	 * @param   boolean $loadData True if the form is to load its own data (default case), false if not.
+	 *
+	 * @return  mixed  A JForm object on success, false on failure
+	 *
+	 * @since   1.0
+	 */
+	public function getForm($data = array(), $loadData = true)
+	{
+		$form = $this->loadForm('com_sichtweiten.sichweitenmeldung', 'sichtweitenmeldung', array('control' => 'jform', 'load_data' => $loadData));
+
+		return ($form) ? $form : false;
 	}
 }
