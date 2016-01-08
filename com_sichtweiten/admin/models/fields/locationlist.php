@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die();
 
-JFormHelper::loadFieldClass('list');
+JFormHelper::loadFieldClass('groupedlist');
 
 /**
  * Locationlist Field class for the Sichtweiten.
@@ -17,7 +17,7 @@ JFormHelper::loadFieldClass('list');
  * @package        Sichtweiten
  * @since          1.0
  */
-class JFormFieldLocationlist extends JFormFieldList
+class JFormFieldLocationlist extends JFormFieldGroupedList
 {
 	/**
 	 * The form field type.
@@ -33,35 +33,46 @@ class JFormFieldLocationlist extends JFormFieldList
 	 * @return   array    The field option objects.
 	 * @since    1.0
 	 */
-	public function getOptions()
+	public function getGroups()
 	{
 		$params = JComponentHelper::getParams('com_sichtweiten');
 
 		// Taken from https://docs.joomla.org/Connecting_to_an_external_database
-		$option = array();
+		$db_options = array();
 
-		$option['driver']   = $params->get('db_type', 'mysqli');
-		$option['host']     = $params->get('db_host', 'localhost');
-		$option['database'] = $params->get('db_database');
-		$option['user']     = $params->get('db_user');
-		$option['password'] = $params->get('db_pass');
-		$option['prefix']   = $params->get('db_prefix', 'jos_');
+		$db_options['driver']   = $params->get('db_type', 'mysqli');
+		$db_options['host']     = $params->get('db_host', 'localhost');
+		$db_options['database'] = $params->get('db_database');
+		$db_options['user']     = $params->get('db_user');
+		$db_options['password'] = $params->get('db_pass');
+		$db_options['prefix']   = $params->get('db_prefix', 'jos_');
 
-		$db = JDatabaseDriver::getInstance($option);
+		$db = JDatabaseDriver::getInstance($db_options);
 
 		$query = $db->getQuery(true);
 		$query->select('a.id AS value');
 		$query->select('a.name AS text');
+		$query->select('b.displayName');
 		$query->from('#__sicht_tauchplatz AS a');
-		$query->order('a.name');
+		$query->join('LEFT', '#__sicht_gewaesser AS b ON a.gewaesser_id = b.id');
+		$query->order('b.displayName ASC, a.name ASC');
 
 		// Get the options.
 		$db->setQuery($query);
 
 		$options = $db->loadObjectList();
+		$groups  = array();
 
-		$options = array_merge(parent::getOptions(), $options);
+		foreach ($options as $option)
+		{
+			if (!isset($groups[$option->displayName]))
+			{
+				$groups[$option->displayName] = array();
+			}
 
-		return $options;
+			$groups[$option->displayName][] = $option;
+		}
+
+		return $groups;
 	}
 }
