@@ -9,6 +9,7 @@
 			<field name="id" type="locationlist"
 				label="COM_SICHTWEITEN_FIELD_LOCATION_ID_LABEL"
 				description="COM_SICHTWEITEN_FIELD_LOCATION_ID_DESC"
+				class="required validate-abovezero"
 				required="true"
 			/>
 		</fieldset>

@@ -28,6 +28,28 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 	protected $type = 'Locationlist';
 
 	/**
+	 * Method to get the field input markup fora grouped list.
+	 * Multiselect is enabled by using the multiple attribute.
+	 *
+	 * @return  string  The field input markup.
+	 *
+	 * @since   1.0
+	 */
+	protected function getInput()
+	{
+		$document = JFactory::getDocument();
+		$document->addScriptDeclaration(
+			"jQuery(document).ready(function(){
+				document.formvalidator.setHandler('abovezero', function (value) {
+					return (parseInt(value) > 0);
+				});
+			});"
+		);
+
+		return parent::getInput();
+	}
+
+	/**
 	 * Method to get the field options.
 	 *
 	 * @return   array    The field option objects.
@@ -62,6 +84,8 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 
 		$options = $db->loadObjectList();
 		$groups  = array();
+
+		$groups[] = array(JText::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION'));
 
 		foreach ($options as $option)
 		{

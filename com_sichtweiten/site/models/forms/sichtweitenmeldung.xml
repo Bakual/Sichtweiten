@@ -4,14 +4,17 @@
 		addfieldpath="/administrator/components/com_sichtweiten/models/fields" >
 		<field
 			name="datum"
-			type="date"
+			type="calendar"
 			label="JDATE"
 			description="COM_SICHTWEITEN_FIELD_DATUM_DESC"
+			required="true"
 		/>
 		<field
 			name="tauchplatz_id"
 			type="locationlist"
 			label="COM_SICHTWEITEN_FIELD_LOCATION_LABEL"
+			class="validate-abovezero"
+			required="true"
 		/>
 	</fieldset>
 </form>

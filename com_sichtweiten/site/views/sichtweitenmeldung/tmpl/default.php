@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -26,7 +26,7 @@ JHtml::_('formbehavior.chosen', 'select');
 </script>
 
 <div class="sichtweiten-container<?php echo $this->pageclass_sfx; ?> edit item-page<?php echo $this->pageclass_sfx; ?>">
-	<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung'); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form form-horizontal">
+	<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung'); ?>" method="post" name="adminForm" id="adminForm" class="form form-validate form-horizontal">
 		<div class="btn-toolbar">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('sichtweitenmeldung.save')">
