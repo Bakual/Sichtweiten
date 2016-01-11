@@ -52,6 +52,18 @@
 			description="COM_SICHTWEITEN_FIELD_DB_PREFIX_DESC"
 			default="jos_"
 		/>
+		<field
+			name="captcha"
+			type="plugins"
+			label="COM_SICHTWEITEN_FIELD_CAPTCHA_LABEL"
+			description="COM_SICHTWEITEN_FIELD_CAPTCHA_DESC"
+			folder="captcha"
+			filter="cmd"
+			default=""
+			>
+			<option value="">JOPTION_USE_DEFAULT</option>
+			<option value="0">JOPTION_DO_NOT_USE</option>
+		</field>
 	</fieldset>
 	<fieldset
 		name="permissions"

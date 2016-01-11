@@ -90,33 +90,5 @@ class SichtweitenControllerSichtweitenmeldung extends JControllerForm
 	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
-		$task = $this->getTask();
-
-		if ($task == 'save')
-		{
-			$this->setRedirect(JRoute::_('index.php?option=com_sichtweiten&view=locations', false));
-		}
-	}
-
-	/**
-	 * Method to save a record
-	 *
-	 * @param   string $key    The name of the primary key of the URL variable
-	 * @param   string $urlVar The name of the URL variable if different from the primary key (sometimes required to
-	 *                         avoid router collisions)
-	 *
-	 * @return  Boolean  True if successful, false otherwise
-	 */
-	public function save($key = null, $urlVar = 's_id')
-	{
-		$result = parent::save($key, $urlVar);
-
-		// If ok, redirect to the return page
-		if ($result)
-		{
-			$this->setRedirect($this->getReturnPage());
-		}
-
-		return $result;
 	}
 }

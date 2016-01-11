@@ -14,8 +14,35 @@ defined('_JEXEC') or die();
  *
  * @since  5
  */
-class SichtweitenModelSichtweitenmeldung extends JModelForm
+class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 {
+	/**
+	 * Constructor.
+	 *
+	 * @param   array $config An optional associative array of configuration settings.
+	 *
+	 * @see     JModelLegacy
+	 * @since   1.0
+	 */
+	public function __construct($config = array())
+	{
+		$params = JFactory::getApplication()->getParams();
+
+		// Taken from https://docs.joomla.org/Connecting_to_an_external_database
+		$option = array();
+
+		$option['driver']   = $params->get('db_type', 'mysqli');
+		$option['host']     = $params->get('db_host', 'localhost');
+		$option['database'] = $params->get('db_database');
+		$option['user']     = $params->get('db_user');
+		$option['password'] = $params->get('db_pass');
+		$option['prefix']   = $params->get('db_prefix', 'jos_');
+
+		$config['dbo'] = JDatabaseDriver::getInstance($option);
+
+		parent::__construct($config);
+	}
+
 	/**
 	 * Get the return URL.
 	 *
@@ -72,5 +99,34 @@ class SichtweitenModelSichtweitenmeldung extends JModelForm
 		$form = $this->loadForm('com_sichtweiten.sichweitenmeldung', 'sichtweitenmeldung', array('control' => 'jform', 'load_data' => $loadData));
 
 		return ($form) ? $form : false;
+	}
+
+	/**
+	 * Returns a reference to the a Table object, always creating it.
+	 *
+	 * @param    type      The table type to instantiate
+	 * @param    string    A prefix for the table class name. Optional.
+	 * @param    array     Configuration array for model. Optional.
+	 *
+	 * @return    JTable    A database object
+	 * @since    1.0
+	 */
+	public function getTable($type = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $config = array())
+	{
+		return parent::getTable($type, $prefix, $config);
+	}
+
+	/**
+	 * Prepare and sanitise the table prior to saving.
+	 *
+	 * @param   JTable  $table  The JTable object
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	protected function prepareTable($table)
+	{
+		$table->meldedatum = JFactory::getDate()->toSql();
 	}
 }
