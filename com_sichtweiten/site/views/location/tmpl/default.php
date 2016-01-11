@@ -34,7 +34,7 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 					<small>(<?php echo $this->item->land_ort_bezeichnung; ?>)</small>
 				<?php endif; ?>
 			</dd>
-			<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL'); ?></dt>
+			<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL'); ?></dt>
 			<dd><?php echo $this->item->bemerkungen; ?></dd>
 		</dl>
 	</div>
