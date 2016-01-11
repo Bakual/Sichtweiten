@@ -119,7 +119,7 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
-	 * @param   JTable  $table  The JTable object
+	 * @param   JTable $table The JTable object
 	 *
 	 * @return  void
 	 *
@@ -128,5 +128,73 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	protected function prepareTable($table)
 	{
 		$table->meldedatum = JFactory::getDate()->toSql();
+	}
+
+	/**
+	 * Save the Sichtweiteeintrag during postSave
+	 *
+	 * @param   object $validData The validated data to be saved
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	public function insertSichtweiteneintrag($validData)
+	{
+		$tiefenbereiche = array(
+			79 => 'tiefenbereich0',
+			80 => 'tiefenbereich1',
+			81 => 'tiefenbereich2',
+			82 => 'tiefenbereich3',
+			83 => 'tiefenbereich4',
+			84 => 'tiefenbereich5',
+		);
+
+		$id = (int) $this->state->get('sichtweitenmeldung.id');
+
+		$db    = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$query->insert('#__sicht_sichtweiteneintrag');
+		$query->columns(array('sichtweite_id', 'sichtweitenmeldung_id', 'tiefenbereich_id'));
+
+		foreach ($tiefenbereiche as $key => $value)
+		{
+			$query->values((int) $validData[$value] . ',' . $id . ',' . (int) $key);
+		}
+
+		$db->setQuery($query);
+		$db->execute();
+	}
+
+	/**
+	 * Save the Tauchpartners during postSave
+	 *
+	 * @param   object $validData The validated data to be saved
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	public function insertTauchpartner($validData)
+	{
+		$id = (int) $this->state->get('sichtweitenmeldung.id');
+
+		$db    = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$query->insert('#__sicht_tauchpartner');
+		$query->columns(array('sichtweitenmeldung_id', 'name', 'email'));
+
+		for ($i = 1; $i <= 3; $i++)
+		{
+			if ($validData['tauchpartner_' . $i . '_name'])
+			{
+				$query->values($id . ',' . $db->quote($validData['tauchpartner_' . $i . '_name']) . ',' .  $db->quote($validData['tauchpartner_' . $i . '_email']));
+			}
+		}
+
+		$db->setQuery($query);
+		$db->execute();
 	}
 }

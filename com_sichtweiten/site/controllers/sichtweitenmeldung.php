@@ -90,5 +90,7 @@ class SichtweitenControllerSichtweitenmeldung extends JControllerForm
 	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
+		$model->insertSichtweiteneintrag($validData);
+		$model->insertTauchpartner($validData);
 	}
 }

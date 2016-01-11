@@ -53,6 +53,13 @@
 			default="112"
 		/>
 		<field
+			name="tiefenbereich5"
+			type="sichtweitenlist"
+			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL"
+			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_DESC"
+			default="112"
+		/>
+		<field
 			name="kommentar"
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL"
