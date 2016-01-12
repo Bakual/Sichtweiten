@@ -58,7 +58,11 @@ $listDirn  = $this->state->get('list.direction');
 					<?php echo JText::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?>
 				</td>
 				<td class="kommentar">
-					<?php echo $item->kommentar; ?>
+					<?php echo htmlspecialchars($item->kommentar); ?>
+					<?php if ($item->buddy_names) : ?>
+						| <?php echo JText::_('COM_SICHTWEITEN_BUDDIES'); ?>:
+						<?php echo SichtweitenHelperSichtweiten::getBuddies($item->buddy_names, $item->buddy_emails); ?>
+					<?php endif; ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

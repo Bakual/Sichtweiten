@@ -148,6 +148,18 @@ class SichtweitenModelLocations extends JModelList
 			$query->where($db->quoteName('swm.datum') . ' >= DATE_SUB(CURDATE(), INTERVAL ' . $period . ' DAY)');
 		}
 
+		// Join over Tauchpartner table
+		$query->select("GROUP_CONCAT(buddy.name SEPARATOR '|') AS buddy_names");
+		$query->select("GROUP_CONCAT(buddy.email SEPARATOR '|') AS buddy_emails");
+
+		$query->join('LEFT', '#__sicht_tauchpartner AS buddy ON buddy.sichtweitenmeldung_id = swm.id');
+		$query->group('swm.id');
+
+		if ($period = (int) $this->getState('filter.period'))
+		{
+			$query->where($db->quoteName('swm.datum') . ' >= DATE_SUB(CURDATE(), INTERVAL ' . $period . ' DAY)');
+		}
+
 		// Join over Sichtweiteneintrag table
 		$tiefenbereich = $this->getState('filter.tiefe');
 		$tiefenbereich = \Joomla\Utilities\ArrayHelper::toInteger($tiefenbereich);
