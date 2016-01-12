@@ -18,4 +18,27 @@ class SichtweitenTableSichtweitenmeldung extends JTable
 	{
 		parent::__construct('#__sicht_sichtweitenmeldung', 'id', $db);
 	}
+
+	/**
+	 * Method to perform sanity checks on the JTable instance properties to ensure
+	 * they are safe to store in the database.  Child classes should override this
+	 * method to make sure the data they are storing in the database is safe and
+	 * as expected before storage.
+	 *
+	 * @return  boolean  True if the instance is sane and able to be stored in the database.
+	 *
+	 * @link    https://docs.joomla.org/JTable/check
+	 * @since   1.0
+	 */
+	public function check()
+	{
+		$date = JFactory::getDate('now', 'UTC');
+
+		if ($this->datum > $date)
+		{
+			throw new Exception(JText::_('COM_SICHTWEITEN_ERROR_DATE_IN_FUTURE'));
+		}
+
+		return true;
+	}
 }
