@@ -128,6 +128,13 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	protected function prepareTable($table)
 	{
 		$table->meldedatum = JFactory::getDate()->toSql();
+
+		$user = JFactory::getUser();
+
+		if (!$user->guest)
+		{
+			$table->user_id = $user->id;
+		}
 	}
 
 	/**
@@ -186,15 +193,21 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 		$query->insert('#__sicht_tauchpartner');
 		$query->columns(array('sichtweitenmeldung_id', 'name', 'email'));
 
+		$execute = false;
+
 		for ($i = 1; $i <= 3; $i++)
 		{
 			if ($validData['tauchpartner_' . $i . '_name'])
 			{
-				$query->values($id . ',' . $db->quote($validData['tauchpartner_' . $i . '_name']) . ',' .  $db->quote($validData['tauchpartner_' . $i . '_email']));
+				$query->values($id . ',' . $db->quote($validData['tauchpartner_' . $i . '_name']) . ',' . $db->quote($validData['tauchpartner_' . $i . '_email']));
+				$execute = true;
 			}
 		}
 
-		$db->setQuery($query);
-		$db->execute();
+		if ($execute)
+		{
+			$db->setQuery($query);
+			$db->execute();
+		}
 	}
 }
