@@ -18,7 +18,7 @@ class SichtweitenControllerSichtweitenmeldung extends JControllerForm
 {
 	protected $view_item = 'sichtweitenmeldung';
 
-	protected $view_list = 'locations';
+	protected $view_list = 'visibilities';
 
 	/**
 	 * Method to get a model object, loading it if required.

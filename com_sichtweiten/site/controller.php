@@ -20,7 +20,7 @@ class SichtweitenController extends JControllerLegacy
 	 * @var    string
 	 * @since  1.0
 	 */
-	protected $default_view = 'locations';
+	protected $default_view = 'visibilities';
 
 	/**
 	 * View method.

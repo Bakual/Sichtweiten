@@ -55,7 +55,7 @@ class SichtweitenViewLocation extends JViewLegacy
 
 		if (!$app->input->get('id', 0, 'int'))
 		{
-			$app->redirect(JRoute::_('index.php?view=locations'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(JRoute::_('index.php?view=visibilities'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Get data from the model
@@ -64,25 +64,25 @@ class SichtweitenViewLocation extends JViewLegacy
 
 		if (!$this->item)
 		{
-			$app->redirect(JRoute::_('index.php?view=locations'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(JRoute::_('index.php?view=visibilities'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		$this->params = $this->state->get('params');
 
-		/** @var SichtweitenModelLocations $locations_model */
-		$locations_model = JModelLegacy::getInstance('Locations', 'SichtweitenModel');
-		$this->loc_state = $locations_model->getState();
-		$this->loc_state->set('filter.period', 0);
-		$this->loc_state->set('filter.location', (int) $this->item->id);
+		/** @var SichtweitenModelVisibilities $visibilities_model */
+		$visibilities_model = JModelLegacy::getInstance('Visibilities', 'SichtweitenModel');
+		$this->vis_state = $visibilities_model->getState();
+		$this->vis_state->set('filter.period', 0);
+		$this->vis_state->set('filter.location', (int) $this->item->id);
 
-		if ($this->loc_state->get('list.ordering') == 'g.displayName')
+		if ($this->vis_state->get('list.ordering') == 'g.displayName')
 		{
-			$this->loc_state->set('list.ordering', 'datum');
-			$this->loc_state->set('list.direction', 'DESC');
+			$this->vis_state->set('list.ordering', 'datum');
+			$this->vis_state->set('list.direction', 'DESC');
 		}
 
-		$this->items      = $locations_model->getItems();
-		$this->pagination = $locations_model->getPagination();
+		$this->items      = $visibilities_model->getItems();
+		$this->pagination = $visibilities_model->getPagination();
 
 		parent::display($tpl);
 	}
