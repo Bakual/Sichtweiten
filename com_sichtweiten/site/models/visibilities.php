@@ -14,7 +14,7 @@ defined('_JEXEC') or die();
  *
  * @since  1.0
  */
-class SichtweitenModelLocations extends JModelList
+class SichtweitenModelVisibilities extends JModelList
 {
 	/**
 	 * An array of items
@@ -53,6 +53,7 @@ class SichtweitenModelLocations extends JModelList
 			'sichtweite_id_3',
 			'sichtweite_id_4',
 			'sichtweite_id_5',
+			'user_id',
 		);
 
 		$params = JFactory::getApplication()->getParams();
@@ -137,6 +138,7 @@ class SichtweitenModelLocations extends JModelList
 				array(
 					'swm.datum',
 					'swm.kommentar',
+					'swm.user_id',
 				)
 			)
 		);
@@ -147,6 +149,27 @@ class SichtweitenModelLocations extends JModelList
 		{
 			$query->where($db->quoteName('swm.datum') . ' >= DATE_SUB(CURDATE(), INTERVAL ' . $period . ' DAY)');
 		}
+
+		if ($user_id = (int) $this->getState('filter.user'))
+		{
+			$query->where($db->quoteName('swm.user_id') . ' = ' . $user_id);
+		}
+
+		// Join over Sicht_User table
+		$query->select(
+			$db->quoteName(
+				array(
+					'user.name',
+					'user.joomla_id',
+				),
+				array(
+					'user_name',
+					'user_joomla_id',
+				)
+			)
+		);
+
+		$query->join('LEFT', '#__sicht_user AS user ON swm.user_id = user.id');
 
 		// Join over Tauchpartner table
 		$query->select("GROUP_CONCAT(buddy.name SEPARATOR '|') AS buddy_names");
@@ -203,7 +226,7 @@ class SichtweitenModelLocations extends JModelList
 		// Add the list ordering clause.
 		if ($this->getState('list.ordering', 'g.displayName') == 'g.displayName')
 		{
-			$query->order('g.displayName ASC, swm.datum DESC');
+			$query->order('g.displayName ' . $db->escape($this->getState('list.direction', 'ASC')) . ', swm.datum DESC');
 		}
 		else
 		{

@@ -18,7 +18,7 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 	<div class="items">
 		<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
 			<?php if (!count($this->items)) : ?>
-				<div class="no_entries alert alert-error"><?php echo JText::sprintf('COM_SICHTWEITEN_NO_ENTRIES', JText::_('COM_SICHTWEITEN_LOCATIONS')); ?></div>
+				<div class="no_entries alert alert-error"><?php echo JText::sprintf('COM_SICHTWEITEN_NO_ENTRIES', JText::_('COM_SICHTWEITEN_VISIBILITIES')); ?></div>
 			<?php else : ?>
 				<?php if ($listOrder == 'g.displayName') : ?>
 	 				<?php echo $this->loadTemplate('gewaesser'); ?>

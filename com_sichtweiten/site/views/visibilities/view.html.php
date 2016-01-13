@@ -14,7 +14,7 @@ defined('_JEXEC') or die();
  *
 * @since  1.0
  */
-class SichtweitenViewLocations extends JViewLegacy
+class SichtweitenViewVisibilities extends JViewLegacy
 {
 	/**
 	 * Contains model state

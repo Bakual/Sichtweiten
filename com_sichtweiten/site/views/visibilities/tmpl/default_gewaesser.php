@@ -26,6 +26,9 @@ $listDirn  = $this->state->get('list.direction');
 	<?php if ($item->land_gewaesser_kurzzeichen != 'CH') : ?>
 		<small>(<?php echo $item->land_gewaesser_bezeichnung; ?>)</small>
 	<?php endif; ?>
+	<a href="#" onclick="Joomla.tableOrdering('g.displayName','<?php echo ($listDirn == 'asc') ? 'desc' : 'asc'; ?>');return false;"'>
+		<span class="icon-<?php echo ($listDirn == 'asc') ? 'arrow-up-3' : 'arrow-down-3'; ?>"></span>
+	</a>
 </h3>
 <table class="table table-striped table-hover table-condensed">
 	<thead><tr>
@@ -38,6 +41,7 @@ $listDirn  = $this->state->get('list.direction');
 		<th class="tiefe"><?php echo JHtml::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL', 'sichtweite_id_4', $listDirn, $listOrder); ?></th>
 		<th class="tiefe"><?php echo JHtml::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL', 'sichtweite_id_5', $listDirn, $listOrder); ?></th>
 		<th class="kommentar"><?php echo JHtml::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
+		<th class="user"><?php echo JHtml::_('grid.sort', 'COM_SICHTWEITEN_USER', 'user_id', $listDirn, $listOrder); ?></th>
 	</tr></thead>
 	<tbody>
 	<?php endif; ?>
@@ -73,6 +77,11 @@ $listDirn  = $this->state->get('list.direction');
 			<?php if ($item->buddy_names) : ?>
 				| <?php echo JText::_('COM_SICHTWEITEN_BUDDIES'); ?>:
 				<?php echo SichtweitenHelperSichtweiten::getBuddies($item->buddy_names, $item->buddy_emails); ?>
+			<?php endif; ?>
+		</td>
+		<td class="user">
+			<?php if ($item->user_id) : ?>
+				<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id); ?>"><?php echo $item->user_name; ?></a>
 			<?php endif; ?>
 		</td>
 	</tr>
