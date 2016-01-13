@@ -133,7 +133,21 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 
 		if (!$user->guest)
 		{
-			$table->user_id = $user->id;
+			// Lookup the matching user_id
+			$db    = $this->getDbo();
+			$query = $db->getQuery(true);
+
+			$query->select('id');
+			$query->from('#__sicht_user');
+			$query->where('joomla_id = ' . (int) $user->id);
+
+			$db->setQuery($query);
+			$id = $db->loadResult();
+
+			if ($id)
+			{
+				$table->user_id = $id;
+			}
 		}
 	}
 
