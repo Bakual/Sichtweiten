@@ -77,8 +77,6 @@ class SichtweitenModelLocation extends JModelItem
 	 */
 	public function getItem($id = null)
 	{
-		$user = JFactory::getUser();
-
 		// Initialise variables.
 		$id = ($id) ? $id : (int) $this->getState('location.id');
 
