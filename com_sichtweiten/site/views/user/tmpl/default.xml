@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_TITLE">
-		<message><![CDATA[COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_DESC]]></message>
+	<layout title="COM_SICHTWEITEN_USER_VIEW_DEFAULT_TITLE">
+		<message><![CDATA[COM_SICHTWEITEN_USER_VIEW_DEFAULT_DESC]]></message>
 	</layout>
 	<fields name="request">
 		<fieldset name="request"
 			addfieldpath="/administrator/components/com_sichtweiten/models/fields" >
-			<field name="id" type="locationlist"
-				label="COM_SICHTWEITEN_FIELD_LOCATION_ID_LABEL"
-				description="COM_SICHTWEITEN_FIELD_LOCATION_ID_DESC"
-				class="required validate-abovezero"
+			<field name="id" type="userlist"
+				label="COM_SICHTWEITEN_USER"
+				class="required"
 				required="true"
 			/>
 		</fieldset>
