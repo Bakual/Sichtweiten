@@ -230,7 +230,7 @@ class SichtweitenModelVisibilities extends JModelList
 		}
 		else
 		{
-			$query->order($db->escape($this->getState('list.ordering', 'ordering')) . ' ' . $db->escape($this->getState('list.direction', 'ASC')));
+			$query->order($db->escape($this->getState('list.ordering')) . ' ' . $db->escape($this->getState('list.direction', 'ASC')));
 		}
 
 		return $query;
