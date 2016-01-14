@@ -34,11 +34,14 @@ td.sichtweite111 {
 	background-color: #e5faff;
 }
 .sichtweiten-container td.datum {
-	width: 10%;
+//	width: 10%;
 }
 .sichtweiten-container td.tiefe {
 	width: 9%;
 }
 .sichtweiten-container td.kommentar {
-	width: 20%;
+	width: 10%;
+}
+.sichtweiten-container td.bemerkungen {
+	width: 60%;
 }
