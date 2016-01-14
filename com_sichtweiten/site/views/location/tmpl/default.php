@@ -19,23 +19,27 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 	<div class="tauchplatz <?php echo ($this->item->active) ? '' : 'system-unpublished'; ?>">
 		<dl class="dl-horizontal">
 			<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_TAUCHPLATZ_NAME_LABEL'); ?></dt>
-			<dd><?php echo $this->item->name; ?></dd>
+			<dd><?php echo htmlspecialchars($this->item->name); ?></dd>
 			<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL'); ?></dt>
 			<dd>
-				<?php echo $this->item->gewaesser_displayName; ?>
+				<?php echo htmlspecialchars($this->item->gewaesser_displayName); ?>
 				<?php if ($this->item->land_gewaesser_kurzzeichen != 'CH') : ?>
-					<small>(<?php echo $this->item->land_gewaesser_bezeichnung; ?>)</small>
+					<small>(<?php echo htmlspecialchars($this->item->land_gewaesser_bezeichnung); ?>)</small>
 				<?php endif; ?>
 			</dd>
 			<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></dt>
 			<dd>
-				<?php echo $this->item->ort_name; ?>
+				<?php echo htmlspecialchars($this->item->ort_name); ?>
 				<?php if ($this->item->land_ort_kurzzeichen != 'CH') : ?>
-					<small>(<?php echo $this->item->land_ort_bezeichnung; ?>)</small>
+					<small>(<?php echo htmlspecialchars($this->item->land_ort_bezeichnung); ?>)</small>
 				<?php endif; ?>
 			</dd>
+			<?php if ($this->item->alt_name) : ?>
+				<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></dt>
+				<dd><?php echo htmlspecialchars($this->item->alt_name); ?></dd>
+			<?php endif; ?>
 			<dt><?php echo JText::_('COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL'); ?></dt>
-			<dd><?php echo $this->item->bemerkungen; ?></dd>
+			<dd><?php echo htmlspecialchars($this->item->bemerkungen); ?></dd>
 		</dl>
 	</div>
 	<h3><?php echo JText::_('COM_SICHTWEITEN_HISTORY'); ?></h3>

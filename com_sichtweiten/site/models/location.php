@@ -160,6 +160,11 @@ class SichtweitenModelLocation extends JModelItem
 
 				$query->join('LEFT', '#__sicht_land AS lo ON o.land_id = lo.id');
 
+				// Join over Bezeichnung table
+				$query->select("GROUP_CONCAT(b.name SEPARATOR ', ') AS alt_name");
+				$query->join('LEFT', '#__sicht_bezeichnung AS b ON tp.id = b.tauchplatz_id');
+				$query->group('tp.id');
+
 				$db->setQuery($query);
 
 				$data = $db->loadObject();
