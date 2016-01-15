@@ -17,41 +17,26 @@ defined('_JEXEC') or die;
 class SichtweitenControllerVisibilities extends JControllerAdmin
 {
 	/**
-	 * Proxy for getModel.
+	 * The prefix to use with controller messages.
+	 *
+	 * @var    string
+	 * @since  1.0
+	 */
+	protected $text_prefix = 'COM_SICHTWEITEN_VISIBILITIES';
+
+	/**
+	 * Method to get a model object, loading it if required.
+	 *
+	 * @param   string  $name    The model name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
+	 *
+	 * @return  object  The model.
+	 *
+	 * @since   1.0
 	 */
 	public function &getModel($name = 'Visibility', $prefix = 'SichtweitenModel')
 	{
 		return parent::getModel($name, $prefix, array('ignore_request' => true));
-	}
-
-	/**
-	 * Method to save the submitted ordering values for records via AJAX.
-	 *
-	 * @return    void
-	 *
-	 * @since   3.0
-	 */
-	public function saveOrderAjax()
-	{
-		$pks   = $this->input->post->get('cid', array(), 'array');
-		$order = $this->input->post->get('order', array(), 'array');
-
-		// Sanitize the input
-		$pks   = Joomla\Utilities\ArrayHelper::toInteger($pks);
-		$order = Joomla\Utilities\ArrayHelper::toInteger($order);
-
-		// Get the model
-		$model = $this->getModel();
-
-		// Save the ordering
-		$return = $model->saveorder($pks, $order);
-
-		if ($return)
-		{
-			echo "1";
-		}
-
-		// Close the application
-		JFactory::getApplication()->close();
 	}
 }

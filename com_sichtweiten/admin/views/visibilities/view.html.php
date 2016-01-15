@@ -56,6 +56,8 @@ class SichtweitenViewVisibilities extends JViewLegacy
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
+		$this->addToolbar();
+
 		return parent::display($tpl);
 	}
 
@@ -68,62 +70,11 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		// Get the toolbar object instance
-		$bar = JToolBar::getInstance('toolbar');
-
 		JToolBarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), 'users');
 
-		if ($canDo->get('core.create'))
+		if ($canDo->get('core.delete'))
 		{
-			JToolBarHelper::addNew('visibility.add', 'JTOOLBAR_NEW');
-		}
-
-		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
-		{
-			JToolBarHelper::editList('visibility.edit', 'JTOOLBAR_EDIT');
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::custom('visibilities.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolBarHelper::custom('visibilities.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
-
-			if ($this->state->get('filter.state') != 2)
-			{
-				JToolBarHelper::archiveList('visibilities.archive', 'JTOOLBAR_ARCHIVE');
-			}
-			else
-			{
-				JToolBarHelper::unarchiveList('visibilities.publish', 'JTOOLBAR_UNARCHIVE');
-			}
-
-			JToolBarHelper::checkin('visibilities.checkin');
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::custom('tools.visibilitiesorder', 'purge icon-lightning', '', 'COM_SICHTWEITEN_TOOLS_ORDER', false);
-		}
-
-		// Add a batch button
-		if ($canDo->get('core.edit'))
-		{
-			$title = JText::_('JTOOLBAR_BATCH');
-
-			// Instantiate a new JLayoutFile instance and render the batch button
-			$layout = new JLayoutFile('joomla.toolbar.batch');
-
-			$dhtml = $layout->render(array('title' => $title));
-			$bar->appendButton('Custom', $dhtml, 'batch');
-		}
-
-		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
-		{
-			JToolBarHelper::deleteList('', 'visibilities.delete', 'JTOOLBAR_EMPTY_TRASH');
-		}
-		elseif ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::trash('visibilities.trash', 'JTOOLBAR_TRASH');
+			JToolBarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilities.delete', 'JTOOLBAR_DELETE');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))

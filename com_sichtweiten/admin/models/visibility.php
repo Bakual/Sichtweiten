@@ -15,6 +15,33 @@ class SichtweitenModelVisibility extends JModelAdmin
 	protected $text_prefix = 'COM_SICHTWEITEN';
 
 	/**
+	 * Constructor.
+	 *
+	 * @param   array $config An optional associative array of configuration settings.
+	 *
+	 * @see     JModelLegacy
+	 * @since   1.0
+	 */
+	public function __construct($config = array())
+	{
+		$params = JComponentHelper::getParams('com_sichtweiten');
+
+		// Taken from https://docs.joomla.org/Connecting_to_an_external_database
+		$option = array();
+
+		$option['driver']   = $params->get('db_type', 'mysqli');
+		$option['host']     = $params->get('db_host', 'localhost');
+		$option['database'] = $params->get('db_database');
+		$option['user']     = $params->get('db_user');
+		$option['password'] = $params->get('db_pass');
+		$option['prefix']   = $params->get('db_prefix', 'jos_');
+
+		$config['dbo'] = JDatabaseDriver::getInstance($option);
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
 	 * @param    type      The table type to instantiate
@@ -22,7 +49,7 @@ class SichtweitenModelVisibility extends JModelAdmin
 	 * @param    array     Configuration array for model. Optional.
 	 *
 	 * @return    JTable    A database object
-	 * @since    1.6
+	 * @since    1.0
 	 */
 	public function getTable($type = 'Visibility', $prefix = 'SichtweitenTable', $config = array())
 	{
@@ -93,5 +120,56 @@ class SichtweitenModelVisibility extends JModelAdmin
 	protected function preprocessForm(JForm $form, $data, $group = 'sichtweiten')
 	{
 		parent::preprocessForm($form, $data, $group);
+	}
+
+	/**
+	 * Method to delete one or more records.
+	 *
+	 * @param   array &$pks An array of record primary keys.
+	 *
+	 * @return  boolean  True if successful, false if an error occurs.
+	 *
+	 * @since   1.0
+	 */
+	public function delete(&$pks)
+	{
+		$user = JFactory::getUser();
+
+		if (!$user->authorise('core.delete', $this->option))
+		{
+			JFactory::getApplication()->enqueueMessage('JLIB_APPLICATION_ERROR_DELETE_NOT_PERMITTED', 'error');
+
+			return false;
+		}
+
+		$pks = (array) $pks;
+		$pks = \Joomla\Utilities\ArrayHelper::toInteger($pks);
+
+		$db    = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$query->delete('#__sicht_sichtweitenmeldung');
+		$query->where($db->quoteName('id') . ' IN (' . implode(',', $pks) . ')');
+
+		$db->setQuery($query);
+		$db->execute();
+
+		$query = $db->getQuery(true);
+
+		$query->delete('#__sicht_sichtweiteneintrag');
+		$query->where($db->quoteName('sichtweitenmeldung_id') . ' IN (' . implode(',', $pks) . ')');
+
+		$db->setQuery($query);
+		$db->execute();
+
+		$query = $db->getQuery(true);
+
+		$query->delete('#__sicht_tauchpartner');
+		$query->where($db->quoteName('sichtweitenmeldung_id') . ' IN (' . implode(',', $pks) . ')');
+
+		$db->setQuery($query);
+		$db->execute();
+
+		return true;
 	}
 }

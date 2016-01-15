@@ -37,19 +37,10 @@ class SichtweitenHelper
 	/**
 	 * Get the actions for ACL
 	 */
-	public static function getActions($categoryId = 0)
+	public static function getActions()
 	{
 		$user   = JFactory::getUser();
 		$result = new JObject;
-
-		if (empty($categoryId))
-		{
-			$assetName = 'com_sichtweiten';
-		}
-		else
-		{
-			$assetName = 'com_sichtweiten.category.' . (int) $categoryId;
-		}
 
 		$actions = JAccess::getActionsFromFile(
 			JPATH_ADMINISTRATOR . '/components/com_sichtweiten/access.xml',
@@ -58,7 +49,7 @@ class SichtweitenHelper
 
 		foreach ($actions as $action)
 		{
-			$result->set($action->name, $user->authorise($action->name, $assetName));
+			$result->set($action->name, $user->authorise($action->name, 'com_sichtweiten'));
 		}
 
 		return $result;

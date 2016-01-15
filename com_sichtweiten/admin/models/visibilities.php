@@ -87,6 +87,11 @@ class SichtweitenModelVisibilities extends JModelList
 		);
 		$query->from('`#__sicht_sichtweitenmeldung` AS swm');
 
+		// Join Tauchplatz table
+		$query->select('tp.name AS tauchplatz');
+		$query->join('LEFT', '`#__sicht_tauchplatz` AS tp ON tp.id = swm.tauchplatz_id');
+
+
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');
 		$orderDirn = $this->state->get('list.direction');
