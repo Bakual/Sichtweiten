@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 $listOrder = $this->state->get('list.ordering');
-$listDirn  = $this->state->get('list.direction');
+$listDirn  = $this->state->get('list.direction', 'asc');
 ?>
 <?php $gewaesser = ''; ?>
 <?php foreach($this->items as $i => $item) : ?>
