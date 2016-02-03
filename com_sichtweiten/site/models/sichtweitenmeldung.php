@@ -144,6 +144,17 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 			$db->setQuery($query);
 			$id = $db->loadResult();
 
+			if (!$id)
+			{
+				$queryInsert = $db->getQuery(true);
+				$queryInsert->insert('#__sicht_user');
+				$queryInsert->columns($db->quoteName(array('name', 'joomla_id')));
+				$queryInsert->values($db->quote($user->username) . ', ' . (int) $user->id);
+				$db->setQuery($queryInsert);
+				$db->execute();
+				$id = $db->insertid();
+			}
+
 			if ($id)
 			{
 				$table->user_id = $id;
