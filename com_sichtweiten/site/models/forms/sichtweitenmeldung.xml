@@ -22,7 +22,6 @@
 			name="tiefenbereich0"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_DESC"
 			required="true"
 			default="112"
 			validate="tiefenbereich"
@@ -31,42 +30,36 @@
 			name="tiefenbereich1"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_DESC"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich2"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH2_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH2_DESC"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich3"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_DESC"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich4"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_DESC"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich5"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_DESC"
 			default="112"
 		/>
 		<field
 			name="kommentar"
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL"
-			description="COM_SICHTWEITEN_FIELD_KOMMENTAR_DESC"
 		/>
 		<field
 			name="tauchpartner_1_name"
