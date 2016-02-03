@@ -56,4 +56,7 @@
 			<folder>views</folder>
 		</files>
 	</administration>
+	<updateservers>
+		<server type="extension" priority="1" name="Bakual.net">http://www.bakual.net/update/com_sichtweiten.xml</server>
+	</updateservers>
 </extension>
