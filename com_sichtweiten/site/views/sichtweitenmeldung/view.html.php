@@ -49,7 +49,16 @@ class SichtweitenViewSichtweitenmeldung extends JViewLegacy
 
 		if (!$this->user->authorise('core.create', 'com_sichtweiten'))
 		{
-			throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+			if ($this->user->guest)
+			{
+				$app = JFactory::getApplication();
+				$app->enqueueMessage(JText::_('JGLOBAL_YOU_MUST_LOGIN_FIRST'), 'message');
+				$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
+			}
+			else
+			{
+				throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+			}
 		}
 
 		// Check for errors.
