@@ -48,4 +48,7 @@ JHtml::_('formbehavior.chosen', 'select');
 			<?php echo JHtml::_('form.token'); ?>
 		</fieldset>
 	</form>
+	<?php if ($this->params->get('copyright')) : ?>
+		<div class="copyright"><small><?php echo JText::_('COM_SICHTEWEITEN_COPYRIGHT'); ?></small></div>
+	<?php endif; ?>
 </div>

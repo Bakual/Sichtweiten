@@ -31,4 +31,7 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
 		</form>
 	</div>
+	<?php if ($this->params->get('copyright')) : ?>
+		<div class="copyright"><small><?php echo JText::_('COM_SICHTEWEITEN_COPYRIGHT'); ?></small></div>
+	<?php endif; ?>
 </div>

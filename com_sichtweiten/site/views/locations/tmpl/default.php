@@ -61,4 +61,7 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 			</table>
 		<?php endif; ?>
 	</div>
+	<?php if ($this->params->get('copyright')) : ?>
+		<div class="copyright"><small><?php echo JText::_('COM_SICHTEWEITEN_COPYRIGHT'); ?></small></div>
+	<?php endif; ?>
 </div>

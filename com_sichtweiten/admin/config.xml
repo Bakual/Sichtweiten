@@ -64,6 +64,17 @@
 			<option value="">JOPTION_USE_DEFAULT</option>
 			<option value="0">JOPTION_DO_NOT_USE</option>
 		</field>
+		<field
+			name="copyright"
+			type="radio"
+			label="COM_SICHTWEITEN_FIELD_COPYRIGHT_LABEL"
+			description="COM_SICHTWEITEN_FIELD_COPYRIGHT_DESC"
+			class="btn-group btn-group-yesno"
+			default="0"
+			>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
 	</fieldset>
 	<fieldset
 		name="permissions"
