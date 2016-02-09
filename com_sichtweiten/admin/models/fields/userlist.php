@@ -12,7 +12,7 @@ defined('_JEXEC') or die();
 JFormHelper::loadFieldClass('list');
 
 /**
- * Locationlist Field class for the Sichtweiten.
+ * Userlist Field class for the Sichtweiten.
  *
  * @package        Sichtweiten
  * @since          1.0
