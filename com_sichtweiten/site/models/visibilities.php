@@ -132,6 +132,31 @@ class SichtweitenModelVisibilities extends JModelList
 
 		$query->join('LEFT', '#__sicht_land AS lg ON g.land_id = lg.id');
 
+		// Join over Ort table
+		$query->select(
+			array(
+				$db->quoteName('o.name', 'ort_name'),
+			)
+		);
+
+		$query->join('LEFT', '#__sicht_ort AS o ON tp.ort_id = o.id');
+
+		// Join over Land table
+		$query->select(
+			$db->quoteName(
+				array(
+					'lo.bezeichnung',
+					'lo.kurzzeichen',
+				),
+				array(
+					'land_ort_bezeichnung',
+					'land_ort_kurzzeichen',
+				)
+			)
+		);
+
+		$query->join('LEFT', '#__sicht_land AS lo ON o.land_id = lo.id');
+
 		// Join over Sichtweitenmeldung table
 		$query->select(
 			$db->quoteName(

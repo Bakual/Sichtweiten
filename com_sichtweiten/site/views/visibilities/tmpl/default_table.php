@@ -11,6 +11,8 @@ defined('_JEXEC') or die();
 
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
+
+JHtml::_('bootstrap.tooltip');
 ?>
 <table class="table table-striped table-hover table-condensed">
 	<thead><tr>
@@ -30,8 +32,11 @@ $listDirn  = $this->state->get('list.direction');
 		<?php foreach($this->items as $i => $item) : ?>
 			<tr>
 				<td class="ort">
-					<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>">
-						<?php echo $item->name; ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>"
+						class="hasTooltip"
+						title="<?php echo JText::_('COM_SICHTWEITEN_FIELD_ORT_LABEL') . ': ' . $item->ort_name; ?><br />
+						<?php echo JText::_('COM_SICHTWEITEN_FIELD_LAND_LABEL') . ': ' . $item->land_ort_bezeichnung; ?>">
+							<?php echo $item->name; ?>
 					</a>
 				</td>
 				<td class="gewaesser">

@@ -11,6 +11,8 @@ defined('_JEXEC') or die();
 
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction', 'asc');
+
+JHtml::_('bootstrap.tooltip');
 ?>
 <?php $gewaesser = ''; ?>
 <?php foreach($this->items as $i => $item) : ?>
@@ -47,8 +49,11 @@ $listDirn  = $this->state->get('list.direction', 'asc');
 	<?php endif; ?>
 	<tr>
 		<td class="ort">
-			<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>">
-				<?php echo $item->name; ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>"
+				class="hasTooltip"
+				title="<?php echo JText::_('COM_SICHTWEITEN_FIELD_ORT_LABEL') . ': ' . $item->ort_name; ?><br />
+				<?php echo JText::_('COM_SICHTWEITEN_FIELD_LAND_LABEL') . ': ' . $item->land_ort_bezeichnung; ?>">
+					<?php echo $item->name; ?>
 			</a>
 		</td>
 		<td class="datum">
@@ -75,7 +80,10 @@ $listDirn  = $this->state->get('list.direction', 'asc');
 		<td class="kommentar">
 			<?php echo htmlspecialchars($item->kommentar); ?>
 			<?php if ($item->buddy_names) : ?>
-				| <?php echo JText::_('COM_SICHTWEITEN_BUDDIES'); ?>:
+				<?php if ($item->kommentar) : ?>
+					|
+				<?php endif; ?>
+				<?php echo JText::_('COM_SICHTWEITEN_BUDDIES'); ?>:
 				<?php echo SichtweitenHelperSichtweiten::getBuddies($item->buddy_names, $item->buddy_emails); ?>
 			<?php endif; ?>
 		</td>
