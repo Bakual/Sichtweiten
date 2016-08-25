@@ -10,6 +10,8 @@
 			label="JDATE"
 			description="COM_SICHTWEITEN_FIELD_DATUM_DESC"
 			required="true"
+			hint="COM_SICHTWEITEN_FIELD_DATUM_HINT"
+			default="NOW"
 		/>
 		<field
 			name="tauchplatz_id"
