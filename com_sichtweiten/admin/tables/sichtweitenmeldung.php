@@ -32,12 +32,19 @@ class SichtweitenTableSichtweitenmeldung extends JTable
 	 */
 	public function check()
 	{
-		$date = JFactory::getDate('now', 'UTC');
+		$date_now  = JFactory::getDate('now', 'UTC');
 
-		if ($this->datum > $date)
+		if (!$date_form = date_create($this->datum, new DateTimeZone('UTC')))
+		{
+			throw new Exception(JText::_('COM_SICHTWEITEN_ERROR_INVALID_DATE'));
+		}
+
+		if ($date_form > $date_now)
 		{
 			throw new Exception(JText::_('COM_SICHTWEITEN_ERROR_DATE_IN_FUTURE'));
 		}
+
+		$this->datum = $date_form->format('Y-m-d');
 
 		return true;
 	}
