@@ -36,6 +36,13 @@ class SichtweitenController extends JControllerLegacy
 	{
 		$cachable = JFactory::getUser()->get('id') ? false : true;
 
+		$params   = JFactory::getApplication()->getParams();
+
+		if ($params->get('css_icomoon'))
+		{
+			JHtml::_('stylesheet', 'jui/icomoon.css', array(), true);
+		}
+
 		$urlparams = array(
 				'id'               => 'INT',
 				'limit'            => 'INT',
