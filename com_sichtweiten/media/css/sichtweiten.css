@@ -1,36 +1,43 @@
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite105,
 .table-hover tbody tr:hover > td.sichtweite105,
-td.sichtweite105 {
+td.sichtweite105,
+li.sichtweite105 {
 	background-color: #8f5d4f;
 }
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite106,
 .table-hover tbody tr:hover > td.sichtweite106,
-td.sichtweite106 {
+td.sichtweite106,
+li.sichtweite106 {
 	background-color: #a28274;
 }
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite107,
 .table-hover tbody tr:hover > td.sichtweite107,
-td.sichtweite107 {
+td.sichtweite107,
+li.sichtweite107 {
 	background-color: #a3a7ab;
 }
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite108,
 .table-hover tbody tr:hover > td.sichtweite108,
-td.sichtweite108 {
+td.sichtweite108,
+li.sichtweite108 {
 	background-color: #9ab5c9;
 }
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite109,
 .table-hover tbody tr:hover > td.sichtweite109,
-td.sichtweite109 {
+td.sichtweite109,
+li.sichtweite109 {
 	background-color: #a6d6ec;
 }
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite110,
 .table-hover tbody tr:hover > td.sichtweite110,
-td.sichtweite110 {
+td.sichtweite110,
+li.sichtweite110 {
 	background-color: #beedff;
 }
 .table-striped tbody > tr:nth-child(odd) > td.sichtweite111,
 .table-hover tbody tr:hover > td.sichtweite111,
-td.sichtweite111 {
+td.sichtweite111,
+li.sichtweite111 {
 	background-color: #e5faff;
 }
 .sichtweiten-container td.datum {

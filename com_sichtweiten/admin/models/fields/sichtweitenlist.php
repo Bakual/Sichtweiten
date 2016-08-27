@@ -62,6 +62,7 @@ class JFormFieldSichtweitenlist extends JFormFieldList
 		foreach ($options as $option)
 		{
 			$option->text  = JText::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $option->value);
+			$option->class = 'tiefe sichtweite' . $option->value;
 		}
 
 		return $options;

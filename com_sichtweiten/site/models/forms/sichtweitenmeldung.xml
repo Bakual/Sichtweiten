@@ -17,13 +17,14 @@
 			name="tauchplatz_id"
 			type="locationlist"
 			label="COM_SICHTWEITEN_FIELD_LOCATION_LABEL"
-			class="validate-abovezero"
+			class="validate-abovezero advancedSelect"
 			required="true"
 		/>
 		<field
 			name="tiefenbereich0"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL"
+			class="advancedSelect"
 			required="true"
 			default="112"
 			validate="tiefenbereich"
@@ -32,30 +33,35 @@
 			name="tiefenbereich1"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_LABEL"
+			class="advancedSelect"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich2"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH2_LABEL"
+			class="advancedSelect"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich3"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_LABEL"
+			class="advancedSelect"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich4"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL"
+			class="advancedSelect"
 			default="112"
 		/>
 		<field
 			name="tiefenbereich5"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL"
+			class="advancedSelect"
 			default="112"
 		/>
 		<field
