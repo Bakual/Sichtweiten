@@ -50,6 +50,6 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 		</fieldset>
 	</form>
 	<?php if ($this->params->get('copyright')) : ?>
-		<div class="copyright"><small><?php echo JText::_('COM_SICHTEWEITEN_COPYRIGHT'); ?></small></div>
+		<div class="copyright"><small><?php echo JText::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
 	<?php endif; ?>
 </div>

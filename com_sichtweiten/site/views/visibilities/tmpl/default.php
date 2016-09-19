@@ -18,7 +18,7 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 	<div class="items">
 		<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
 			<?php if (!count($this->items)) : ?>
-				<div class="no_entries alert alert-error"><?php echo JText::sprintf('COM_SICHTWEITEN_NO_ENTRIES', JText::_('COM_SICHTWEITEN_VISIBILITIES')); ?></div>
+				<div class="no_entries alert alert-error"><?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
 			<?php else : ?>
 				<?php if ($listOrder == 'g.displayName') : ?>
 	 				<?php echo $this->loadTemplate('gewaesser'); ?>
@@ -32,6 +32,6 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 		</form>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
-		<div class="copyright"><small><?php echo JText::_('COM_SICHTEWEITEN_COPYRIGHT'); ?></small></div>
+		<div class="copyright"><small><?php echo JText::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
 	<?php endif; ?>
 </div>

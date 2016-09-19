@@ -54,7 +54,7 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 				</div>
 			</div>
 			<?php if (!count($this->items)) : ?>
-				<div class="no_entries alert alert-error"><?php echo JText::sprintf('COM_SICHTWEITEN_NO_ENTRIES', JText::_('COM_SICHTWEITEN_SICHTWEITENMELDUNGEN')); ?></div>
+				<div class="no_entries alert alert-error"><?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
 			<?php else : ?>
 				<table class="table table-striped table-hover table-condensed">
 					<thead><tr>
@@ -123,6 +123,6 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 		</form>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
-		<div class="copyright"><small><?php echo JText::_('COM_SICHTEWEITEN_COPYRIGHT'); ?></small></div>
+		<div class="copyright"><small><?php echo JText::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
 	<?php endif; ?>
 </div>
