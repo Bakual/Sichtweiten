@@ -20,16 +20,19 @@ class Com_SichtweitenInstallerScript
 {
 	/**
 	 * @var  JApplicationCms  Holds the application object
+	 * @since  1.0
 	 */
 	private $app;
 
 	/**
 	 * @var  string  During an update, it will be populated with the old release version
+	 * @since  1.0
 	 */
 	private $oldRelease;
 
 	/**
 	 *  Constructor
+	 * @since  1.0
 	 */
 	public function __construct()
 	{
@@ -39,8 +42,10 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * method to run before an install/update/uninstall method
 	 *
-	 * @param   string                      $type    'install', 'update' or 'discover_install'
-	 * @param   JInstallerAdapterComponent  $parent  Installerobject
+	 * @param   string                     $type   'install', 'update' or 'discover_install'
+	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 *
+	 * @since  1.0
 	 *
 	 * @return  boolean  false will terminate the installation
 	 */
@@ -57,13 +62,21 @@ class Com_SichtweitenInstallerScript
 			return false;
 		}
 
+		// Storing old release number for process in postflight
+		if ($type == 'update')
+		{
+			$this->oldRelease = $this->getParam('version');
+		}
+
 		return true;
 	}
 
 	/**
 	 * Method to install the component
 	 *
-	 * @param   JInstallerAdapterComponent  $parent  Installerobject
+	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 *
+	 * @since  1.0
 	 *
 	 * @return void
 	 */
@@ -74,7 +87,9 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * Method to uninstall the component
 	 *
-	 * @param   JInstallerAdapterComponent  $parent  Installerobject
+	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 *
+	 * @since  1.0
 	 *
 	 * @return void
 	 */
@@ -85,7 +100,9 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * method to update the component
 	 *
-	 * @param   JInstallerAdapterComponent  $parent  Installerobject
+	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 *
+	 * @since  1.0
 	 *
 	 * @return void
 	 */
@@ -96,12 +113,62 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * method to run after an install/update/uninstall method
 	 *
-	 * @param   string                      $type    'install', 'update' or 'discover_install'
-	 * @param   JInstallerAdapterComponent  $parent  Installerobject
+	 * @param   string                     $type   'install', 'update' or 'discover_install'
+	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 *
+	 * @since  1.0
 	 *
 	 * @return void
 	 */
- 	public function postflight($type, $parent)
+	public function postflight($type, $parent)
 	{
+		// Set extern_db to true if updating from 1.2.0 or earlier.
+		if ($type == 'update')
+		{
+			if (version_compare($this->oldRelease, '1.2.0', '<='))
+			{
+				$db    = JFactory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query->select($db->quoteName('params'));
+				$query->from('#__extensions');
+				$query->where($db->quoteName('element') . ' = ' . $db->quote('com_sichtweiten'));
+
+				$db->setQuery($query);
+				$params            = json_decode($db->loadResult());
+				$params->extern_db = 1;
+
+				$query = $db->getQuery(true);
+
+				$query->update('#__extensions');
+				$query->set($db->quoteName('params') . ' = ' . $db->quote(json_encode($params)));
+				$query->where($db->quoteName('element') . ' = ' . $db->quote('com_sichtweiten'));
+
+				$db->setQuery($query);
+				$db->execute();
+			}
+		}
+	}
+
+	/*
+	 * Get a variable from the manifest file (actually, from the manifest cache).
+	 *
+	 * @since  1.0
+	 *
+	 * return string
+	 */
+	private function getParam($name)
+	{
+		$db    = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$query->select($db->quoteName('manifest_cache'));
+		$query->from('#__extensions');
+		$query->where($db->quoteName('name') . ' = ' . $db->quote('com_sichtweiten'));
+
+		$db->setQuery($query);
+		$manifest = json_decode($db->loadResult(), true);
+
+		return $manifest[$name];
 	}
 }
