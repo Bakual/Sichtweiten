@@ -11,10 +11,22 @@
 			default="14"
 		/>
 		<field
+			name="extern_db"
+			type="radio"
+			label="COM_SICHTWEITEN_FIELD_EXTERN_DB_LABEL"
+			description="COM_SICHTWEITEN_FIELD_EXTERN_DB_DESC"
+			class="btn-group btn-group-yesno"
+			default="0"
+			>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+		<field
 			name="db_type"
 			type="list"
 			label="COM_SICHTWEITEN_FIELD_DB_TYPE_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_TYPE_DESC"
+			showon="extern_db:1"
 			default="mysqli"
 			>
 			<option value="mysql">MySQL</option>
@@ -25,6 +37,7 @@
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_DB_HOST_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_HOST_DESC"
+			showon="extern_db:1"
 			default="localhost"
 		/>
 		<field
@@ -32,18 +45,21 @@
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_DB_DATABASE_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_DATABASE_DESC"
+			showon="extern_db:1"
 		/>
 		<field
 			name="db_user"
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_DB_USER_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_USER_DESC"
+			showon="extern_db:1"
 		/>
 		<field
 			name="db_pass"
 			type="password"
 			label="COM_SICHTWEITEN_FIELD_DB_PASS_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_PASS_DESC"
+			showon="extern_db:1"
 		/>
 		<field
 			name="db_prefix"
@@ -51,6 +67,7 @@
 			label="COM_SICHTWEITEN_FIELD_DB_PREFIX_LABEL"
 			description="COM_SICHTWEITEN_FIELD_DB_PREFIX_DESC"
 			default="jos_"
+			showon="extern_db:1"
 		/>
 		<field
 			name="captcha"
