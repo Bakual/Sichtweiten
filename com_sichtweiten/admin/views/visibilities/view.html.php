@@ -57,6 +57,8 @@ class SichtweitenViewVisibilities extends JViewLegacy
 		}
 
 		$this->addToolbar();
+		SichtweitenHelper::addSubmenu('visibilities');
+		$this->sidebar = JHtmlSidebar::render();
 
 		return parent::display($tpl);
 	}

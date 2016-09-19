@@ -28,6 +28,11 @@ class SichtweitenHelper
 	public static function addSubmenu($vName = 'main')
 	{
 		JHtmlSidebar::addEntry(
+			JText::_('COM_SICHTWEITEN_MENU_VISIBILITIES'),
+			'index.php?option=com_sichtweiten&view=visibilities',
+			$vName == 'visibilities'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('COM_SICHTWEITEN_MENU_HELP'),
 			'index.php?option=com_sichtweiten&view=help',
 			$vName == 'help'
