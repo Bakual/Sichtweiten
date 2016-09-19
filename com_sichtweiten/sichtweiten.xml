@@ -6,7 +6,7 @@
 	<copyright>© 2016</copyright>
 	<authorEmail>bakual@bakual.ch</authorEmail>
 	<authorUrl>http://www.bakual.ch</authorUrl>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
 	<license>http://www.gnu.org/licenses/gpl.html</license>
 	<description>COM_SICHTWEITEN_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
