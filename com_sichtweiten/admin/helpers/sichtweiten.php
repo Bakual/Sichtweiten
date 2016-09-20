@@ -33,6 +33,11 @@ class SichtweitenHelper
 			$vName == 'visibilities'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('COM_SICHTWEITEN_MENU_DIVESITES'),
+			'index.php?option=com_sichtweiten&view=divesites',
+			$vName == 'divesites'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('COM_SICHTWEITEN_MENU_HELP'),
 			'index.php?option=com_sichtweiten&view=help',
 			$vName == 'help'
