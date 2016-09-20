@@ -96,8 +96,7 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	{
 		return array(
 			'visibilities.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'visibilities.state' => JText::_('JSTATUS'),
-			'visibilities.title' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
+			'visibilities.name' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
 			'visibilities.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}
