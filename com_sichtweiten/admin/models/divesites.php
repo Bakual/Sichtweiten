@@ -16,13 +16,13 @@ class SichtweitenModelDivesites extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',
+				'tp.id',
 			);
 
 			// Searchtools
-			$config['filter_fields'][] = 'datum';
-			$config['filter_fields'][] = 'meldedatum';
-			$config['filter_fields'][] = 'user';
+			$config['filter_fields'][] = 'tp.name';
+			$config['filter_fields'][] = 'g.name';
+			$config['filter_fields'][] = 'o.name';
 		}
 
 		$params = JComponentHelper::getParams('com_sichtweiten');
@@ -88,10 +88,21 @@ class SichtweitenModelDivesites extends JModelList
 		);
 		$query->from('`#__sicht_tauchplatz` AS tp');
 
-		// Join Tauchplatz table
+		// Join Gewaesser table
 		$query->select('g.name AS gewaesser');
 		$query->join('LEFT', '`#__sicht_gewaesser` AS g ON g.id = tp.gewaesser_id');
 
+		// Join Gewaesser-Land table
+		$query->select('lg.bezeichnung AS gewaesser_land, lg.kurzzeichen AS gewaesser_land_kurz');
+		$query->join('LEFT', '`#__sicht_land` AS lg ON lg.id = g.land_id');
+
+		// Join Ort table
+		$query->select('o.name AS ort');
+		$query->join('LEFT', '`#__sicht_ort` AS o ON o.id = tp.ort_id');
+
+		// Join Ort-Land table
+		$query->select('lo.bezeichnung AS ort_land, lo.kurzzeichen AS ort_land_kurz');
+		$query->join('LEFT', '`#__sicht_land` AS lo ON lo.id = o.land_id');
 
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');

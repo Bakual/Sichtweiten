@@ -16,13 +16,14 @@ class SichtweitenModelVisibilities extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',
+				'swm.id',
 			);
 
 			// Searchtools
-			$config['filter_fields'][] = 'datum';
-			$config['filter_fields'][] = 'meldedatum';
-			$config['filter_fields'][] = 'user';
+			$config['filter_fields'][] = 'swm.datum';
+			$config['filter_fields'][] = 'swm.meldedatum';
+			$config['filter_fields'][] = 'swm.user';
+			$config['filter_fields'][] = 'tp.name';
 		}
 
 		$params = JComponentHelper::getParams('com_sichtweiten');

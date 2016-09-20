@@ -11,6 +11,9 @@
 			onchange="this.form.submit();"
 			>
 			<option value="">JGLOBAL_SORT_BY</option>
+			<option value="tp.name">COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL</option>
+			<option value="g.name">COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL</option>
+			<option value="o.name">COM_SICHTWEITEN_FIELD_ORT_LABEL</option>
 		</field>
 		<field
 			name="direction"

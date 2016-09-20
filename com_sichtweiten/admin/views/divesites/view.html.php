@@ -95,10 +95,10 @@ class SichtweitenViewDivesites extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'visibilities.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'visibilities.state' => JText::_('JSTATUS'),
-			'visibilities.title' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
-			'visibilities.id' => JText::_('JGRID_HEADING_ID')
+			'divesites.ordering' => JText::_('JGRID_HEADING_ORDERING'),
+			'divesites.state' => JText::_('JSTATUS'),
+			'divesites.title' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
+			'divesites.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}
 }
