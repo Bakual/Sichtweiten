@@ -5,16 +5,37 @@ defined('_JEXEC') or die;
 /**
  * View to edit a visibility.
  *
- * @package        Sichtweiten.Administrator
+ * @package   Sichtweiten.Administrator
+ * @since     1.3.0
  */
 class SichtweitenViewVisibility extends JViewLegacy
 {
+	/**
+	 * @var
+	 * @since   1.3.0
+	 */
 	protected $state;
+
+	/**
+	 * @var
+	 * @since   1.3.0
+	 */
 	protected $item;
+
+	/**
+	 * @var
+	 * @since   1.3.0
+	 */
 	protected $form;
 
 	/**
 	 * Display the view
+	 *
+	 * @param null $tpl
+	 *
+	 * @since   1.3.0
+	 * @return mixed
+	 * @throws \Exception
 	 */
 	public function display($tpl = null)
 	{
@@ -36,60 +57,21 @@ class SichtweitenViewVisibility extends JViewLegacy
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @since    1.6
+	 * @since   1.3.0
 	 */
 	protected function addToolbar()
 	{
 		JFactory::getApplication()->input->set('hidemainmenu', true);
-		$user       = JFactory::getUser();
-		$userId     = $user->get('id');
-		$isNew      = ($this->item->id == 0);
-		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
-		$canDo      = SichtweitenHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), JText::_('COM_SICHTWEITEN_VISIBILITY')), 'pencil-2');
+		$canDo = SichtweitenHelper::getActions();
+		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), JText::_('COM_SICHTWEITEN_VISIBILITY')), 'pencil-2');
 
-		// Build the actions for new and existing records.
-		if ($isNew)
+		// Since it's an existing record, check the edit permission
+		if ($canDo->get('core.edit'))
 		{
-			// For new records, check the create permission.
-			if ($canDo->get('core.create'))
-			{
-				JToolBarHelper::apply('visibility.apply');
-				JToolBarHelper::save('visibility.save');
-			}
-			JToolbarHelper::cancel('visibility.cancel');
-		}
-		else
-		{
-			// Can't save the record if it's checked out.
-			if (!$checkedOut)
-			{
-				// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
-				if ($canDo->get('core.edit') || ($canDo->get('core.edit.own') && $this->item->created_by == $userId))
-				{
-					JToolBarHelper::apply('visibility.apply');
-					JToolBarHelper::save('visibility.save');
-
-					// We can save this record, but check the create permission to see if we can return to make a new one.
-					if ($canDo->get('core.create'))
-					{
-						JToolbarHelper::save2new('visibility.save2new');
-					}
-				}
-			}
-
-			// If checked out, we can still save to copy
-			if ($canDo->get('core.create'))
-			{
-				JToolbarHelper::save2copy('visibility.save2copy');
-			}
-
-			JToolbarHelper::cancel('visibility.cancel', 'JTOOLBAR_CLOSE');
+			JToolbarHelper::apply('visibility.apply');
+			JToolbarHelper::save('visibility.save');
 		}
 
-		if ($this->state->params->get('save_history') && $user->authorise('core.edit'))
-		{
-			JToolbarHelper::versions('com_sichtweiten.visibility', $this->item->id);
-		}
+		JToolbarHelper::cancel('visibility.cancel', 'JTOOLBAR_CLOSE');
 	}
 }

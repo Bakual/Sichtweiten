@@ -74,6 +74,11 @@ class SichtweitenViewVisibilities extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), 'users');
 
+		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
+		{
+			JToolBarHelper::editList('visibility.edit', 'JTOOLBAR_EDIT');
+		}
+
 		if ($canDo->get('core.delete'))
 		{
 			JToolBarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilities.delete', 'JTOOLBAR_DELETE');

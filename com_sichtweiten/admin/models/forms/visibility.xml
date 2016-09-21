@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset name="general">
+		<field
+			name="id"
+			type="text"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description ="JGLOBAL_FIELD_ID_DESC"
+			class="readonly"
+			size="10"
+			default="0"
+			readonly="true"
+		/>
+		<field
+			name="tauchplatz_id"
+			type="locationlist"
+			label="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL"
+			description="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_DESC"
+		/>
+		<field
+			name="user_id"
+			type="user"
+			label="JUSER"
+		/>
+		<field
+			name="datum"
+			type="calendar"
+			label="JDATE"
+		/>
+		<field
+			name="meldedatum"
+			type="calendar"
+			label="JGLOBAL_FIELD_CREATED"
+		/>
 	</fieldset>
 </form>

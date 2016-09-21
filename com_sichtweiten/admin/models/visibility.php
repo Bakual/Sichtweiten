@@ -54,7 +54,7 @@ class SichtweitenModelVisibility extends JModelAdmin
 	 * @return    JTable    A database object
 	 * @since    1.0
 	 */
-	public function getTable($type = 'Visibility', $prefix = 'SichtweitenTable', $config = array())
+	public function getTable($type = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -65,8 +65,9 @@ class SichtweitenModelVisibility extends JModelAdmin
 	 * @param    array   $data     An optional array of data for the form to interogate.
 	 * @param    boolean $loadData True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return    JForm    A JForm object on success, false on failure
-	 * @since    1.6
+	 * @return  JForm|boolean  A JForm object on success, false on failure
+
+	 * @since    1.3.0
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
@@ -85,7 +86,8 @@ class SichtweitenModelVisibility extends JModelAdmin
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return    mixed    The data for the form.
-	 * @since    1.6
+
+	 * @since    1.3.0
 	 */
 	protected function loadFormData()
 	{
@@ -132,7 +134,7 @@ class SichtweitenModelVisibility extends JModelAdmin
 	 *
 	 * @return  boolean  True if successful, false if an error occurs.
 	 *
-	 * @since   1.0
+	 * @since   1.3.0
 	 */
 	public function delete(&$pks)
 	{
