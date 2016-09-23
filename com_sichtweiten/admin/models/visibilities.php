@@ -15,15 +15,17 @@ class SichtweitenModelVisibilities extends JModelList
 	{
 		if (empty($config['filter_fields']))
 		{
+			// Filter Fields define valid ordering fields.
 			$config['filter_fields'] = array(
 				'swm.id',
+				'swm.datum',
+				'swm.meldedatum',
+				'swm.user',
+				'tp.name',
 			);
 
-			// Searchtools
-			$config['filter_fields'][] = 'swm.datum';
-			$config['filter_fields'][] = 'swm.meldedatum';
-			$config['filter_fields'][] = 'swm.user';
-			$config['filter_fields'][] = 'tp.name';
+			// Parent::getActiveFilters uses them for SearchTools. Has to match filter name (eg "foo" for "filters.foo")
+			$config['filter_fields'][] = 'tauchplatz';
 		}
 
 		$params = JComponentHelper::getParams('com_sichtweiten');
@@ -55,14 +57,9 @@ class SichtweitenModelVisibilities extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		// Initialise variables.
-		$app = JFactory::getApplication();
-
-		// Load the parameters.
 		$params = JComponentHelper::getParams('com_sichtweiten');
 		$this->setState('params', $params);
 
-		// List state information.
 		parent::populateState('swm.datum', 'desc');
 	}
 
@@ -101,6 +98,22 @@ class SichtweitenModelVisibilities extends JModelList
 		if (is_numeric($tauchplatz))
 		{
 			$query->where('swm.tauchplatz_id = ' . (int) $tauchplatz);
+		}
+
+		// Filter by search in title
+		$search = $this->getState('filter.search');
+
+		if (!empty($search))
+		{
+			if (stripos($search, 'id:') === 0)
+			{
+				$query->where('swm.id = ' . (int) substr($search, 3));
+			}
+			else
+			{
+				$search = $db->quote('%' . $db->escape($search, true) . '%');
+				$query->where('(swm.datum LIKE ' . $search . ')');
+			}
 		}
 
 		// Add the list ordering clause.

@@ -12,12 +12,26 @@
 			name="gewaesser"
 			type="sql"
 			label="COM_SICHTWEITEN_FILTER_GEWAESSER_LABEL"
-			description="COM_SICHTWEITEN_FILTER_DIVESITE_DESC"
+			description="COM_SICHTWEITEN_FILTER_GEWAESSER_DESC"
 			onchange="this.form.submit();"
 			key_field="id"
 			value_field="name"
-			query="SELECT name, id FROM #__sicht_gewaesser"
-		/>
+			query="SELECT name, id FROM #__sicht_gewaesser ORDER BY name ASC"
+			>
+			<option value="">COM_SICHTWEITEN_FILTER_GEWAESSER_SELECT</option>
+		</field>
+		<field
+			name="ort"
+			type="sql"
+			label="COM_SICHTWEITEN_FILTER_ORT_LABEL"
+			description="COM_SICHTWEITEN_FILTER_ORT_DESC"
+			onchange="this.form.submit();"
+			key_field="id"
+			value_field="name"
+			query="SELECT name, id FROM #__sicht_ort ORDER BY name ASC"
+			>
+			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
+		</field>
 	</fields>
 	<fields name="list">
 		<field

@@ -12,6 +12,11 @@
 			readonly="true"
 		/>
 		<field
+			name="datum"
+			type="calendar"
+			label="JDATE"
+		/>
+		<field
 			name="tauchplatz_id"
 			type="locationlist"
 			label="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL"
@@ -20,17 +25,14 @@
 		<field
 			name="user_id"
 			type="user"
-			label="JUSER"
-		/>
-		<field
-			name="datum"
-			type="calendar"
-			label="JDATE"
+			label="JGLOBAL_FIELD_CREATED_BY_LABEL"
+			description="JGLOBAL_FIELD_CREATED_BY_DESC"
 		/>
 		<field
 			name="meldedatum"
 			type="calendar"
-			label="JGLOBAL_FIELD_CREATED"
+			label="JGLOBAL_FIELD_CREATED_LABEL"
+			description="JGLOBAL_FIELD_CREATED_DESC"
 		/>
 	</fieldset>
 </form>

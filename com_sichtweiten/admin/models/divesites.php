@@ -15,14 +15,17 @@ class SichtweitenModelDivesites extends JModelList
 	{
 		if (empty($config['filter_fields']))
 		{
+			// Filter Fields define valid ordering fields.
 			$config['filter_fields'] = array(
 				'tp.id',
+				'tp.name',
+				'g.name',
+				'o.name',
 			);
 
-			// Searchtools
-			$config['filter_fields'][] = 'tp.name';
-			$config['filter_fields'][] = 'g.name';
-			$config['filter_fields'][] = 'o.name';
+			// Parent::getActiveFilters uses them for SearchTools. Has to match filter name (eg "foo" for "filters.foo")
+			$config['filter_fields'][] = 'gewaesser';
+			$config['filter_fields'][] = 'ort';
 		}
 
 		$params = JComponentHelper::getParams('com_sichtweiten');
@@ -54,11 +57,9 @@ class SichtweitenModelDivesites extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		// Load the parameters.
 		$params = JComponentHelper::getParams('com_sichtweiten');
 		$this->setState('params', $params);
 
-		// List state information.
 		parent::populateState('tp.name', 'asc');
 	}
 
@@ -96,6 +97,14 @@ class SichtweitenModelDivesites extends JModelList
 		$query->select('lg.bezeichnung AS gewaesser_land, lg.kurzzeichen AS gewaesser_land_kurz');
 		$query->join('LEFT', '`#__sicht_land` AS lg ON lg.id = g.land_id');
 
+		// Filter by Gewaesser
+		$gewaesser = $this->getState('filter.gewaesser');
+
+		if (is_numeric($gewaesser))
+		{
+			$query->where('tp.gewaesser_id = ' . (int) $gewaesser);
+		}
+
 		// Join Ort table
 		$query->select('o.name AS ort');
 		$query->join('LEFT', '`#__sicht_ort` AS o ON o.id = tp.ort_id');
@@ -103,6 +112,30 @@ class SichtweitenModelDivesites extends JModelList
 		// Join Ort-Land table
 		$query->select('lo.bezeichnung AS ort_land, lo.kurzzeichen AS ort_land_kurz');
 		$query->join('LEFT', '`#__sicht_land` AS lo ON lo.id = o.land_id');
+
+		// Filter by Gewaesser
+		$ort = $this->getState('filter.ort');
+
+		if (is_numeric($ort))
+		{
+			$query->where('tp.ort_id = ' . (int) $ort);
+		}
+
+		// Filter by search in title
+		$search = $this->getState('filter.search');
+
+		if (!empty($search))
+		{
+			if (stripos($search, 'id:') === 0)
+			{
+				$query->where('tp.id = ' . (int) substr($search, 3));
+			}
+			else
+			{
+				$search = $db->quote('%' . $db->escape($search, true) . '%');
+				$query->where('(tp.name LIKE ' . $search . ')');
+			}
+		}
 
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');

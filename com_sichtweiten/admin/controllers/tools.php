@@ -90,4 +90,48 @@ class SichtweitenControllerTools extends JControllerLegacy
 
 		return;
 	}
+
+	/**
+	 * Truncates the intern tables
+	 *
+	 * @throws Exception
+	 *
+	 * @since 1.2.0
+	 */
+	public function truncate()
+	{
+		// Check for request forgeries
+		JSession::checkToken('request') or jexit(JText::_('JINVALID_TOKEN'));
+
+		$app = JFactory::getApplication();
+		$db  = JFactory::getDbo();
+
+		$tables = array(
+			'#__sicht_adresse',
+			'#__sicht_bezeichnung',
+			'#__sicht_gewaesser',
+			'#__sicht_land',
+			'#__sicht_ort',
+			'#__sicht_sichtweite',
+			'#__sicht_sichtweiteneintrag',
+			'#__sicht_sichtweitenmeldung',
+			'#__sicht_tauchpartner',
+			'#__sicht_tauchplatz',
+			'#__sicht_tiefenbereich',
+			'#__sicht_user',
+		);
+
+		foreach ($tables as $table)
+		{
+			$query = 'TRUNCATE ' . $table;
+
+			$db->setQuery($query);
+			$db->execute();
+		}
+
+		$app->enqueueMessage('Tables Truncated!');
+		$app->redirect('index.php?option=com_sichtweiten&view=main');
+
+		return;
+	}
 }

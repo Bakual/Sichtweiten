@@ -45,5 +45,11 @@ JHtml::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css');
 				</a>
 			</li>
 		<?php endif; ?>
+		<li class="span4 hasTooltip" title="<?php echo JText::_('COM_SICHTWEITEN_TRUNCATE_DESC'); ?>">
+			<a class="thumbnail" href="index.php?option=com_sichtweiten&task=tools.truncate&<?php echo $session->getName() . '=' . $session->getId() . '&' . JSession::getFormToken(); ?>=1">
+				<div class="icon"><span class="icon-database"></span></div>
+				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_TRUNCATE_TITLE'); ?></h3>
+			</a>
+		</li>
 	</ul>
 </div>
