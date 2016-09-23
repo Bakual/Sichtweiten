@@ -9,7 +9,7 @@ class SichtweitenModelVisibilities extends JModelList
 	 * @param  array $config An optional associative array of configuration settings.
 	 *
 	 * @see    JController
-	 * @since  1.6
+	 * @since  1.0
 	 */
 	public function __construct($config = array())
 	{
@@ -51,7 +51,7 @@ class SichtweitenModelVisibilities extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @since    1.6
+	 * @since    1.0
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
@@ -70,7 +70,7 @@ class SichtweitenModelVisibilities extends JModelList
 	 * Build an SQL query to load the list data.
 	 *
 	 * @return    JDatabaseQuery
-	 * @since    1.6
+	 * @since    1.0
 	 */
 	protected function getListQuery()
 	{
@@ -95,6 +95,13 @@ class SichtweitenModelVisibilities extends JModelList
 		$query->select('tp.name AS tauchplatz');
 		$query->join('LEFT', '`#__sicht_tauchplatz` AS tp ON tp.id = swm.tauchplatz_id');
 
+		// Filter by dive site
+		$tauchplatz = $this->getState('filter.tauchplatz');
+
+		if (is_numeric($tauchplatz))
+		{
+			$query->where('swm.tauchplatz_id = ' . (int) $tauchplatz);
+		}
 
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');

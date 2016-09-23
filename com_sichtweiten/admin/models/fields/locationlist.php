@@ -95,7 +95,11 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 		$options = $db->loadObjectList();
 		$groups  = array();
 
-		$groups[] = array(JText::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION'));
+		$default = new stdClass;
+		$default->value = '';
+		$default->text = JText::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION');
+		$default->displayName = '';
+		array_unshift($options, $default);
 
 		foreach ($options as $option)
 		{

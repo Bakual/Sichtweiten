@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 /**
  * HTML View class for the Sichtweiten Component
  *
-* @since  1.0
+ * @since  1.0
  */
 class SichtweitenViewVisibilities extends JViewLegacy
 {
@@ -24,6 +24,7 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	 * A state object
 	 *
 	 * @var    JObject
+	 * @since  1.0
 	 */
 	protected $state;
 
@@ -36,11 +37,13 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	/**
 	 * Execute and display a template script.
 	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+	 * @param   string $tpl The name of the template file to parse; automatically searches through the template paths.
 	 *
 	 * @return mixed A string if successful, otherwise a Error object.
 	 *
 	 * @throws Exception
+	 *
+	 * @since  1.0
 	 */
 	public function display($tpl = null)
 	{
@@ -67,6 +70,8 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	 * Add the page title and toolbar.
 	 *
 	 * @return  void
+	 *
+	 * @since  1.0
 	 */
 	protected function addToolbar()
 	{
@@ -88,21 +93,5 @@ class SichtweitenViewVisibilities extends JViewLegacy
 		{
 			JToolBarHelper::preferences('com_sichtweiten');
 		}
-	}
-
-	/**
-	 * Returns an array of fields the table can be sorted by
-	 *
-	 * @return  array  Array containing the field name to sort by as the key and display text as value
-	 *
-	 * @since   3.0
-	 */
-	protected function getSortFields()
-	{
-		return array(
-			'visibilities.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'visibilities.name' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
-			'visibilities.id' => JText::_('JGRID_HEADING_ID')
-		);
 	}
 }
