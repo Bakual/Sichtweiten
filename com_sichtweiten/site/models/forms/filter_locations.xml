@@ -19,7 +19,7 @@
 	</fields>
 	<fields name="list">
 		<field
-			name="ordering"
+			name="fullordering"
 			type="list"
 			label="COM_SICHTWEITEN_LIST_ORDERING_LABEL"
 			description="COM_SICHTWEITEN_LIST_ORDERING_DESC"
@@ -27,18 +27,6 @@
 			>
 			<option value="">JGLOBAL_SORT_BY</option>
 			<option value="location">COM_SICHTWEITEN_LOCATION</option>
-		</field>
-		<field
-			name="direction"
-			type="list"
-			label="COM_SICHTWEITEN_LIST_DIRECTION_LABEL"
-			description="COM_SICHTWEITEN_LIST_DIRECTION_DESCS"
-			class="input-mini"
-			default="ASC"
-			onchange="this.form.submit();"
-			>
-			<option value="ASC">COM_SICHTWEITEN_DIRECTION_ASC</option>
-			<option value="DESC">COM_SICHTWEITEN_DIRECTION_DESC</option>
 		</field>
 	</fields>
 </form>

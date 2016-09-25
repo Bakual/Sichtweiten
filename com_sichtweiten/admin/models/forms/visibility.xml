@@ -21,6 +21,7 @@
 			type="locationlist"
 			label="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL"
 			description="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_DESC"
+			required="true"
 		/>
 		<field
 			name="user_id"
