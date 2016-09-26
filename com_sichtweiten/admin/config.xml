@@ -103,6 +103,16 @@
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</field>
+		<field
+			name="country"
+			type="sql"
+			label="COM_SICHTWEITEN_FIELD_DEFAULT_COUNTRY_LABEL"
+			description="COM_SICHTWEITEN_FIELD_DEFAULT_COUNTRY_DESC"
+			default="CH"
+			key_field="kurzzeichen"
+			value_field="bezeichnung"
+			query="SELECT kurzzeichen, bezeichnung FROM #__sicht_land ORDER BY bezeichnung ASC"
+		/>
 	</fieldset>
 	<fieldset
 		name="permissions"
