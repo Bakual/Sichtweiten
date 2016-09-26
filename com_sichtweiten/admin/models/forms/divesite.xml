@@ -52,5 +52,13 @@
 			class="input-xxlarge"
 			rows="5"
 		/>
+		<field
+			name="altnames"
+			type="subform"
+			label="COM_SICHTWEITEN_FIELD_SUBFORM_LABEL"
+			description="COM_SICHTWEITEN_FIELD_SUBFORM_DESC"
+			formsource="subform"
+			multiple="true"
+		/>
 	</fieldset>
 </form>
