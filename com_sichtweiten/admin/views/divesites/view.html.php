@@ -84,6 +84,12 @@ class SichtweitenViewDivesites extends JViewLegacy
 			JToolbarHelper::editList('divesite.edit');
 		}
 
+		if ($canDo->get('core.edit'))
+		{
+			JToolbarHelper::publish('divesites.publish', 'JTOOLBAR_PUBLISH', true);
+			JToolbarHelper::unpublish('divesites.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+		}
+
 		if ($canDo->get('core.delete'))
 		{
 			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'divesites.delete');
