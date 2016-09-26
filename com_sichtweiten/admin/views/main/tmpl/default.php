@@ -19,7 +19,7 @@ JHtml::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css');
 		<li class="span6">
 			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=visibilities">
 				<div class="icon"><span class="icon-drawer-2"></span></div>
-				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'); ?></h3>
+				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span6">
@@ -37,6 +37,9 @@ JHtml::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css');
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_DIVESITES_TITLE'); ?></h3>
 			</a>
 		</li>
+	</ul>
+	<h3><?php echo JText::_('COM_SICHTWEITEN_TOOLS'); ?></h3>
+	<ul class="thumbnails">
 		<?php if (JComponentHelper::getParams('com_sichtweiten')->get('extern_db')) : ?>
 			<li class="span4 hasTooltip" title="<?php echo JText::_('COM_SICHTWEITEN_MIGRATE_DESC'); ?>">
 				<a class="thumbnail" href="index.php?option=com_sichtweiten&task=tools.migrate&<?php echo $session->getName() . '=' . $session->getId() . '&' . JSession::getFormToken(); ?>=1">

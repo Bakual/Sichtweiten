@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset name="general">
+		<field
+			name="id"
+			type="text"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description="JGLOBAL_FIELD_ID_DESC"
+			class="readonly"
+			default="0"
+			readonly="true"
+		/>
+		<field
+			name="name"
+			type="text"
+			label="JGLOBAL_TITLE"
+		/>
+		<field
+			name="gewaesser_id"
+			type="sql"
+			label="COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL"
+			key_field="id"
+			value_field="name"
+			query="SELECT name, id FROM #__sicht_gewaesser ORDER BY name ASC"
+		>
+			<option value="">COM_SICHTWEITEN_FILTER_GEWAESSER_SELECT</option>
+		</field>
+		<field
+			name="ort_id"
+			type="sql"
+			label="COM_SICHTWEITEN_FIELD_ORT_LABEL"
+			key_field="id"
+			value_field="name"
+			query="SELECT name, id FROM #__sicht_ort ORDER BY name ASC"
+		>
+			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
+		</field>
 	</fieldset>
 </form>

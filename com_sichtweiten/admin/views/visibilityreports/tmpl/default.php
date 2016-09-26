@@ -11,8 +11,8 @@ $canEdit   = $user->authorise('core.edit', 'com_sichtweiten');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=visibilityreports'); ?>" method="post"
-	  name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=visibilities'); ?>" method="post"
+	name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -27,13 +27,13 @@ $listDirn  = $this->state->get('list.direction');
 					<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 				</div>
 			<?php else : ?>
-				<table class="table table-striped" id="visibilityreportsList">
+				<table class="table table-striped" id="visibilityList">
 					<thead>
 					<tr>
 						<th width="1%" class="hidden-phone">
 							<input type="checkbox" name="checkall-toggle" value=""
-								   title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
-								   onclick="Joomla.checkAll(this)"/>
+								title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
+								onclick="Joomla.checkAll(this)"/>
 						</th>
 						<th class="nowrap center">
 							<?php echo JHtml::_('searchtools.sort', 'JDATE', 'swm.datum', $listDirn, $listOrder); ?>
@@ -57,7 +57,7 @@ $listDirn  = $this->state->get('list.direction');
 							</td>
 							<td class="nowrap center">
 								<?php if ($canEdit) : ?>
-									<a href="<?php echo JRoute::_('index.php ? option=com_sichtweiten&task=visibilityreport.edit&id=' . (int) $item->id); ?>">
+									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=visibility.edit&id=' . (int) $item->id); ?>">
 										<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
 									</a>
 								<?php else : ?>

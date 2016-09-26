@@ -63,7 +63,7 @@ class SichtweitenViewVisibilityreport extends JViewLegacy
 	{
 		JFactory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), JText::_('COM_SICHTWEITEN_VISIBILITYREPORT')), 'pencil-2');
+		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), JText::_('COM_SICHTWEITEN_VISIBILITYREPORT_TITLE')), 'pencil-2');
 
 		// Since it's an existing record, check the edit permission
 		if ($canDo->get('core.edit'))
