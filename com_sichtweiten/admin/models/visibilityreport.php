@@ -7,7 +7,7 @@ defined('_JEXEC') or die;
  *
  * @package        Sichtweiten.Administrator
  */
-class SichtweitenModelVisibility extends JModelAdmin
+class SichtweitenModelVisibilityreport extends JModelAdmin
 {
 	/**
 	 * @var        string    The prefix to use with controller messages.
@@ -72,7 +72,7 @@ class SichtweitenModelVisibility extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_sichtweiten.visibility', 'visibility', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_sichtweiten.visibilityreport', 'visibilityreport', array('control' => 'jform', 'load_data' => $loadData));
 
 		if (empty($form))
 		{
@@ -92,14 +92,14 @@ class SichtweitenModelVisibility extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_sichtweiten.edit.visibility.data', array());
+		$data = JFactory::getApplication()->getUserState('com_sichtweiten.edit.visibilityreport.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 		}
 
-		$this->preprocessData('com_sichtweiten.visibility', $data);
+		$this->preprocessData('com_sichtweiten.visibilityreport', $data);
 
 		return $data;
 	}

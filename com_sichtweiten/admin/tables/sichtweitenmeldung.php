@@ -3,7 +3,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Visibility Table class
+ * Visibilityreport Table class
  *
  * @package        Sichtweiten.Administrator
  */

@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.3.0
  */
-class SichtweitenControllerVisibility extends JControllerForm
+class SichtweitenControllerVisibilityreport extends JControllerForm
 {
 	/**
 	 * Method override to check if you can add a new record.

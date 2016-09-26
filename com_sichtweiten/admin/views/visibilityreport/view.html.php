@@ -8,7 +8,7 @@ defined('_JEXEC') or die;
  * @package   Sichtweiten.Administrator
  * @since     1.3.0
  */
-class SichtweitenViewVisibility extends JViewLegacy
+class SichtweitenViewVisibilityreport extends JViewLegacy
 {
 	/**
 	 * @var
@@ -63,15 +63,15 @@ class SichtweitenViewVisibility extends JViewLegacy
 	{
 		JFactory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), JText::_('COM_SICHTWEITEN_VISIBILITY')), 'pencil-2');
+		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), JText::_('COM_SICHTWEITEN_VISIBILITYREPORT')), 'pencil-2');
 
 		// Since it's an existing record, check the edit permission
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::apply('visibility.apply');
-			JToolbarHelper::save('visibility.save');
+			JToolbarHelper::apply('visibilityreport.apply');
+			JToolbarHelper::save('visibilityreport.save');
 		}
 
-		JToolbarHelper::cancel('visibility.cancel', 'JTOOLBAR_CLOSE');
+		JToolbarHelper::cancel('visibilityreport.cancel', 'JTOOLBAR_CLOSE');
 	}
 }

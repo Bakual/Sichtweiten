@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  *
  * @package        Sichtweiten.Administrator
  */
-class SichtweitenControllerVisibilities extends JControllerAdmin
+class SichtweitenControllerVisibilityreports extends JControllerAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -22,7 +22,7 @@ class SichtweitenControllerVisibilities extends JControllerAdmin
 	 * @var    string
 	 * @since  1.0
 	 */
-	protected $text_prefix = 'COM_SICHTWEITEN_VISIBILITIES';
+	protected $text_prefix = 'COM_SICHTWEITEN_VISIBILITYREPORTS';
 
 	/**
 	 * Method to get a model object, loading it if required.
@@ -35,7 +35,7 @@ class SichtweitenControllerVisibilities extends JControllerAdmin
 	 *
 	 * @since   1.0
 	 */
-	public function &getModel($name = 'Visibility', $prefix = 'SichtweitenModel')
+	public function &getModel($name = 'Visibilityreport', $prefix = 'SichtweitenModel')
 	{
 		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}

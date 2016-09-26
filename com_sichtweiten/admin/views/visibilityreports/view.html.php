@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.0
  */
-class SichtweitenViewVisibilities extends JViewLegacy
+class SichtweitenViewVisibilityreports extends JViewLegacy
 {
 	protected $items;
 
@@ -60,7 +60,7 @@ class SichtweitenViewVisibilities extends JViewLegacy
 		}
 
 		$this->addToolbar();
-		SichtweitenHelper::addSubmenu('visibilities');
+		SichtweitenHelper::addSubmenu('visibilityreports');
 		$this->sidebar = JHtmlSidebar::render();
 
 		return parent::display($tpl);
@@ -77,7 +77,7 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolBarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), 'users');
+		JToolBarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
@@ -86,7 +86,7 @@ class SichtweitenViewVisibilities extends JViewLegacy
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolBarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilities.delete', 'JTOOLBAR_DELETE');
+			JToolBarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilityreports.delete', 'JTOOLBAR_DELETE');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))

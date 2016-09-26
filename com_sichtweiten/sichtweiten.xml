@@ -41,7 +41,7 @@
 	<administration>
 		<menu>COM_SICHTWEITEN</menu>
 		<submenu>
-			<menu view="visibilities">COM_SICHTWEITEN_MENU_VISIBILITIES</menu>
+			<menu view="visibilityreports">COM_SICHTWEITEN_MENU_VISIBILITYREPORTS</menu>
 			<menu view="divesites">COM_SICHTWEITEN_MENU_DIVESITES</menu>
 			<menu view="help">COM_SICHTWEITEN_MENU_HELP</menu>
 		</submenu>

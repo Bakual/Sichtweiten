@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class SichtweitenModelVisibilities extends JModelList
+class SichtweitenModelVisibilityreports extends JModelList
 {
 	/**
 	 * Constructor.
