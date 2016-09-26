@@ -100,14 +100,6 @@ class SichtweitenModelDivesites extends JModelList
 		$query->select('lg.bezeichnung AS gewaesser_land, lg.kurzzeichen AS gewaesser_land_kurz');
 		$query->join('LEFT', '`#__sicht_land` AS lg ON lg.id = g.land_id');
 
-		// Filter by published state.
-		$published = $this->getState('filter.published');
-
-		if (is_numeric($published))
-		{
-			$query->where($db->quoteName('tp.active') . ' = ' . (int) $published);
-		}
-
 		// Filter by Gewaesser
 		$gewaesser = $this->getState('filter.gewaesser');
 
@@ -124,12 +116,25 @@ class SichtweitenModelDivesites extends JModelList
 		$query->select('lo.bezeichnung AS ort_land, lo.kurzzeichen AS ort_land_kurz');
 		$query->join('LEFT', '`#__sicht_land` AS lo ON lo.id = o.land_id');
 
-		// Filter by Gewaesser
+		// Filter by Ort
 		$ort = $this->getState('filter.ort');
 
 		if (is_numeric($ort))
 		{
 			$query->where('tp.ort_id = ' . (int) $ort);
+		}
+
+		// Join over Bezeichnung table
+		$query->select("GROUP_CONCAT(b.name SEPARATOR ', ') AS alt_name");
+		$query->join('LEFT', '#__sicht_bezeichnung AS b ON tp.id = b.tauchplatz_id');
+		$query->group('tp.id');
+
+		// Filter by published state.
+		$published = $this->getState('filter.published');
+
+		if (is_numeric($published))
+		{
+			$query->where($db->quoteName('tp.active') . ' = ' . (int) $published);
 		}
 
 		// Filter by search in title

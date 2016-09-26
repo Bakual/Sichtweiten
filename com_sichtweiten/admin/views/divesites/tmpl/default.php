@@ -72,6 +72,9 @@ $listDirn  = $this->state->get('list.direction');
 								<?php else : ?>
 									<?php echo $item->name; ?>
 								<?php endif; ?>
+								<?php if ($item->alt_name) : ?>
+									<small>(<?php echo $item->alt_name; ?>)</small>
+								<?php endif; ?>
 							</td>
 							<td>
 								<?php echo $item->gewaesser; ?>
