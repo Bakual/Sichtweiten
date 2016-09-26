@@ -35,13 +35,13 @@ $listDirn  = $this->state->get('list.direction');
 								title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
 								onclick="Joomla.checkAll(this)"/>
 						</th>
-						<th class="nowrap center">
+						<th class="nowrap">
 							<?php echo JHtml::_('searchtools.sort', 'JDATE', 'swm.datum', $listDirn, $listOrder); ?>
 						</th>
-						<th class="center">
+						<th>
 							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.name', $listDirn, $listOrder); ?>
 						</th>
-						<th class="center hidden-phone">
+						<th class="hidden-phone">
 							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_MELDEDATUM_LABEL', 'swm.meldedatum', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
@@ -55,7 +55,7 @@ $listDirn  = $this->state->get('list.direction');
 							<td class="center hidden-phone">
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
-							<td class="nowrap center">
+							<td class="nowrap">
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=visibility.edit&id=' . (int) $item->id); ?>">
 										<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
@@ -64,13 +64,13 @@ $listDirn  = $this->state->get('list.direction');
 									<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
 								<?php endif; ?>
 							</td>
-							<td class="nowrap center">
+							<td class="nowrap">
 								<?php echo $item->tauchplatz; ?>
 							</td>
-							<td class="center hidden-phone">
+							<td class="hidden-phone">
 								<?php echo JHtml::Date($item->meldedatum, JText::_('DATE_FORMAT_LC2')); ?>
 							</td>
-							<td class="center hidden-phone">
+							<td class="nowrap hidden-phone">
 								<?php echo (int) $item->id; ?>
 							</td>
 						</tr>

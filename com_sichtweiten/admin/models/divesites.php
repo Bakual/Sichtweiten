@@ -19,6 +19,7 @@ class SichtweitenModelDivesites extends JModelList
 			$config['filter_fields'] = array(
 				'tp.id',
 				'tp.name',
+				'tp.active',
 				'g.name',
 				'o.name',
 			);
@@ -26,6 +27,7 @@ class SichtweitenModelDivesites extends JModelList
 			// Parent::getActiveFilters uses them for SearchTools. Has to match filter name (eg "foo" for "filters.foo")
 			$config['filter_fields'][] = 'gewaesser';
 			$config['filter_fields'][] = 'ort';
+			$config['filter_fields'][] = 'published';
 		}
 
 		$params = JComponentHelper::getParams('com_sichtweiten');
@@ -81,6 +83,7 @@ class SichtweitenModelDivesites extends JModelList
 				array(
 					'tp.id',
 					'tp.name',
+					'tp.active',
 					'tp.spezielles',
 					'tp.einschraenkungen',
 					'tp.bemerkungen',
@@ -96,6 +99,14 @@ class SichtweitenModelDivesites extends JModelList
 		// Join Gewaesser-Land table
 		$query->select('lg.bezeichnung AS gewaesser_land, lg.kurzzeichen AS gewaesser_land_kurz');
 		$query->join('LEFT', '`#__sicht_land` AS lg ON lg.id = g.land_id');
+
+		// Filter by published state.
+		$published = $this->getState('filter.published');
+
+		if (is_numeric($published))
+		{
+			$query->where($db->quoteName('tp.active') . ' = ' . (int) $published);
+		}
 
 		// Filter by Gewaesser
 		$gewaesser = $this->getState('filter.gewaesser');

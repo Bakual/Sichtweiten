@@ -35,5 +35,22 @@
 		>
 			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
 		</field>
+		<field
+			name="active"
+			type="radio"
+			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
+			class="btn-group btn-group-yesno"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		<field
+			name="bemerkungen"
+			type="textarea"
+			label="COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL"
+			class="input-xxlarge"
+			rows="5"
+		/>
 	</fieldset>
 </form>

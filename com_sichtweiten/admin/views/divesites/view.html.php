@@ -72,16 +72,26 @@ class SichtweitenViewDivesites extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolBarHelper::title(JText::_('COM_SICHTWEITEN_DIVESITES_TITLE'), 'users');
+		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_DIVESITES_TITLE'), 'users');
+
+		if ($canDo->get('core.create'))
+		{
+			JToolbarHelper::addNew('divesite.add');
+		}
+
+		if ($canDo->get('core.edit'))
+		{
+			JToolbarHelper::editList('divesite.edit');
+		}
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolBarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'divesites.delete', 'JTOOLBAR_DELETE');
+			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'divesites.delete');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolBarHelper::preferences('com_sichtweiten');
+			JToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
 

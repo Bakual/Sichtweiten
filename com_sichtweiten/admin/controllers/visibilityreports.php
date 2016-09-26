@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
  * Visibilities list controller class.
  *
  * @package        Sichtweiten.Administrator
+ * @since          1.3.0
  */
 class SichtweitenControllerVisibilityreports extends JControllerAdmin
 {
@@ -22,7 +23,7 @@ class SichtweitenControllerVisibilityreports extends JControllerAdmin
 	 * @var    string
 	 * @since  1.0
 	 */
-	protected $text_prefix = 'COM_SICHTWEITEN_VISIBILITYREPORTS';
+	protected $text_prefix = 'COM_SICHTWEITEN';
 
 	/**
 	 * Method to get a model object, loading it if required.

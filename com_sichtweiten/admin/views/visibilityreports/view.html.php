@@ -77,21 +77,21 @@ class SichtweitenViewVisibilityreports extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolBarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
+		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
 
-		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
+		if ($canDo->get('core.edit'))
 		{
-			JToolBarHelper::editList('visibility.edit', 'JTOOLBAR_EDIT');
+			JToolbarHelper::editList('visibility.edit');
 		}
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolBarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilityreports.delete', 'JTOOLBAR_DELETE');
+			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilityreports.delete');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolBarHelper::preferences('com_sichtweiten');
+			JToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
 }

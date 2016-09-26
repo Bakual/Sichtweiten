@@ -12,6 +12,15 @@ defined('_JEXEC') or die;
 class SichtweitenTableTauchplatz extends JTable
 {
 	/**
+	 * Array with alias for "special" columns such as ordering, hits etc etc
+	 *
+	 * @var    array
+	 *
+	 * @since 1.3.0
+	 */
+	protected $_columnAlias = array('published' => 'active');
+
+	/**
 	 * Constructor
 	 *
 	 * @param  JDatabaseDriver $db JDatabaseDriver object.

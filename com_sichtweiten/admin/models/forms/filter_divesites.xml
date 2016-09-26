@@ -9,6 +9,17 @@
 			hint="JSEARCH_FILTER"
 		/>
 		<field
+			name="published"
+			type="list"
+			label="COM_SICHTWEITEN_FILTER_PUBLISHED"
+			description="COM_SICHTWEITEN_FILTER_PUBLISHED_DESC"
+			onchange="this.form.submit();"
+		>
+			<option value="">JOPTION_SELECT_PUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="1">JPUBLISHED</option>
+		</field>
+		<field
 			name="gewaesser"
 			type="sql"
 			label="COM_SICHTWEITEN_FILTER_GEWAESSER_LABEL"

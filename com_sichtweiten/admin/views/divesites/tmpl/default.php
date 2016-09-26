@@ -8,6 +8,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 $user      = JFactory::getUser();
 $canEdit   = $user->authorise('core.edit', 'com_sichtweiten');
+$country   = $this->state->params->get('country', 'CH');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 ?>
@@ -35,13 +36,16 @@ $listDirn  = $this->state->get('list.direction');
 								title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
 								onclick="Joomla.checkAll(this)"/>
 						</th>
-						<th class="nowrap center">
+						<th width="5%" class="nowrap center">
+							<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'tp.active', $listDirn, $listOrder); ?>
+						</th>
+						<th class="nowrap">
 							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.name', $listDirn, $listOrder); ?>
 						</th>
-						<th class="center">
+						<th>
 							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL', 'g.name', $listDirn, $listOrder); ?>
 						</th>
-						<th class="center">
+						<th>
 							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_ORT_LABEL', 'o.name', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
@@ -55,6 +59,11 @@ $listDirn  = $this->state->get('list.direction');
 							<td class="center hidden-phone">
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
+							<td class="center">
+								<div class="btn-group">
+									<?php echo JHtml::_('jgrid.published', $item->active, $i, 'divesites.', $canEdit, 'cb'); ?>
+								</div>
+							</td>
 							<td>
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=divesite.edit&id=' . (int) $item->id); ?>">
@@ -66,7 +75,7 @@ $listDirn  = $this->state->get('list.direction');
 							</td>
 							<td>
 								<?php echo $item->gewaesser; ?>
-								<?php if ($item->gewaesser_land) : ?>
+								<?php if ($item->gewaesser_land && $item->gewaesser_land_kurz != $country) : ?>
 									<?php if (JHtml::_('image', 'mod_languages/' . $item->gewaesser_land_kurz . '.gif', null, null, true, true)) : ?>
 										<?php echo JHtml::_('image', 'mod_languages/' . $item->gewaesser_land_kurz . '.gif', $item->gewaesser_land, array('title' => $item->gewaesser_land), true); ?>
 									<?php else : ?>
@@ -76,8 +85,12 @@ $listDirn  = $this->state->get('list.direction');
 							</td>
 							<td>
 								<?php echo $item->ort; ?>
-								<?php if ($item->ort_land) : ?>
-									<small>(<?php echo $item->ort_land; ?>)</small>
+								<?php if ($item->ort_land && $item->ort_land_kurz != $country) : ?>
+									<?php if (JHtml::_('image', 'mod_languages/' . $item->ort_land_kurz . '.gif', null, null, true, true)) : ?>
+										<?php echo JHtml::_('image', 'mod_languages/' . $item->ort_land_kurz . '.gif', $item->ort_land, array('title' => $item->ort_land), true); ?>
+									<?php else : ?>
+										<small>(<?php echo $item->gewaesser_land; ?>)</small>
+									<?php endif; ?>
 								<?php endif; ?>
 							</td>
 							<td class="center hidden-phone">
