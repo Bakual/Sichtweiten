@@ -24,10 +24,20 @@ $input = $app->input;
 
 <form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
 	method="post" name="adminForm" id="adminForm" class="form-validate">
-	<div class="form-vertical">
-		<?php foreach($this->form->getFieldset('general') as $field): ?>
-			<?php echo $field->getControlGroup(); ?>
-		<?php endforeach; ?>
+	<div class="form-horizontal">
+		<div class="row-fluid">
+			<div class="span8">
+				<?php foreach($this->form->getFieldset('general') as $field): ?>
+					<?php echo $field->getControlGroup(); ?>
+				<?php endforeach; ?>
+			</div>
+			<div class="span4">
+				<h3><?php echo JText::_('COM_SICHTWEITEN_FIELD_SUBFORM_LABEL'); ?></h3>
+				<?php foreach($this->form->getFieldset('subform') as $field): ?>
+					<?php echo $field->getControlGroup(); ?>
+				<?php endforeach; ?>
+			</div>
+		</div>
 		<input type="hidden" name="task" value=""/>
 		<input type="hidden" name="return" value="<?php echo $input->getCmd('return'); ?>"/>
 		<?php echo JHtml::_('form.token'); ?>

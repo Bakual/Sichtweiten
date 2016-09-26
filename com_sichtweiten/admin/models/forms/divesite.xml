@@ -49,9 +49,11 @@
 			name="bemerkungen"
 			type="textarea"
 			label="COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL"
-			class="input-xxlarge"
 			rows="5"
+			class="input-xxlarge"
 		/>
+	</fieldset>
+	<fieldset name="subform">
 		<field
 			name="altnames"
 			type="subform"
@@ -59,6 +61,7 @@
 			description="COM_SICHTWEITEN_FIELD_SUBFORM_DESC"
 			formsource="subform"
 			multiple="true"
+			hidden="true"
 		/>
 	</fieldset>
 </form>

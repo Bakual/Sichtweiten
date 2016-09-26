@@ -87,6 +87,40 @@ class SichtweitenModelDivesite extends JModelAdmin
 	}
 
 	/**
+	 * Method to get a single record.
+	 *
+	 * @param   integer  $pk  The id of the primary key.
+	 *
+	 * @return  JObject|boolean  Object on success, false on failure.
+	 *
+	 * @since   1.3.0
+	 */
+	public function getItem($pk = null)
+	{
+		$item = parent::getItem($pk);
+
+		if ($item->id)
+		{
+			$db = $this->getDbo();
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName('name'));
+			$query->from('#__sicht_bezeichnung');
+			$query->where($db->quoteName('tauchplatz_id') . ' = ' . (int) $item->id);
+			$query->order($db->quoteName('id'));
+
+			$db->setQuery($query);
+			$rows = $db->loadRowList();
+
+			foreach ($rows as $row)
+			{
+				$item->altnames[]['alt_name'] = $row[0];
+			}
+		}
+
+		return $item;
+	}
+
+	/**
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return    mixed    The data for the form.

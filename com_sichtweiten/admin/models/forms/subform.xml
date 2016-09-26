@@ -3,7 +3,7 @@
 	<field
 		name="alt_name"
 		type="text"
-		label="JGLOBAL_FIELD_ALT_NAME_LABEL"
-		description="JGLOBAL_FIELD_ALT_NAME_DESC"
+		label="COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL"
+		description="COM_SICHTWEITEN_FIELD_ALT_NAME_DESC"
 	/>
 </form>
