@@ -21,6 +21,7 @@ class SichtweitenModelWaters extends JModelList
 				'g.name',
 				'g.displayName',
 				'g.maxTiefe',
+				'g.meterUeberMeer',
 				'g.land_id',
 				'lg.bezeichnung',
 			);
@@ -85,6 +86,7 @@ class SichtweitenModelWaters extends JModelList
 					'g.displayName',
 					'g.maxTiefe',
 					'g.land_id',
+					'g.meterUeberMeer',
 				)
 			)
 		);

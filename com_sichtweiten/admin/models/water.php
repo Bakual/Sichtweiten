@@ -116,6 +116,16 @@ class SichtweitenModelWater extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
+		// We want to be able to differ an empty value from an altitude 0, thus setting to null.
+		if ($table->meterUeberMeer == '')
+		{
+			$table->meterUeberMeer = null;
+		}
+
+		if ($table->maxTiefe == '')
+		{
+			$table->maxTiefe = null;
+		}
 	}
 
 	/**

@@ -42,6 +42,12 @@ $listDirn  = $this->state->get('list.direction');
 						<th>
 							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_LAND_LABEL', 'lg.bezeichnung', $listDirn, $listOrder); ?>
 						</th>
+						<th>
+							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_HOEHE_LABEL', 'g.meterUeberMeer', $listDirn, $listOrder); ?>
+						</th>
+						<th>
+							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TIEFE_LABEL', 'g.maxTiefe', $listDirn, $listOrder); ?>
+						</th>
 						<th width="1%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'g.id', $listDirn, $listOrder); ?>
 						</th>
@@ -61,6 +67,9 @@ $listDirn  = $this->state->get('list.direction');
 								<?php else : ?>
 									<?php echo $item->name; ?>
 								<?php endif; ?>
+								<?php if ($item->displayName && $item->displayName != $item->name) : ?>
+									<small>(<?php echo $item->displayName; ?>)</small>
+								<?php endif; ?>
 							</td>
 							<td>
 								<?php echo $item->gewaesser_land; ?>
@@ -69,6 +78,12 @@ $listDirn  = $this->state->get('list.direction');
 								<?php else : ?>
 									<small>(<?php echo $item->gewaesser_land_kurz; ?>)</small>
 								<?php endif; ?>
+							</td>
+							<td>
+								<?php echo ($item->meterUeberMeer != '') ? $item->meterUeberMeer : '-'; ?>
+							</td>
+							<td>
+								<?php echo ($item->maxTiefe) != '' ? $item->maxTiefe : '-'; ?>
 							</td>
 							<td class="center hidden-phone">
 								<?php echo (int) $item->id; ?>
