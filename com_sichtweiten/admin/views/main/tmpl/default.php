@@ -17,7 +17,7 @@ JHtml::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css');
 <div id="j-main-container" class="sichtweiten-container">
 	<ul class="thumbnails">
 		<li class="span6">
-			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=visibilities">
+			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=visibilityreports">
 				<div class="icon"><span class="icon-drawer-2"></span></div>
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'); ?></h3>
 			</a>
