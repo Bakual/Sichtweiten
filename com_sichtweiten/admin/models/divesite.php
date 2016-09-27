@@ -3,7 +3,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Visibility model.
+ * Divesite model.
  *
  * @package   Sichtweiten.Administrator
  *

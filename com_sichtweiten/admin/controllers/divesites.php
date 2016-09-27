@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Visibilities list controller class.
+ * Divesites list controller class.
  *
  * @package        Sichtweiten.Administrator
  * @since          1.3.0
