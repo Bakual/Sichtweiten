@@ -11,7 +11,7 @@ $canEdit   = $user->authorise('core.edit', 'com_sichtweiten');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=visibilities'); ?>" method="post"
+<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=visibilityreports'); ?>" method="post"
 	name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
@@ -57,7 +57,7 @@ $listDirn  = $this->state->get('list.direction');
 							</td>
 							<td class="nowrap">
 								<?php if ($canEdit) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=visibility.edit&id=' . (int) $item->id); ?>">
+									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=visibilityreport.edit&id=' . (int) $item->id); ?>">
 										<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
 									</a>
 								<?php else : ?>

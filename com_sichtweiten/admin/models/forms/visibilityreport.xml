@@ -20,7 +20,6 @@
 			name="tauchplatz_id"
 			type="locationlist"
 			label="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL"
-			description="COM_SICHTWEITEN_FIELD_TAUCHPLATZ_DESC"
 			required="true"
 		/>
 		<field
@@ -34,6 +33,13 @@
 			type="calendar"
 			label="JGLOBAL_FIELD_CREATED_LABEL"
 			description="JGLOBAL_FIELD_CREATED_DESC"
+		/>
+		<field
+			name="kommentar"
+			type="textarea"
+			label="COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL"
+			rows="5"
+			class="input-xxlarge"
 		/>
 	</fieldset>
 </form>

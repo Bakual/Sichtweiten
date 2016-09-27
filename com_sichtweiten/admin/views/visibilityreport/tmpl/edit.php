@@ -24,7 +24,7 @@ $input = $app->input;
 
 <form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
 	  method="post" name="adminForm" id="adminForm" class="form-validate">
-	<div class="form-vertical">
+	<div class="form-horizontal">
 		<?php foreach($this->form->getFieldset('general') as $field): ?>
 			<?php echo $field->getControlGroup(); ?>
 		<?php endforeach; ?>

@@ -81,7 +81,7 @@ class SichtweitenViewVisibilityreports extends JViewLegacy
 
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::editList('visibility.edit');
+			JToolbarHelper::editList('visibilityreport.edit');
 		}
 
 		if ($canDo->get('core.delete'))
