@@ -100,21 +100,4 @@ class SichtweitenViewDivesites extends JViewLegacy
 			JToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
-
-	/**
-	 * Returns an array of fields the table can be sorted by
-	 *
-	 * @return  array  Array containing the field name to sort by as the key and display text as value
-	 *
-	 * @since   3.0
-	 */
-	protected function getSortFields()
-	{
-		return array(
-			'divesites.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'divesites.state' => JText::_('JSTATUS'),
-			'divesites.title' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
-			'divesites.id' => JText::_('JGRID_HEADING_ID')
-		);
-	}
 }

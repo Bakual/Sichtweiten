@@ -58,8 +58,7 @@ $listDirn  = $this->state->get('list.direction');
 							<td class="nowrap">
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=visibilityreport.edit&id=' . (int) $item->id); ?>">
-										<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
-									</a>
+										<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?></a>
 								<?php else : ?>
 									<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
 								<?php endif; ?>

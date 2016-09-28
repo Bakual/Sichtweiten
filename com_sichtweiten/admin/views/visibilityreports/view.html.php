@@ -16,22 +16,42 @@ defined('_JEXEC') or die;
  */
 class SichtweitenViewVisibilityreports extends JViewLegacy
 {
+	/**
+	 * @var    array
+	 * @since  1.3.0
+	 */
 	protected $items;
 
+	/**
+	 * @var    JPagination
+	 * @since  1.3.0
+	 */
 	protected $pagination;
 
 	/**
 	 * A state object
 	 *
 	 * @var    JObject
-	 * @since  1.0
+	 * @since  1.3.0
 	 */
 	protected $state;
 
+	/**
+	 * @var    JForm
+	 * @since  1.3.0
+	 */
 	public $filterForm;
 
+	/**
+	 * @var    array
+	 * @since  1.3.0
+	 */
 	public $activeFilters;
 
+	/**
+	 * @var    string
+	 * @since  1.3.0
+	 */
 	protected $sidebar;
 
 	/**

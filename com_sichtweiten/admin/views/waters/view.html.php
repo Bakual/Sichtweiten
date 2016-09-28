@@ -12,35 +12,57 @@ defined('_JEXEC') or die;
 /**
  * HTML View class for the Sichtweiten Component
  *
-* @since  1.0
+ * @since  1.0
  */
 class SichtweitenViewWaters extends JViewLegacy
 {
+	/**
+	 * @var    array
+	 * @since  1.3.0
+	 */
 	protected $items;
 
+	/**
+	 * @var    JPagination
+	 * @since  1.3.0
+	 */
 	protected $pagination;
 
 	/**
 	 * A state object
 	 *
 	 * @var    JObject
+	 * @since  1.3.0
 	 */
 	protected $state;
 
+	/**
+	 * @var    JForm
+	 * @since  1.3.0
+	 */
 	public $filterForm;
 
+	/**
+	 * @var    array
+	 * @since  1.3.0
+	 */
 	public $activeFilters;
 
+	/**
+	 * @var    string
+	 * @since  1.3.0
+	 */
 	protected $sidebar;
 
 	/**
 	 * Execute and display a template script.
 	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+	 * @param   string $tpl The name of the template file to parse; automatically searches through the template paths.
 	 *
-	 * @return mixed A string if successful, otherwise a Error object.
+	 * @return  mixed  A string if successful, otherwise a Error object.
 	 *
-	 * @throws Exception
+	 * @throws  Exception
+	 * @since   1.3.0
 	 */
 	public function display($tpl = null)
 	{
@@ -67,6 +89,7 @@ class SichtweitenViewWaters extends JViewLegacy
 	 * Add the page title and toolbar.
 	 *
 	 * @return  void
+	 * @since   1.3.0
 	 */
 	protected function addToolbar()
 	{
@@ -99,22 +122,5 @@ class SichtweitenViewWaters extends JViewLegacy
 		{
 			JToolbarHelper::preferences('com_sichtweiten');
 		}
-	}
-
-	/**
-	 * Returns an array of fields the table can be sorted by
-	 *
-	 * @return  array  Array containing the field name to sort by as the key and display text as value
-	 *
-	 * @since   3.0
-	 */
-	protected function getSortFields()
-	{
-		return array(
-			'divesites.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'divesites.state' => JText::_('JSTATUS'),
-			'divesites.title' => JText::_('COM_SICHTWEITEN_FIELD_NAME_LABEL'),
-			'divesites.id' => JText::_('JGRID_HEADING_ID')
-		);
 	}
 }

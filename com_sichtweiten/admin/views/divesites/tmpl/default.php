@@ -67,8 +67,7 @@ $listDirn  = $this->state->get('list.direction');
 							<td>
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=divesite.edit&id=' . (int) $item->id); ?>">
-										<?php echo $item->name; ?>
-									</a>
+										<?php echo $item->name; ?></a>
 								<?php else : ?>
 									<?php echo $item->name; ?>
 								<?php endif; ?>
