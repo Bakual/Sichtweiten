@@ -31,28 +31,34 @@ JHtml::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css');
 	</ul>
 	<h3><?php echo JText::_('COM_SICHTWEITEN_STAMMDATEN'); ?></h3>
 	<ul class="thumbnails">
-		<li class="span3">
+		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=divesites">
 				<div class="icon"><span class="icon-location"></span></div>
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_DIVESITES_TITLE'); ?></h3>
 			</a>
 		</li>
-		<li class="span3">
+		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=waters">
 				<div class="icon"><span class="icon-flag"></span></div>
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_WATERS_TITLE'); ?></h3>
 			</a>
 		</li>
-		<li class="span3">
+		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=places">
 				<div class="icon"><span class="icon-compass"></span></div>
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_PLACES_TITLE'); ?></h3>
 			</a>
 		</li>
-		<li class="span3">
+		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=countries">
 				<div class="icon"><span class="icon-flag-3"></span></div>
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_COUNTRIES_TITLE'); ?></h3>
+			</a>
+		</li>
+		<li class="span2">
+			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=visibilities">
+				<div class="icon"><span class="icon-eye"></span></div>
+				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'); ?></h3>
 			</a>
 		</li>
 	</ul>

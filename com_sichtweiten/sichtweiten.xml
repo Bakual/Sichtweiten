@@ -46,6 +46,7 @@
 			<menu view="waters">COM_SICHTWEITEN_MENU_WATERS</menu>
 			<menu view="places">COM_SICHTWEITEN_MENU_PLACES</menu>
 			<menu view="countries">COM_SICHTWEITEN_MENU_PLACES</menu>
+			<menu view="visibilities">COM_SICHTWEITEN_MENU_VISBILITIES</menu>
 			<menu view="help">COM_SICHTWEITEN_MENU_HELP</menu>
 		</submenu>
 		<files folder="admin">

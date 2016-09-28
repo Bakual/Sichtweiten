@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="general">
+		<field
+			name="id"
+			type="text"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description="JGLOBAL_FIELD_ID_DESC"
+			class="readonly"
+			default="0"
+			readonly="true"
+		/>
+		<field
+			name="bezeichnung"
+			type="text"
+			label="JGLOBAL_TITLE"
+		/>
+	</fieldset>
+</form>
