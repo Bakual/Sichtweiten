@@ -33,7 +33,7 @@ $input = $app->input;
 			</div>
 			<div class="span4">
 				<h3><?php echo JText::_('COM_SICHTWEITEN_FIELD_SUBFORM_LABEL'); ?></h3>
-				<?php foreach($this->form->getFieldset('subform') as $field): ?>
+				<?php foreach($this->form->getFieldset('divesite_subform') as $field): ?>
 					<?php echo $field->getControlGroup(); ?>
 				<?php endforeach; ?>
 			</div>
