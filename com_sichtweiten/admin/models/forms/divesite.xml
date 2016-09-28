@@ -58,7 +58,7 @@
 			name="altnames"
 			type="subform"
 			label="COM_SICHTWEITEN_FIELD_SUBFORM_LABEL"
-			formsource="subform"
+			formsource="divesite_subform"
 			multiple="true"
 			hidden="true"
 		/>

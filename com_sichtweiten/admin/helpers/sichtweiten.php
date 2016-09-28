@@ -43,6 +43,11 @@ class SichtweitenHelper
 			$vName == 'waters'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('COM_SICHTWEITEN_MENU_PLACES'),
+			'index.php?option=com_sichtweiten&view=places',
+			$vName == 'places'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('COM_SICHTWEITEN_MENU_HELP'),
 			'index.php?option=com_sichtweiten&view=help',
 			$vName == 'help'

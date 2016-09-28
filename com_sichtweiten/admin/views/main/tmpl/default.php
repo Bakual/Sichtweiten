@@ -43,6 +43,12 @@ JHtml::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css');
 				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_WATERS_TITLE'); ?></h3>
 			</a>
 		</li>
+		<li class="span4">
+			<a class="thumbnail" href="index.php?option=com_sichtweiten&view=places">
+				<div class="icon"><span class="icon-compass"></span></div>
+				<h3 class="center"><?php echo JText::_('COM_SICHTWEITEN_PLACES_TITLE'); ?></h3>
+			</a>
+		</li>
 	</ul>
 	<h3><?php echo JText::_('COM_SICHTWEITEN_TOOLS'); ?></h3>
 	<ul class="thumbnails">

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="general">
+		<field
+			name="id"
+			type="text"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description="JGLOBAL_FIELD_ID_DESC"
+			class="readonly"
+			default="0"
+			readonly="true"
+		/>
+		<field
+			name="name"
+			type="text"
+			label="JGLOBAL_TITLE"
+		/>
+		<field
+			name="land_id"
+			type="sql"
+			label="COM_SICHTWEITEN_FIELD_LAND_LABEL"
+			key_field="id"
+			value_field="bezeichnung"
+			query="SELECT bezeichnung, id FROM #__sicht_land ORDER BY displaynr ASC"
+		>
+			<option value="">COM_SICHTWEITEN_FILTER_LAND_SELECT</option>
+		</field>
+		<field
+			name="plz"
+			type="text"
+			class="validate-numeric"
+			label="COM_SICHTWEITEN_FIELD_PLZ_LABEL"
+		/>
+	</fieldset>
+</form>
