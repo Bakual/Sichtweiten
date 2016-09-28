@@ -8,10 +8,11 @@ JHtml::_('formbehavior.chosen', 'select');
 
 $user      = JFactory::getUser();
 $canEdit   = $user->authorise('core.edit', 'com_sichtweiten');
+$country   = $this->state->params->get('country', 'CH');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=visibilityreports'); ?>" method="post"
+<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=countries'); ?>" method="post"
 	name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
@@ -21,13 +22,13 @@ $listDirn  = $this->state->get('list.direction');
 		<?php else : ?>
 		<div id="j-main-container">
 			<?php endif; ?>
-			<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
+			<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this, 'options' => array('filterButton' => false))); ?>
 			<?php if (empty($this->items)) : ?>
 				<div class="alert alert-no-items">
 					<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 				</div>
 			<?php else : ?>
-				<table class="table table-striped" id="visibilityreportList">
+				<table class="table table-striped" id="countryList">
 					<thead>
 					<tr>
 						<th width="1%" class="hidden-phone">
@@ -36,16 +37,19 @@ $listDirn  = $this->state->get('list.direction');
 								onclick="Joomla.checkAll(this)"/>
 						</th>
 						<th class="nowrap">
-							<?php echo JHtml::_('searchtools.sort', 'JDATE', 'swm.datum', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'l.bezeichnung', $listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.name', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_KURZZEICHEN_LABEL', 'l.kurzzeichen', $listDirn, $listOrder); ?>
 						</th>
-						<th class="hidden-phone">
-							<?php echo JHtml::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_MELDEDATUM_LABEL', 'swm.meldedatum', $listDirn, $listOrder); ?>
+						<th>
+							<?php echo JText::_('COM_SICHTWEITEN_FLAG'); ?>
+						</th>
+						<th>
+							<?php echo JHtml::_('searchtools.sort', 'JFIELD_ORDERING_LABEL', 'l.displaynr', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'swm.id', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'l.id', $listDirn, $listOrder); ?>
 						</th>
 					</tr>
 					</thead>
@@ -55,21 +59,26 @@ $listDirn  = $this->state->get('list.direction');
 							<td class="center hidden-phone">
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
-							<td class="nowrap">
+							<td>
 								<?php if ($canEdit) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=visibilityreport.edit&id=' . (int) $item->id); ?>">
-										<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?></a>
+									<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=country.edit&id=' . (int) $item->id); ?>">
+										<?php echo $item->bezeichnung; ?></a>
 								<?php else : ?>
-									<?php echo JHtml::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
+									<?php echo $item->bezeichnung; ?>
 								<?php endif; ?>
 							</td>
-							<td class="nowrap">
-								<?php echo $item->tauchplatz; ?>
+							<td>
+								<?php echo $item->kurzzeichen; ?>
 							</td>
-							<td class="hidden-phone">
-								<?php echo JHtml::Date($item->meldedatum, JText::_('DATE_FORMAT_LC2')); ?>
+							<td>
+								<?php if (JHtml::_('image', 'mod_languages/' . $item->kurzzeichen . '.gif', null, null, true, true)) : ?>
+									<?php echo JHtml::_('image', 'mod_languages/' . $item->kurzzeichen . '.gif', $item->kurzzeichen, array('title' => $item->kurzzeichen), true); ?>
+								<?php endif; ?>
 							</td>
-							<td class="nowrap hidden-phone">
+							<td>
+								<?php echo $item->displaynr; ?>
+							</td>
+							<td class="center hidden-phone">
 								<?php echo (int) $item->id; ?>
 							</td>
 						</tr>

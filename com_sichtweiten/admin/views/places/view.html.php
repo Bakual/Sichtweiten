@@ -107,12 +107,6 @@ class SichtweitenViewPlaces extends JViewLegacy
 			JToolbarHelper::editList('place.edit');
 		}
 
-		if ($canDo->get('core.edit'))
-		{
-			JToolbarHelper::publish('places.publish', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::unpublish('places.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-		}
-
 		if ($canDo->get('core.delete'))
 		{
 			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'places.delete');

@@ -12,9 +12,9 @@ defined('_JEXEC') or die;
 /**
  * HTML View class for the Sichtweiten Component
  *
- * @since  1.0
+ * @since  1.3.0
  */
-class SichtweitenViewWaters extends JViewLegacy
+class SichtweitenViewCountries extends JViewLegacy
 {
 	/**
 	 * @var    array
@@ -79,7 +79,7 @@ class SichtweitenViewWaters extends JViewLegacy
 		}
 
 		$this->addToolbar();
-		SichtweitenHelper::addSubmenu('waters');
+		SichtweitenHelper::addSubmenu('countries');
 		$this->sidebar = JHtmlSidebar::render();
 
 		return parent::display($tpl);
@@ -95,21 +95,21 @@ class SichtweitenViewWaters extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_WATERS_TITLE'), 'users');
+		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_PLACES_TITLE'), 'users');
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('water.add');
+			JToolbarHelper::addNew('country.add');
 		}
 
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::editList('water.edit');
+			JToolbarHelper::editList('country.edit');
 		}
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'waters.delete');
+			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'countries.delete');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))

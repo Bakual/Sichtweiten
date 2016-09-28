@@ -48,6 +48,11 @@ class SichtweitenHelper
 			$vName == 'places'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('COM_SICHTWEITEN_MENU_COUNTRIES'),
+			'index.php?option=com_sichtweiten&view=countries',
+			$vName == 'countries'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('COM_SICHTWEITEN_MENU_HELP'),
 			'index.php?option=com_sichtweiten&view=help',
 			$vName == 'help'
