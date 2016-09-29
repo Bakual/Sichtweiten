@@ -3,12 +3,12 @@
 defined('_JEXEC') or die;
 
 /**
- * View to edit a place.
+ * View to edit a visibility.
  *
  * @package   Sichtweiten.Administrator
  * @since     1.3.0
  */
-class SichtweitenViewVISIBILITY extends JViewLegacy
+class SichtweitenViewVisibility extends JViewLegacy
 {
 	/**
 	 * @var

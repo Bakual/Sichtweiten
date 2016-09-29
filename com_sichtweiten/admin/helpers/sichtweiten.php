@@ -32,31 +32,39 @@ class SichtweitenHelper
 			'index.php?option=com_sichtweiten&view=visibilityreports',
 			$vName == 'visibilityreports'
 		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_SICHTWEITEN_MENU_DIVESITES'),
-			'index.php?option=com_sichtweiten&view=divesites',
-			$vName == 'divesites'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_SICHTWEITEN_MENU_WATERS'),
-			'index.php?option=com_sichtweiten&view=waters',
-			$vName == 'waters'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_SICHTWEITEN_MENU_PLACES'),
-			'index.php?option=com_sichtweiten&view=places',
-			$vName == 'places'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_SICHTWEITEN_MENU_COUNTRIES'),
-			'index.php?option=com_sichtweiten&view=countries',
-			$vName == 'countries'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_SICHTWEITEN_MENU_VISIBILITIES'),
-			'index.php?option=com_sichtweiten&view=visibilities',
-			$vName == 'visibilities'
-		);
+		if (!JComponentHelper::getParams('com_sichtweiten')->get('extern_db'))
+		{
+			JHtmlSidebar::addEntry(
+				JText::_('COM_SICHTWEITEN_MENU_DIVESITES'),
+				'index.php?option=com_sichtweiten&view=divesites',
+				$vName == 'divesites'
+			);
+			JHtmlSidebar::addEntry(
+				JText::_('COM_SICHTWEITEN_MENU_WATERS'),
+				'index.php?option=com_sichtweiten&view=waters',
+				$vName == 'waters'
+			);
+			JHtmlSidebar::addEntry(
+				JText::_('COM_SICHTWEITEN_MENU_PLACES'),
+				'index.php?option=com_sichtweiten&view=places',
+				$vName == 'places'
+			);
+			JHtmlSidebar::addEntry(
+				JText::_('COM_SICHTWEITEN_MENU_COUNTRIES'),
+				'index.php?option=com_sichtweiten&view=countries',
+				$vName == 'countries'
+			);
+			JHtmlSidebar::addEntry(
+				JText::_('COM_SICHTWEITEN_MENU_VISIBILITIES'),
+				'index.php?option=com_sichtweiten&view=visibilities',
+				$vName == 'visibilities'
+			);
+			JHtmlSidebar::addEntry(
+				JText::_('COM_SICHTWEITEN_MENU_DEPTHS'),
+				'index.php?option=com_sichtweiten&view=depths',
+				$vName == 'depths'
+			);
+		}
 		JHtmlSidebar::addEntry(
 			JText::_('COM_SICHTWEITEN_MENU_HELP'),
 			'index.php?option=com_sichtweiten&view=help',

@@ -72,6 +72,13 @@ class SichtweitenViewVisibilities extends JViewLegacy
 		$this->filterForm    = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
+		if ($this->state->params->get('extern_db'))
+		{
+			$app = JFactory::getApplication();
+			$app->enqueueMessage(JText::_('COM_SICHTWEITEN_MASTERDATA_NOT_AVAILABLE'), 'error');
+			$app->redirect('index.php?option=com_sichtweiten');
+		}
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
@@ -95,7 +102,7 @@ class SichtweitenViewVisibilities extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_PLACES_TITLE'), 'users');
+		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITIES_TITLE'), 'users');
 
 		if ($canDo->get('core.create'))
 		{

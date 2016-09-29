@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Water controller class.
+ * Visibility controller class.
  *
  * @package        Sichtweiten.Administrator
  *

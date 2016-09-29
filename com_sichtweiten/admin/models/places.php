@@ -28,23 +28,6 @@ class SichtweitenModelPlaces extends JModelList
 			$config['filter_fields'][] = 'land';
 		}
 
-		$params = JComponentHelper::getParams('com_sichtweiten');
-
-		if ($params->get('extern_db'))
-		{
-			// Taken from https://docs.joomla.org/Connecting_to_an_external_database
-			$option = array();
-
-			$option['driver']   = $params->get('db_type', 'mysqli');
-			$option['host']     = $params->get('db_host', 'localhost');
-			$option['database'] = $params->get('db_database');
-			$option['user']     = $params->get('db_user');
-			$option['password'] = $params->get('db_pass');
-			$option['prefix']   = $params->get('db_prefix', 'jos_');
-
-			$config['dbo'] = JDatabaseDriver::getInstance($option);
-		}
-
 		parent::__construct($config);
 	}
 
@@ -53,7 +36,11 @@ class SichtweitenModelPlaces extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @since    1.6
+	 * @param   string  $ordering   An optional ordering field.
+	 * @param   string  $direction  An optional direction (asc|desc).
+	 *
+	 * @return  void
+	 * @since   1.3.0
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
@@ -66,8 +53,8 @@ class SichtweitenModelPlaces extends JModelList
 	/**
 	 * Build an SQL query to load the list data.
 	 *
-	 * @return    JDatabaseQuery
-	 * @since    1.6
+	 * @return  JDatabaseQuery
+	 * @since   1.3.0
 	 */
 	protected function getListQuery()
 	{
