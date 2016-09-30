@@ -36,8 +36,8 @@ CREATE TABLE `#__sicht_bezeichnung` (
   DEFAULT CHARSET = utf8;
 
 CREATE TABLE `#__sicht_gewaesser` (
-  `id`             INT(11) NOT NULL,
-  `land_id`        INT(11)      DEFAULT NULL AUTO_INCREMENT,
+  `id`             INT(11) NOT NULL AUTO_INCREMENT,
+  `land_id`        INT(11)      DEFAULT NULL,
   `name`           VARCHAR(255) DEFAULT NULL,
   `displayName`    VARCHAR(255) DEFAULT NULL,
   `meterUeberMeer` INT(11)      DEFAULT NULL,
