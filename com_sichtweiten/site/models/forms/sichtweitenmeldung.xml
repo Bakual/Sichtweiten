@@ -12,6 +12,7 @@
 			required="true"
 			hint="COM_SICHTWEITEN_FIELD_DATUM_HINT"
 			default="NOW"
+			translateformat="true"
 		/>
 		<field
 			name="tauchplatz_id"
