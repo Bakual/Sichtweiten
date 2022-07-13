@@ -81,7 +81,7 @@ class SichtweitenModelLocation extends JModelItem
 	public function getItem($id = null)
 	{
 		// Initialise variables.
-		$id = ($id) ? $id : (int) $this->getState('location.id');
+		$id = ($id) ?: (int) $this->getState('location.id');
 
 		if ($this->_item === null)
 		{

@@ -5,9 +5,9 @@
 	<creationDate>2016-08-27</creationDate>
 	<copyright>© 2016</copyright>
 	<authorEmail>bakual@bakual.ch</authorEmail>
-	<authorUrl>http://www.bakual.ch</authorUrl>
+	<authorUrl>https://www.bakual.ch</authorUrl>
 	<version>1.3.0</version>
-	<license>http://www.gnu.org/licenses/gpl.html</license>
+	<license>https://www.gnu.org/licenses/gpl-3.0.html</license>
 	<description>COM_SICHTWEITEN_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
 	<install>
@@ -67,6 +67,6 @@
 		</files>
 	</administration>
 	<updateservers>
-		<server type="extension" priority="1" name="Bakual.net">http://www.bakual.net/update/com_sichtweiten.xml</server>
+		<server type="extension" priority="1" name="Bakual.net">https://www.bakual.net/update/com_sichtweiten.xml</server>
 	</updateservers>
 </extension>

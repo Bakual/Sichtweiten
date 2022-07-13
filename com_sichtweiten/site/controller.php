@@ -34,7 +34,7 @@ class SichtweitenController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
-		$cachable = JFactory::getUser()->get('id') ? false : true;
+		$cachable = !JFactory::getUser()->get('id');
 
 		$params   = JFactory::getApplication()->getParams();
 

@@ -16,6 +16,6 @@ defined('_JEXEC') or die;
 	<div id="j-main-container" class="span10">
 		<h1>Sichtweiten <?php echo $this->version; ?></h1>
 		<h2>License</h2>
-		<div>Sichtweiten is released under the <a href="http://www.gnu.org/licenses/gpl.html">GNU/GPL license</a></div>
+		<div>Sichtweiten is released under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU/GPL license</a></div>
 	</div>
 </form>

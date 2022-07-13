@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\Utilities\ArrayHelper;
+
 /**
  * Model class for the Sichtweiten Component
  *
@@ -213,7 +215,7 @@ class SichtweitenModelVisibilities extends JModelList
 
 		// Join over Sichtweiteneintrag table
 		$tiefenbereich = $this->getState('filter.tiefe');
-		$tiefenbereich = \Joomla\Utilities\ArrayHelper::toInteger($tiefenbereich);
+		$tiefenbereich = ArrayHelper::toInteger($tiefenbereich);
 
 		foreach ($tiefenbereich as $key => $value)
 		{

@@ -1,6 +1,15 @@
 <?php
-// No direct access.
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Site
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\Utilities\ArrayHelper;
 
 /**
  * Visibility model.
@@ -155,7 +164,7 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 		}
 
 		$pks = (array) $pks;
-		$pks = \Joomla\Utilities\ArrayHelper::toInteger($pks);
+		$pks = ArrayHelper::toInteger($pks);
 
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);

@@ -27,8 +27,9 @@ class SichtweitenTableSichtweitenmeldung extends JTable
 	 *
 	 * @return  boolean  True if the instance is sane and able to be stored in the database.
 	 *
-	 * @link    https://docs.joomla.org/JTable/check
+	 * @throws \Exception
 	 * @since   1.0
+	 * @link    https://docs.joomla.org/JTable/check
 	 */
 	public function check()
 	{

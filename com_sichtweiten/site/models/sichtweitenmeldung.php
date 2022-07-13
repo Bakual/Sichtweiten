@@ -101,7 +101,7 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	{
 		$form = $this->loadForm('com_sichtweiten.sichweitenmeldung', 'sichtweitenmeldung', array('control' => 'jform', 'load_data' => $loadData));
 
-		return ($form) ? $form : false;
+		return ($form) ?: false;
 	}
 
 	/**
@@ -195,7 +195,7 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 
 		foreach ($tiefenbereiche as $key => $value)
 		{
-			$query->values((int) $validData[$value] . ',' . $id . ',' . (int) $key);
+			$query->values((int) $validData[$value] . ',' . $id . ',' . $key);
 		}
 
 		$db->setQuery($query);

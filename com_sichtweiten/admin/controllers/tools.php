@@ -87,8 +87,6 @@ class SichtweitenControllerTools extends JControllerLegacy
 
 		$app->enqueueMessage('Data migrated!');
 		$app->redirect('index.php?option=com_sichtweiten&view=main');
-
-		return;
 	}
 
 	/**
@@ -131,7 +129,5 @@ class SichtweitenControllerTools extends JControllerLegacy
 
 		$app->enqueueMessage('Tables Truncated!');
 		$app->redirect('index.php?option=com_sichtweiten&view=main');
-
-		return;
 	}
 }
