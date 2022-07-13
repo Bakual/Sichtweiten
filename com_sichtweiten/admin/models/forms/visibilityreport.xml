@@ -15,6 +15,7 @@
 			name="datum"
 			type="calendar"
 			label="JDATE"
+			translateformat="true"
 		/>
 		<field
 			name="tauchplatz_id"
@@ -33,6 +34,7 @@
 			type="calendar"
 			label="JGLOBAL_FIELD_CREATED_LABEL"
 			description="JGLOBAL_FIELD_CREATED_DESC"
+			translateformat="true"
 		/>
 		<field
 			name="kommentar"
