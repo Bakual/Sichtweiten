@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Sichtweiten Component Controller
  */
@@ -40,7 +42,7 @@ class SichtweitenController extends JControllerLegacy
 
 		if ($params->get('css_icomoon'))
 		{
-			JHtml::_('stylesheet', 'jui/icomoon.css', array(), true);
+			HTMLHelper::stylesheet('jui/icomoon.css', ['relative' => true]);
 		}
 
 		$urlparams = array(

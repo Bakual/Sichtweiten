@@ -9,12 +9,14 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen');
 
-JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
+HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
 <script type="text/javascript">
 	Joomla.submitbutton = function(task) {

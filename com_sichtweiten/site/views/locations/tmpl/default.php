@@ -9,7 +9,9 @@
 
 defined('_JEXEC') or die();
 
-JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
+use Joomla\CMS\HTML\HTMLHelper;
+
+HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
 <div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx')); ?>">
 	<div class="items">

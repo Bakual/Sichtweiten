@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 $listOrder = $this->vis_state->get('list.ordering');
 $listDirn  = $this->vis_state->get('list.direction');
 
-JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
+HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
 <div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx')); ?>">
 	<h1><?php echo $this->escape(JText::_('COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_TITLE')); ?></h1>
