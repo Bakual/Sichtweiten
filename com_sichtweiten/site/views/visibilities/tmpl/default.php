@@ -9,16 +9,20 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
+
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 
-JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
+HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
 <div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx')); ?>">
 	<div class="items">
-		<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
+		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
 			<?php if (!count($this->items)) : ?>
-				<div class="no_entries alert alert-error"><?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
+				<div class="no_entries alert alert-error"><?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
 			<?php else : ?>
 				<?php if ($listOrder == 'g.displayName') : ?>
 	 				<?php echo $this->loadTemplate('gewaesser'); ?>
@@ -32,6 +36,6 @@ JHtml::stylesheet('com_sichtweiten/sichtweiten.css', '', true);
 		</form>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
-		<div class="copyright"><small><?php echo JText::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
+		<div class="copyright"><small><?php echo Text::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
 	<?php endif; ?>
 </div>
