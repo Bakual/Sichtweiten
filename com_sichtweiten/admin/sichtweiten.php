@@ -9,15 +9,19 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\BaseController;
+
 // Access check.
-if (!JFactory::getUser()->authorise('core.manage', 'com_sichtweiten'))
+if (!Factory::getUser()->authorise('core.manage', 'com_sichtweiten'))
 {
-	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+	throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 }
 
 // Register Helperclass for autoloading
 JLoader::register('SichtweitenHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/sichtweiten.php');
 
-$controller = JControllerLegacy::getInstance('Sichtweiten');
-$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller = BaseController::getInstance('Sichtweiten');
+$controller->execute(Factory::getApplication()->input->get('task'));
 $controller->redirect();

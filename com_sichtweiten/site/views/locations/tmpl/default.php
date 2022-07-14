@@ -10,13 +10,15 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
 <div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx')); ?>">
 	<div class="items">
 		<?php if (!count($this->items)) : ?>
-			<div class="no_entries alert alert-error"><?php echo JText::sprintf('COM_SICHTWEITEN_NO_ENTRIES', JText::_('COM_SICHTWEITEN_LOCATIONS')); ?></div>
+			<div class="no_entries alert alert-error"><?php echo Text::sprintf('COM_SICHTWEITEN_NO_ENTRIES', Text::_('COM_SICHTWEITEN_LOCATIONS')); ?></div>
 		<?php else : ?>
 			<?php $land      = ''; ?>
 			<?php $gewaesser = ''; ?>
@@ -35,10 +37,10 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 					<h3><?php echo $item->gewaesser_displayName; ?></h3>
 					<table class="table table-striped table-hover table-condensed">
 					<thead><tr>
-						<th class="ort"><?php echo JText::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></th>
-						<th class="location"><?php echo JText::_('COM_SICHTWEITEN_FIELD_LOCATION_LABEL'); ?></th>
-						<th class="alternate"><?php echo JText::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></th>
-						<th class="bemerkungen"><?php echo JText::_('COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL'); ?></th>
+						<th class="ort"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></th>
+						<th class="location"><?php echo Text::_('COM_SICHTWEITEN_FIELD_LOCATION_LABEL'); ?></th>
+						<th class="alternate"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></th>
+						<th class="bemerkungen"><?php echo Text::_('COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL'); ?></th>
 					</tr></thead>
 					<tbody>
 				<?php endif; ?>
@@ -47,7 +49,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 						<?php echo $item->ort_name; ?>
 					</td>
 					<td class="location">
-						<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>">
+						<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>">
 							<?php echo $item->name; ?>
 						</a>
 					</td>
@@ -64,6 +66,6 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 		<?php endif; ?>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
-		<div class="copyright"><small><?php echo JText::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
+		<div class="copyright"><small><?php echo Text::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
 	<?php endif; ?>
 </div>

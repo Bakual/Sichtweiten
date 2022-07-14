@@ -9,12 +9,16 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\ItemModel;
+
 /**
  * Model class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenModelLocation extends JModelItem
+class SichtweitenModelLocation extends ItemModel
 {
 	/**
 	 * Constructor.
@@ -26,7 +30,7 @@ class SichtweitenModelLocation extends JModelItem
 	 */
 	public function __construct($config = array())
 	{
-		$params = JFactory::getApplication()->getParams();
+		$params = Factory::getApplication()->getParams();
 
 		if ($params->get('extern_db'))
 		{
@@ -59,7 +63,7 @@ class SichtweitenModelLocation extends JModelItem
 	protected function populateState($ordering = null, $direction = null)
 	{
 		/** @var JApplicationSite $app */
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$params = $app->getParams();
 
 		// Load the object state.
@@ -179,7 +183,7 @@ class SichtweitenModelLocation extends JModelItem
 
 				if (!$data)
 				{
-					throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
+					throw new Exception(Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
 				}
 
 				$this->_item[$id] = $data;

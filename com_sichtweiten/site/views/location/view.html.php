@@ -9,12 +9,18 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenViewLocation extends JViewLegacy
+class SichtweitenViewLocation extends HtmlView
 {
 	/**
 	 * Contains model state
@@ -51,11 +57,11 @@ class SichtweitenViewLocation extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		if (!$app->input->get('id', 0, 'int'))
 		{
-			$app->redirect(JRoute::_('index.php?view=visibilities'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(Route::_('index.php?view=visibilities'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Get data from the model
@@ -64,13 +70,13 @@ class SichtweitenViewLocation extends JViewLegacy
 
 		if (!$this->item)
 		{
-			$app->redirect(JRoute::_('index.php?view=visibilities'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(Route::_('index.php?view=visibilities'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		$this->params = $this->state->get('params');
 
 		/** @var SichtweitenModelVisibilities $visibilities_model */
-		$visibilities_model = JModelLegacy::getInstance('Visibilities', 'SichtweitenModel');
+		$visibilities_model = BaseDatabaseModel::getInstance('Visibilities', 'SichtweitenModel');
 		$this->vis_state = $visibilities_model->getState();
 		$this->vis_state->set('filter.period', 0);
 		$this->vis_state->set('filter.location', (int) $this->item->id);
@@ -84,6 +90,6 @@ class SichtweitenViewLocation extends JViewLegacy
 		$this->items      = $visibilities_model->getItems();
 		$this->pagination = $visibilities_model->getPagination();
 
-		parent::display($tpl);
+		return parent::display($tpl);
 	}
 }

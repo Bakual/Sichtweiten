@@ -9,12 +9,17 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Router\Route;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenViewSichtweitenmeldung extends JViewLegacy
+class SichtweitenViewSichtweitenmeldung extends HtmlView
 {
 	protected $form;
 
@@ -39,7 +44,7 @@ class SichtweitenViewSichtweitenmeldung extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$this->user = JFactory::getUser();
+		$this->user = Factory::getUser();
 
 		// Get model data
 		$this->state       = $this->get('State');
@@ -51,13 +56,13 @@ class SichtweitenViewSichtweitenmeldung extends JViewLegacy
 		{
 			if ($this->user->guest)
 			{
-				$app = JFactory::getApplication();
-				$app->enqueueMessage(JText::_('JGLOBAL_YOU_MUST_LOGIN_FIRST'), 'message');
-				$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
+				$app = Factory::getApplication();
+				$app->enqueueMessage(Text::_('JGLOBAL_YOU_MUST_LOGIN_FIRST'), 'message');
+				$app->redirect(Route::_('index.php?option=com_users&view=login', false));
 			}
 			else
 			{
-				throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+				throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 			}
 		}
 
@@ -70,6 +75,6 @@ class SichtweitenViewSichtweitenmeldung extends JViewLegacy
 		// Escape strings for HTML output
 		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx'));
 
-		parent::display($tpl);
+		return parent::display($tpl);
 	}
 }
