@@ -1,6 +1,8 @@
 <?php
 // no direct access
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -11,7 +13,7 @@ HTMLHelper::_('behavior.formvalidation');
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('formbehavior.chosen', 'select');
 
-$app   = JFactory::getApplication();
+$app   = Factory::getApplication();
 $input = $app->input;
 ?>
 

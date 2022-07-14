@@ -9,12 +9,15 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
+
 /**
  * Model class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenModelLocations extends JModelList
+class SichtweitenModelLocations extends ListModel
 {
 	/**
 	 * An array of items
@@ -48,7 +51,7 @@ class SichtweitenModelLocations extends JModelList
 			'g.displayName',
 		);
 
-		$params = JFactory::getApplication()->getParams();
+		$params = Factory::getApplication()->getParams();
 
 		if ($params->get('extern_db'))
 		{
@@ -192,11 +195,11 @@ class SichtweitenModelLocations extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$params = $app->getParams();
 		$this->setState('params', $params);
 
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		if ((!$user->authorise('core.edit.state', 'com_sichtweiten')) && (!$user->authorise('core.edit', 'com_sichtweiten')))
 		{

@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\FormController;
+
 /**
  * Divesite controller class.
  *
@@ -16,7 +19,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.3.0
  */
-class SichtweitenControllerDivesite extends JControllerForm
+class SichtweitenControllerDivesite extends FormController
 {
 	/**
 	 * Method override to check if you can add a new record.
@@ -60,7 +63,7 @@ class SichtweitenControllerDivesite extends JControllerForm
 	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		$query = $db->getQuery(true);
 		$query->delete('#__sicht_bezeichnung');

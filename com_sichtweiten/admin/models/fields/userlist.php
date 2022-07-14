@@ -9,7 +9,11 @@
 
 defined('_JEXEC') or die();
 
-JFormHelper::loadFieldClass('list');
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormHelper;
+
+FormHelper::loadFieldClass('list');
 
 /**
  * Userlist Field class for the Sichtweiten.
@@ -35,7 +39,7 @@ class JFormFieldUserlist extends JFormFieldList
 	 */
 	public function getOptions()
 	{
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$params = ComponentHelper::getParams('com_sichtweiten');
 
 		if ($params->get('extern_db'))
 		{
@@ -53,7 +57,7 @@ class JFormFieldUserlist extends JFormFieldList
 		}
 		else
 		{
-			$db = JFactory::getDbo();
+			$db = Factory::getDbo();
 		}
 
 		$query = $db->getQuery(true);

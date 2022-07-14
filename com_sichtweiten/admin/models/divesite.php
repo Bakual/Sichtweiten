@@ -1,6 +1,18 @@
 <?php
-// No direct access.
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Table\Table;
 
 /**
  * Divesite model.
@@ -9,7 +21,7 @@ defined('_JEXEC') or die;
  *
  * @since     1.3.0
  */
-class SichtweitenModelDivesite extends JModelAdmin
+class SichtweitenModelDivesite extends AdminModel
 {
 	/**
 	 * @var     string    The prefix to use with controller messages.
@@ -29,7 +41,7 @@ class SichtweitenModelDivesite extends JModelAdmin
 	 */
 	public function getTable($type = 'Tauchplatz', $prefix = 'SichtweitenTable', $config = array())
 	{
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 
 	/**
@@ -98,7 +110,7 @@ class SichtweitenModelDivesite extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_sichtweiten.edit.divesite.data', array());
+		$data = Factory::getApplication()->getUserState('com_sichtweiten.edit.divesite.data', array());
 
 		if (empty($data))
 		{
@@ -126,13 +138,13 @@ class SichtweitenModelDivesite extends JModelAdmin
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param \JForm $form
+	 * @param Form $form
 	 * @param mixed  $data
 	 * @param string $group
 	 *
 	 * @since    1.3.0
 	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'sichtweiten')
+	protected function preprocessForm(Form $form, $data, $group = 'sichtweiten')
 	{
 		parent::preprocessForm($form, $data, $group);
 	}

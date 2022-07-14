@@ -72,16 +72,16 @@ $listDirn  = $this->state->get('list.direction');
 							<td class="nowrap">
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&task=visibilityreport.edit&id=' . (int) $item->id); ?>">
-										<?php echo HTMLHelper::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?></a>
+										<?php echo HTMLHelper::date($item->datum, Text::_('DATE_FORMAT_LC4')); ?></a>
 								<?php else : ?>
-									<?php echo HTMLHelper::date($item->datum, JText::_('DATE_FORMAT_LC4')); ?>
+									<?php echo HTMLHelper::date($item->datum, Text::_('DATE_FORMAT_LC4')); ?>
 								<?php endif; ?>
 							</td>
 							<td class="nowrap">
 								<?php echo $item->tauchplatz; ?>
 							</td>
 							<td class="hidden-phone">
-								<?php echo HTMLHelper::Date($item->meldedatum, JText::_('DATE_FORMAT_LC2')); ?>
+								<?php echo HTMLHelper::Date($item->meldedatum, Text::_('DATE_FORMAT_LC2')); ?>
 							</td>
 							<td class="nowrap hidden-phone">
 								<?php echo (int) $item->id; ?>

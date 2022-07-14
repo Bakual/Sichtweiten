@@ -9,12 +9,14 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
  * Sichtweiten Component Controller
  */
-class SichtweitenController extends JControllerLegacy
+class SichtweitenController extends BaseController
 {
 	/**
 	 * The default view for the display method.
@@ -36,9 +38,9 @@ class SichtweitenController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
-		$cachable = !JFactory::getUser()->get('id');
+		$cachable = !Factory::getUser()->get('id');
 
-		$params   = JFactory::getApplication()->getParams();
+		$params   = Factory::getApplication()->getParams();
 
 		if ($params->get('css_icomoon'))
 		{

@@ -11,6 +11,10 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Version;
+
 /**
  * Class Com_SichtweitenInstallerScript
  *
@@ -36,7 +40,7 @@ class Com_SichtweitenInstallerScript
 	 */
 	public function __construct()
 	{
-		$this->app = JFactory::getApplication();
+		$this->app = Factory::getApplication();
 	}
 
 	/**
@@ -53,11 +57,11 @@ class Com_SichtweitenInstallerScript
 	{
 		$min_version = (string) $parent->get('manifest')->attributes()->version;
 
-		$jversion = new JVersion;
+		$jversion = new Version;
 
 		if (!$jversion->isCompatible($min_version))
 		{
-			$this->app->enqueueMessage(JText::sprintf('COM_SICHTWEITEN_VERSION_UNSUPPORTED', $min_version), 'error');
+			$this->app->enqueueMessage(Text::sprintf('COM_SICHTWEITEN_VERSION_UNSUPPORTED', $min_version), 'error');
 
 			return false;
 		}
@@ -127,7 +131,7 @@ class Com_SichtweitenInstallerScript
 		{
 			if (version_compare($this->oldRelease, '1.2.0', '<='))
 			{
-				$db    = JFactory::getDbo();
+				$db    = Factory::getDbo();
 				$query = $db->getQuery(true);
 
 				$query->select($db->quoteName('params'));
@@ -159,7 +163,7 @@ class Com_SichtweitenInstallerScript
 	 */
 	private function getParam($name)
 	{
-		$db    = JFactory::getDbo();
+		$db    = Factory::getDbo();
 		$query = $db->getQuery(true);
 
 		$query->select($db->quoteName('manifest_cache'));

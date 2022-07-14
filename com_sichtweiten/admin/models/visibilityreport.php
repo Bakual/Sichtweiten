@@ -9,6 +9,10 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -36,7 +40,7 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	 */
 	public function __construct($config = array())
 	{
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$params = ComponentHelper::getParams('com_sichtweiten');
 
 		if ($params->get('extern_db'))
 		{
@@ -63,12 +67,12 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	 * @param    string $prefix A prefix for the table class name. Optional.
 	 * @param    array  $config Configuration array for model. Optional.
 	 *
-	 * @return    JTable    A database object
+	 * @return    Table    A database object
 	 * @since    1.0
 	 */
 	public function getTable($type = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $config = array())
 	{
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 
 	/**
@@ -77,7 +81,7 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	 * @param    array   $data     An optional array of data for the form to interogate.
 	 * @param    boolean $loadData True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  JForm|boolean  A JForm object on success, false on failure
+	 * @return  Form|boolean  A JForm object on success, false on failure
 	 * @since    1.3.0
 	 */
 	public function getForm($data = array(), $loadData = true)
@@ -102,7 +106,7 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_sichtweiten.edit.visibilityreport.data', array());
+		$data = Factory::getApplication()->getUserState('com_sichtweiten.edit.visibilityreport.data', array());
 
 		if (empty($data))
 		{
@@ -132,13 +136,13 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param \JForm $form
+	 * @param Form $form
 	 * @param mixed  $data
 	 * @param string $group
 	 *
 	 * @since    3.0
 	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'sichtweiten')
+	protected function preprocessForm(Form $form, $data, $group = 'sichtweiten')
 	{
 		parent::preprocessForm($form, $data, $group);
 	}
@@ -154,11 +158,11 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	 */
 	public function delete(&$pks)
 	{
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		if (!$user->authorise('core.delete', $this->option))
 		{
-			JFactory::getApplication()->enqueueMessage('JLIB_APPLICATION_ERROR_DELETE_NOT_PERMITTED', 'error');
+			Factory::getApplication()->enqueueMessage('JLIB_APPLICATION_ERROR_DELETE_NOT_PERMITTED', 'error');
 
 			return false;
 		}

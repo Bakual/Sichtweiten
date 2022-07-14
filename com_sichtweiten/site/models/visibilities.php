@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -16,7 +18,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.0
  */
-class SichtweitenModelVisibilities extends JModelList
+class SichtweitenModelVisibilities extends ListModel
 {
 	/**
 	 * An array of items
@@ -58,7 +60,7 @@ class SichtweitenModelVisibilities extends JModelList
 			'user_id',
 		);
 
-		$params = JFactory::getApplication()->getParams();
+		$params = Factory::getApplication()->getParams();
 
 		if ($params->get('extern_db'))
 		{
@@ -284,11 +286,11 @@ class SichtweitenModelVisibilities extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$params = $app->getParams();
 		$this->setState('params', $params);
 
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		if ((!$user->authorise('core.edit.state', 'com_sichtweiten')) && (!$user->authorise('core.edit', 'com_sichtweiten')))
 		{

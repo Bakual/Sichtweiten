@@ -9,12 +9,17 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Uri\Uri;
+
 /**
  * Controller class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenControllerSichtweitenmeldung extends JControllerForm
+class SichtweitenControllerSichtweitenmeldung extends FormController
 {
 	protected $view_item = 'sichtweitenmeldung';
 
@@ -46,7 +51,7 @@ class SichtweitenControllerSichtweitenmeldung extends JControllerForm
 	{
 		$append = parent::getRedirectToItemAppend($recordId, $urlVar);
 
-		if ($itemId = JFactory::getApplication()->input->get('Itemid', 0, 'int'))
+		if ($itemId = Factory::getApplication()->input->get('Itemid', 0, 'int'))
 		{
 			$append .= '&Itemid=' . $itemId;
 		}
@@ -68,11 +73,11 @@ class SichtweitenControllerSichtweitenmeldung extends JControllerForm
 	 */
 	protected function getReturnPage()
 	{
-		$return = JFactory::getApplication()->input->get('return', '', 'base64');
+		$return = Factory::getApplication()->input->get('return', '', 'base64');
 
-		if (empty($return) || !JUri::isInternal(base64_decode($return)))
+		if (empty($return) || !Uri::isInternal(base64_decode($return)))
 		{
-			return JURI::base();
+			return Uri::base();
 		}
 		else
 		{
@@ -83,12 +88,12 @@ class SichtweitenControllerSichtweitenmeldung extends JControllerForm
 	/**
 	 * Function that allows child controller access to model data after the data has been saved
 	 *
-	 * @param   JModelLegacy $model     The data model object
+	 * @param   BaseDatabaseModel $model     The data model object
 	 * @param   array        $validData The validated data
 	 *
 	 * @return  void
 	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
+	protected function postSaveHook(BaseDatabaseModel $model, $validData = array())
 	{
 		$model->insertSichtweiteneintrag($validData);
 		$model->insertTauchpartner($validData);

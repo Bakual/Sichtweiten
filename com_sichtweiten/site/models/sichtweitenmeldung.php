@@ -9,12 +9,16 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Uri\Uri;
+
 /**
  * Model class for the Sichtweiten Component
  *
  * @since  5
  */
-class SichtweitenModelSichtweitenmeldung extends JModelAdmin
+class SichtweitenModelSichtweitenmeldung extends AdminModel
 {
 	/**
 	 * Constructor.
@@ -26,7 +30,7 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	 */
 	public function __construct($config = array())
 	{
-		$params = JFactory::getApplication()->getParams();
+		$params = Factory::getApplication()->getParams();
 
 		if ($params->get('extern_db'))
 		{
@@ -68,12 +72,12 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$jinput = $app->input;
 
 		$return = $jinput->get('return', '', 'base64');
 
-		if (!JUri::isInternal(base64_decode($return)))
+		if (!Uri::isInternal(base64_decode($return)))
 		{
 			$return = null;
 		}
@@ -107,9 +111,9 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param    type      The table type to instantiate
-	 * @param    string    A prefix for the table class name. Optional.
-	 * @param    array     Configuration array for model. Optional.
+	 * @param    string  $type      The table type to instantiate
+	 * @param    string  $prefix    A prefix for the table class name. Optional.
+	 * @param    array   $config    Configuration array for model. Optional.
 	 *
 	 * @return    JTable    A database object
 	 * @since    1.0
@@ -130,9 +134,9 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
-		$table->meldedatum = JFactory::getDate()->toSql();
+		$table->meldedatum = Factory::getDate()->toSql();
 
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		if (!$user->guest)
 		{
@@ -168,7 +172,7 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	/**
 	 * Save the Sichtweiteeintrag during postSave
 	 *
-	 * @param   object $validData The validated data to be saved
+	 * @param   array $validData The validated data to be saved
 	 *
 	 * @return  void
 	 *
@@ -205,7 +209,7 @@ class SichtweitenModelSichtweitenmeldung extends JModelAdmin
 	/**
 	 * Save the Tauchpartners during postSave
 	 *
-	 * @param   object $validData The validated data to be saved
+	 * @param   array $validData The validated data to be saved
 	 *
 	 * @return  void
 	 *

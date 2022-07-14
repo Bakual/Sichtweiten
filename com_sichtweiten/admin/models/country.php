@@ -1,6 +1,17 @@
 <?php
-// No direct access.
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Table\Table;
 
 /**
  * Country model.
@@ -9,7 +20,7 @@ defined('_JEXEC') or die;
  *
  * @since     1.3.0
  */
-class SichtweitenModelCountry extends JModelAdmin
+class SichtweitenModelCountry extends AdminModel
 {
 	/**
 	 * @var     string    The prefix to use with controller messages.
@@ -29,7 +40,7 @@ class SichtweitenModelCountry extends JModelAdmin
 	 */
 	public function getTable($type = 'Land', $prefix = 'SichtweitenTable', $config = array())
 	{
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 
 	/**
@@ -64,7 +75,7 @@ class SichtweitenModelCountry extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_sichtweiten.edit.country.data', array());
+		$data = Factory::getApplication()->getUserState('com_sichtweiten.edit.country.data', array());
 
 		if (empty($data))
 		{

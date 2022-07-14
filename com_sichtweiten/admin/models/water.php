@@ -1,6 +1,18 @@
 <?php
-// No direct access.
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Table\Table;
 
 /**
  * Water model.
@@ -9,7 +21,7 @@ defined('_JEXEC') or die;
  *
  * @since     1.3.0
  */
-class SichtweitenModelWater extends JModelAdmin
+class SichtweitenModelWater extends AdminModel
 {
 	/**
 	 * @var     string    The prefix to use with controller messages.
@@ -24,12 +36,12 @@ class SichtweitenModelWater extends JModelAdmin
 	 * @param    string $prefix A prefix for the table class name. Optional.
 	 * @param    array  $config Configuration array for model. Optional.
 	 *
-	 * @return  JTable    A database object
+	 * @return  Table    A database object
 	 * @since   1.3.0
 	 */
 	public function getTable($type = 'Gewaesser', $prefix = 'SichtweitenTable', $config = array())
 	{
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 
 	/**
@@ -38,7 +50,7 @@ class SichtweitenModelWater extends JModelAdmin
 	 * @param   array   $data     Data for the form.
 	 * @param   boolean $loadData True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  JForm|boolean  A JForm object on success, false on failure
+	 * @return  Form|boolean  A JForm object on success, false on failure
 	 *
 	 * @since    1.3.0
 	 */
@@ -64,7 +76,7 @@ class SichtweitenModelWater extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_sichtweiten.edit.water.data', array());
+		$data = Factory::getApplication()->getUserState('com_sichtweiten.edit.water.data', array());
 
 		if (empty($data))
 		{
@@ -81,7 +93,7 @@ class SichtweitenModelWater extends JModelAdmin
 	 *
 	 * @since    1.3.0
 	 *
-	 * @param \JTable $table
+	 * @param Table $table
 	 */
 	protected function prepareTable($table)
 	{
@@ -102,13 +114,13 @@ class SichtweitenModelWater extends JModelAdmin
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param \JForm $form
+	 * @param Form $form
 	 * @param mixed  $data
 	 * @param string $group
 	 *
 	 * @since    1.3.0
 	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'sichtweiten')
+	protected function preprocessForm(Form $form, $data, $group = 'sichtweiten')
 	{
 		parent::preprocessForm($form, $data, $group);
 	}

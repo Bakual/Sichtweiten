@@ -9,7 +9,9 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * View to edit a place.
@@ -17,7 +19,7 @@ use Joomla\CMS\Language\Text;
  * @package   Sichtweiten.Administrator
  * @since     1.3.0
  */
-class SichtweitenViewCountry extends JViewLegacy
+class SichtweitenViewCountry extends HtmlView
 {
 	/**
 	 * @var
@@ -70,7 +72,7 @@ class SichtweitenViewCountry extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu', true);
+		Factory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
 		JToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_COUNTRIES_TITLE'), Text::_('COM_SICHTWEITEN_COUNTRY_TITLE')), 'pencil-2');
 

@@ -9,22 +9,24 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
 
 HtmlHelper::_('bootstrap.tooltip');
 HtmlHelper::_('behavior.multiselect');
 HtmlHelper::_('dropdown.init');
 HtmlHelper::_('formbehavior.chosen', 'select');
 
-$user      = JFactory::getUser();
+$user      = Factory::getUser();
 $canEdit   = $user->authorise('core.edit', 'com_sichtweiten');
 $country   = $this->state->params->get('country', 'CH');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=countries'); ?>" method="post"
+<form action="<?php echo Route::_('index.php?option=com_sichtweiten&view=countries'); ?>" method="post"
 	name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
