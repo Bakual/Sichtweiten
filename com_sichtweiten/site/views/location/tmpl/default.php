@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
 
 $listOrder = $this->vis_state->get('list.ordering');
 $listDirn  = $this->vis_state->get('list.direction');
@@ -47,7 +48,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 	</div>
 	<h3><?php echo Text::_('COM_SICHTWEITEN_HISTORY'); ?></h3>
 	<div class="items">
-		<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
+		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
 			<div class="filters btn-toolbar">
 				<div class="btn-group pull-right">
 					<label class="element-invisible">
