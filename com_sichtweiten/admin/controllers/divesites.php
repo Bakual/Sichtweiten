@@ -35,7 +35,7 @@ class SichtweitenControllerDivesites extends JControllerAdmin
 	 *
 	 * @since   1.0
 	 */
-	public function &getModel($name = 'Divesite', $prefix = 'SichtweitenModel')
+	public function getModel($name = 'Divesite', $prefix = 'SichtweitenModel', $config = array())
 	{
 		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}

@@ -35,7 +35,7 @@ class SichtweitenControllerPlaces extends JControllerAdmin
 	 *
 	 * @since   1.0
 	 */
-	public function &getModel($name = 'Place', $prefix = 'SichtweitenModel')
+	public function getModel($name = 'Place', $prefix = 'SichtweitenModel', $config = array())
 	{
 		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}

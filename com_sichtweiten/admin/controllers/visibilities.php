@@ -35,7 +35,7 @@ class SichtweitenControllerVisibilities extends JControllerAdmin
 	 *
 	 * @since   1.3.0
 	 */
-	public function &getModel($name = 'Visibility', $prefix = 'SichtweitenModel')
+	public function getModel($name = 'Visibility', $prefix = 'SichtweitenModel', $config = array())
 	{
 		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}
