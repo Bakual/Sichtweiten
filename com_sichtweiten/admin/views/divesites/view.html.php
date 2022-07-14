@@ -9,12 +9,16 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
 * @since  1.0
  */
-class SichtweitenViewDivesites extends JViewLegacy
+class SichtweitenViewDivesites extends HtmlView
 {
 	protected $items;
 
@@ -52,8 +56,8 @@ class SichtweitenViewDivesites extends JViewLegacy
 
 		if ($this->state->params->get('extern_db'))
 		{
-			$app = JFactory::getApplication();
-			$app->enqueueMessage(JText::_('COM_SICHTWEITEN_MASTERDATA_NOT_AVAILABLE'), 'error');
+			$app = Factory::getApplication();
+			$app->enqueueMessage(Text::_('COM_SICHTWEITEN_MASTERDATA_NOT_AVAILABLE'), 'error');
 			$app->redirect('index.php?option=com_sichtweiten');
 		}
 
@@ -79,7 +83,7 @@ class SichtweitenViewDivesites extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_DIVESITES_TITLE'), 'users');
+		JToolbarHelper::title(Text::_('COM_SICHTWEITEN_DIVESITES_TITLE'), 'users');
 
 		if ($canDo->get('core.create'))
 		{

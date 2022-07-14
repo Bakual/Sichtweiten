@@ -1,28 +1,40 @@
 <?php
-// no direct access
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
 
-// Load the tooltip behavior.
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('behavior.keepalive');
-JHtml::_('formbehavior.chosen', 'select');
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
-$app   = JFactory::getApplication();
+// Load the tooltip behavior.
+HtmlHelper::_('bootstrap.tooltip');
+HtmlHelper::_('behavior.formvalidation');
+HtmlHelper::_('behavior.keepalive');
+HtmlHelper::_('formbehavior.chosen', 'select');
+
+$app   = Factory::getApplication();
 $input = $app->input;
 ?>
 
 <script type="text/javascript">
 	Joomla.submitbutton = function (task) {
-		if (task == 'depth.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+		if (task === 'depth.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
 			Joomla.submitform(task, document.getElementById('adminForm'));
 		} else {
-			alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+			alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 		}
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
+<form action="<?php echo Route::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
 	method="post" name="adminForm" id="adminForm" class="form-validate">
 	<div class="form-horizontal">
 		<?php foreach($this->form->getFieldset('general') as $field): ?>
@@ -30,6 +42,6 @@ $input = $app->input;
 		<?php endforeach; ?>
 		<input type="hidden" name="task" value=""/>
 		<input type="hidden" name="return" value="<?php echo $input->getCmd('return'); ?>"/>
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HtmlHelper::_('form.token'); ?>
 	</div>
 </form>

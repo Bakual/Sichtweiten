@@ -1,6 +1,15 @@
 <?php
-// No direct access
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Language\Text;
 
 /**
  * View to edit a place.
@@ -63,7 +72,7 @@ class SichtweitenViewCountry extends JViewLegacy
 	{
 		JFactory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_COUNTRIES_TITLE'), JText::_('COM_SICHTWEITEN_COUNTRY_TITLE')), 'pencil-2');
+		JToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_COUNTRIES_TITLE'), Text::_('COM_SICHTWEITEN_COUNTRY_TITLE')), 'pencil-2');
 
 		// Since it's an existing record, check the edit permission
 		if ($canDo->get('core.edit'))

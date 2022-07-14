@@ -9,12 +9,17 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Table\Table;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
 * @since  1.0
  */
-class SichtweitenViewHelp extends JViewLegacy
+class SichtweitenViewHelp extends HtmlView
 {
 	/**
 	 * The HTML code for the sidebar.
@@ -38,8 +43,8 @@ class SichtweitenViewHelp extends JViewLegacy
 		SichtweitenHelper::addSubmenu('help');
 
 		// Get current version of Sichtweiten
-		$component     = JComponentHelper::getComponent('com_sichtweiten');
-		$extensions    = JTable::getInstance('extension');
+		$component     = ComponentHelper::getComponent('com_sichtweiten');
+		$extensions    = Table::getInstance('extension');
 		$extensions->load($component->id);
 		$manifest      = json_decode($extensions->manifest_cache);
 		$this->version = $manifest->version;
@@ -58,7 +63,7 @@ class SichtweitenViewHelp extends JViewLegacy
 	protected function addToolbar()
 	{
 		$canDo = SichtweitenHelper::getActions();
-		JToolBarHelper::title(JText::_('JHELP'), 'support');
+		JToolBarHelper::title(Text::_('JHELP'), 'support');
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{

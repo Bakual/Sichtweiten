@@ -9,12 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenViewMain extends JViewLegacy
+class SichtweitenViewMain extends HtmlView
 {
 	/**
 	 * Execute and display a template script.
@@ -30,7 +33,7 @@ class SichtweitenViewMain extends JViewLegacy
 	{
 		$this->addToolbar();
 
-		parent::display($tpl);
+		return parent::display($tpl);
 	}
 
 	/**
@@ -41,7 +44,7 @@ class SichtweitenViewMain extends JViewLegacy
 	protected function addToolbar()
 	{
 		$canDo = SichtweitenHelper::getActions();
-		JToolBarHelper::title(JText::_('COM_SICHTWEITEN'), 'main');
+		JToolBarHelper::title(Text::_('COM_SICHTWEITEN'), 'main');
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{

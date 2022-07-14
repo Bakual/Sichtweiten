@@ -9,7 +9,12 @@
 
 defined('_JEXEC') or die();
 
-JFormHelper::loadFieldClass('groupedlist');
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Language\Text;
+
+FormHelper::loadFieldClass('groupedlist');
 
 /**
  * Locationlist Field class for the Sichtweiten.
@@ -35,7 +40,7 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 	 */
 	public function getGroups()
 	{
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$params = ComponentHelper::getParams('com_sichtweiten');
 
 		if ($params->get('extern_db'))
 		{
@@ -53,7 +58,7 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 		}
 		else
 		{
-			$db = JFactory::getDbo();
+			$db = Factory::getDbo();
 		}
 
 		$query = $db->getQuery(true);
@@ -75,7 +80,7 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 
 		$default = new stdClass;
 		$default->value = '';
-		$default->text = JText::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION');
+		$default->text = Text::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION');
 		$default->displayName = '';
 		array_unshift($options, $default);
 

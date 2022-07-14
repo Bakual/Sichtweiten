@@ -9,12 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenViewVisibilityreports extends JViewLegacy
+class SichtweitenViewVisibilityreports extends HtmlView
 {
 	/**
 	 * @var    array
@@ -97,7 +100,7 @@ class SichtweitenViewVisibilityreports extends JViewLegacy
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
+		JToolbarHelper::title(Text::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
 
 		if ($canDo->get('core.edit'))
 		{

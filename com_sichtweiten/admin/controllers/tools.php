@@ -9,12 +9,18 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Session\Session;
+
 /**
  * Tools Sichtweiten Controller
  *
  * @since  1.2.0
  */
-class SichtweitenControllerTools extends JControllerLegacy
+class SichtweitenControllerTools extends BaseController
 {
 	/**
 	 * Migrates data from extern database
@@ -26,10 +32,10 @@ class SichtweitenControllerTools extends JControllerLegacy
 	public function migrate()
 	{
 		// Check for request forgeries
-		JSession::checkToken('request') or jexit(JText::_('JINVALID_TOKEN'));
+		Session::checkToken('request') or jexit(Text::_('JINVALID_TOKEN'));
 
-		$app    = JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$app    = Factory::getApplication();
+		$params = ComponentHelper::getParams('com_sichtweiten');
 
 		if (!$params->get('extern_db'))
 		{
@@ -39,7 +45,7 @@ class SichtweitenControllerTools extends JControllerLegacy
 			return;
 		}
 
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		// Taken from https://docs.joomla.org/Connecting_to_an_external_database
 		$option = array();
@@ -99,10 +105,10 @@ class SichtweitenControllerTools extends JControllerLegacy
 	public function truncate()
 	{
 		// Check for request forgeries
-		JSession::checkToken('request') or jexit(JText::_('JINVALID_TOKEN'));
+		Session::checkToken('request') or jexit(Text::_('JINVALID_TOKEN'));
 
-		$app = JFactory::getApplication();
-		$db  = JFactory::getDbo();
+		$app = Factory::getApplication();
+		$db  = Factory::getDbo();
 
 		$tables = array(
 			'#__sicht_adresse',

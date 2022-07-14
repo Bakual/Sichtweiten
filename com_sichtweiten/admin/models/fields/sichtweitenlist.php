@@ -9,7 +9,12 @@
 
 defined('_JEXEC') or die();
 
-JFormHelper::loadFieldClass('list');
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Language\Text;
+
+FormHelper::loadFieldClass('list');
 
 /**
  * Sichtweitenlist Field class for the Sichtweiten.
@@ -35,7 +40,7 @@ class JFormFieldSichtweitenlist extends JFormFieldList
 	 */
 	public function getOptions()
 	{
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$params = ComponentHelper::getParams('com_sichtweiten');
 
 		if ($params->get('extern_db'))
 		{
@@ -53,7 +58,7 @@ class JFormFieldSichtweitenlist extends JFormFieldList
 		}
 		else
 		{
-			$db = JFactory::getDbo();
+			$db = Factory::getDbo();
 		}
 
 		$query = $db->getQuery(true);
@@ -68,7 +73,7 @@ class JFormFieldSichtweitenlist extends JFormFieldList
 
 		foreach ($options as $option)
 		{
-			$option->text  = JText::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $option->value);
+			$option->text  = Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $option->value);
 			$option->class = 'tiefe sichtweite' . $option->value;
 		}
 

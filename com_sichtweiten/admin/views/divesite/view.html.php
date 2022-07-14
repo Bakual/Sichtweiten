@@ -1,6 +1,17 @@
 <?php
-// No direct access
+/**
+ * @package     Sichtweiten
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <bakual@bakual.ch>
+ * @copyright   2015 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * View to edit a visibility.
@@ -8,7 +19,7 @@ defined('_JEXEC') or die;
  * @package   Sichtweiten.Administrator
  * @since     1.3.0
  */
-class SichtweitenViewDivesite extends JViewLegacy
+class SichtweitenViewDivesite extends HtmlView
 {
 	/**
 	 * @var
@@ -61,9 +72,9 @@ class SichtweitenViewDivesite extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu', true);
+		Factory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_SICHTWEITEN_PAGE_EDIT', JText::_('COM_SICHTWEITEN_DIVESITES_TITLE'), JText::_('COM_SICHTWEITEN_DIVESITE_TITLE')), 'pencil-2');
+		JToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_DIVESITES_TITLE'), Text::_('COM_SICHTWEITEN_DIVESITE_TITLE')), 'pencil-2');
 
 		// Since it's an existing record, check the edit permission
 		if ($canDo->get('core.edit'))
