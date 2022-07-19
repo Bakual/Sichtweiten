@@ -13,6 +13,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Session\Session;
 
 HtmlHelper::_('bootstrap.tooltip');
 $session = Factory::getSession();
@@ -83,11 +84,18 @@ HtmlHelper::stylesheet('administrator/components/com_sichtweiten/sichtweiten.css
 	<?php if ($externDb) : ?>
 		<h3><?php echo Text::_('COM_SICHTWEITEN_TOOLS'); ?></h3>
 		<ul class="thumbnails">
-			<li class="span12 hasTooltip" title="<?php echo Text::_('COM_SICHTWEITEN_MIGRATE_DESC'); ?>">
+			<li class="span6 hasTooltip" title="<?php echo Text::_('COM_SICHTWEITEN_MIGRATE_DESC'); ?>">
 				<a class="thumbnail"
-				   href="index.php?option=com_sichtweiten&task=tools.migrate&<?php echo $session->getName() . '=' . $session->getId() . '&' . JSession::getFormToken(); ?>=1">
+				   href="index.php?option=com_sichtweiten&task=tools.migrate&<?php echo $session->getName() . '=' . $session->getId() . '&' . Session::getFormToken(); ?>=1">
 					<div class="icon"><span class="icon-database"></span></div>
 					<h3 class="center"><?php echo Text::_('COM_SICHTWEITEN_MIGRATE_TITLE'); ?></h3>
+				</a>
+			</li>
+			<li class="span6 hasTooltip" title="<?php echo Text::_('COM_SICHTWEITEN_TRUNCATE_DESC'); ?>">
+				<a class="thumbnail"
+				   href="index.php?option=com_sichtweiten&task=tools.truncate&<?php echo $session->getName() . '=' . $session->getId() . '&' . Session::getFormToken(); ?>=1">
+					<div class="icon"><span class="icon-trash"></span></div>
+					<h3 class="center"><?php echo Text::_('COM_SICHTWEITEN_TRUNCATE_TITLE'); ?></h3>
 				</a>
 			</li>
 		</ul>
