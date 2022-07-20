@@ -36,8 +36,6 @@ class SichtweitenViewDivesites extends HtmlView
 
 	public $activeFilters;
 
-	protected $sidebar;
-
 	/**
 	 * Execute and display a template script.
 	 *
@@ -69,8 +67,6 @@ class SichtweitenViewDivesites extends HtmlView
 		}
 
 		$this->addToolbar();
-		SichtweitenHelper::addSubmenu('divesites');
-		$this->sidebar = JHtmlSidebar::render();
 
 		return parent::display($tpl);
 	}

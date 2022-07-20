@@ -53,12 +53,6 @@ class SichtweitenViewVisibilityreports extends HtmlView
 	public $activeFilters;
 
 	/**
-	 * @var    string
-	 * @since  1.3.0
-	 */
-	protected $sidebar;
-
-	/**
 	 * Execute and display a template script.
 	 *
 	 * @param   string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -84,8 +78,6 @@ class SichtweitenViewVisibilityreports extends HtmlView
 		}
 
 		$this->addToolbar();
-		SichtweitenHelper::addSubmenu('visibilityreports');
-		$this->sidebar = JHtmlSidebar::render();
 
 		return parent::display($tpl);
 	}

@@ -23,13 +23,6 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 class SichtweitenViewHelp extends HtmlView
 {
 	/**
-	 * The HTML code for the sidebar.
-	 *
-	 * @var string
-	 */
-	protected $sidebar;
-
-	/**
 	 * Execute and display a template script.
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -41,8 +34,6 @@ class SichtweitenViewHelp extends HtmlView
 	 */
 	public function display($tpl = null)
 	{
-		SichtweitenHelper::addSubmenu('help');
-
 		// Get current version of Sichtweiten
 		$component     = ComponentHelper::getComponent('com_sichtweiten');
 		$extensions    = Table::getInstance('extension');
@@ -51,7 +42,6 @@ class SichtweitenViewHelp extends HtmlView
 		$this->version = $manifest->version;
 
 		$this->addToolbar();
-		$this->sidebar = JHtmlSidebar::render();
 
 		parent::display($tpl);
 	}

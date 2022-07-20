@@ -26,14 +26,7 @@ $listDirn  = $this->state->get('list.direction');
 ?>
 <form action="<?php echo Route::_('index.php?option=com_sichtweiten&view=visibilityreports'); ?>" method="post"
 	name="adminForm" id="adminForm">
-	<?php if (!empty($this->sidebar)): ?>
-	<div id="j-sidebar-container" class="span2">
-		<?php echo $this->sidebar; ?>
-	</div>
-	<div id="j-main-container" class="span10">
-		<?php else : ?>
 		<div id="j-main-container">
-			<?php endif; ?>
 			<?php echo LayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 			<?php if (empty($this->items)) : ?>
 				<div class="alert alert-no-items">

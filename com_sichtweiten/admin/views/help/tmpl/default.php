@@ -10,10 +10,7 @@
 defined('_JEXEC') or die;
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=help'); ?>" method="post" name="adminForm" id="adminForm">
-	<div id="j-sidebar-container" class="span2">
-		<?php echo $this->sidebar; ?>
-	</div>
-	<div id="j-main-container" class="span10">
+	<div id="j-main-container">
 		<h1>Sichtweiten <?php echo $this->version; ?></h1>
 		<h2>License</h2>
 		<div>Sichtweiten is released under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU/GPL license</a></div>
