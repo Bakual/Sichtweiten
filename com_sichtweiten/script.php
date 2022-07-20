@@ -14,23 +14,46 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Version;
+use Joomla\CMS\Installer\InstallerScript;
 
 /**
  * Class Com_SichtweitenInstallerScript
  *
  * @since  1.0
  */
-class Com_SichtweitenInstallerScript
+class Com_SichtweitenInstallerScript extends InstallerScript
 {
 	/**
-	 * @var  JApplicationCms  Holds the application object
-	 * @since  1.0
+	 * The extension name. This should be set in the installer script.
+	 *
+	 * @var    string
+	 * @since  2.0.0
+	 */
+	protected $extension = 'com_sermonspeaker';
+	/**
+	 * Minimum PHP version required to install the extension
+	 *
+	 * @var    string
+	 * @since  2.4.0
+	 */
+	protected $minimumPhp = '8.0.0';
+	/**
+	 * Minimum Joomla! version required to install the extension
+	 *
+	 * @var    string
+	 * @since  2.0.0
+	 */
+	protected $minimumJoomla = '4.0.0';
+	/**
+	 * @var  Joomla\CMS\Application\CMSApplication  Holds the application object
+	 *
+	 * @since 1.0
 	 */
 	private $app;
-
 	/**
 	 * @var  string  During an update, it will be populated with the old release version
-	 * @since  1.0
+	 *
+	 * @since 1.0
 	 */
 	private $oldRelease;
 
@@ -55,30 +78,28 @@ class Com_SichtweitenInstallerScript
 	 */
 	public function preflight($type, $parent)
 	{
-		$min_version = (string) $parent->get('manifest')->attributes()->version;
-
-		$jversion = new Version;
-
-		if (!$jversion->isCompatible($min_version))
-		{
-			$this->app->enqueueMessage(Text::sprintf('COM_SICHTWEITEN_VERSION_UNSUPPORTED', $min_version), 'error');
-
-			return false;
-		}
-
 		// Storing old release number for process in postflight
-		if ($type == 'update')
+		if (strtolower($type) == 'update')
 		{
-			$this->oldRelease = $this->getParam('version');
+			$manifest         = $this->getItemArray('manifest_cache', '#__extensions', 'element', $this->extension);
+			$this->oldRelease = $manifest['version'];
+
+			// Check if update is allowed (only update from 5.6.0 and higher)
+			if (version_compare($this->oldRelease, '5.6.0', '<'))
+			{
+				$this->app->enqueueMessage(Text::sprintf('COM_SERMONSPEAKER_UPDATE_UNSUPPORTED', $this->oldRelease, '5.6.0'), 'error');
+
+				return false;
+			}
 		}
 
-		return true;
+		return parent::preflight($type, $parent);
 	}
 
 	/**
 	 * Method to install the component
 	 *
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param   Joomla\CMS\Installer\Adapter\ComponentAdapter  $parent  Installerobject
 	 *
 	 * @since  1.0
 	 *
@@ -91,7 +112,7 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * Method to uninstall the component
 	 *
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param   Joomla\CMS\Installer\Adapter\ComponentAdapter  $parent  Installerobject
 	 *
 	 * @since  1.0
 	 *
@@ -104,7 +125,7 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * method to update the component
 	 *
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param   Joomla\CMS\Installer\Adapter\ComponentAdapter  $parent  Installerobject
 	 *
 	 * @since  1.0
 	 *
@@ -117,8 +138,8 @@ class Com_SichtweitenInstallerScript
 	/**
 	 * method to run after an install/update/uninstall method
 	 *
-	 * @param   string                     $type   'install', 'update' or 'discover_install'
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param   string                                         $type    'install', 'update' or 'discover_install'
+	 * @param   Joomla\CMS\Installer\Adapter\ComponentAdapter  $parent  Installerobject
 	 *
 	 * @since  1.0
 	 *
