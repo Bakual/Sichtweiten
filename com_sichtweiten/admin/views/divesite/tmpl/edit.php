@@ -17,7 +17,6 @@ use Joomla\CMS\Router\Route;
 HtmlHelper::_('bootstrap.tooltip');
 HtmlHelper::_('behavior.formvalidation');
 HtmlHelper::_('behavior.keepalive');
-HtmlHelper::_('formbehavior.chosen', 'select');
 
 $app   = Factory::getApplication();
 $input = $app->input;

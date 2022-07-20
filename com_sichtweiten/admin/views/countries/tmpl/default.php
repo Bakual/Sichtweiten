@@ -18,7 +18,6 @@ use Joomla\CMS\Router\Route;
 HtmlHelper::_('bootstrap.tooltip');
 HtmlHelper::_('behavior.multiselect');
 HtmlHelper::_('dropdown.init');
-HtmlHelper::_('formbehavior.chosen', 'select');
 
 $user      = Factory::getUser();
 $canEdit   = $user->authorise('core.edit', 'com_sichtweiten');
