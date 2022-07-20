@@ -83,14 +83,6 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 		{
 			$manifest         = $this->getItemArray('manifest_cache', '#__extensions', 'element', $this->extension);
 			$this->oldRelease = $manifest['version'];
-
-			// Check if update is allowed (only update from 5.6.0 and higher)
-			if (version_compare($this->oldRelease, '5.6.0', '<'))
-			{
-				$this->app->enqueueMessage(Text::sprintf('COM_SERMONSPEAKER_UPDATE_UNSUPPORTED', $this->oldRelease, '5.6.0'), 'error');
-
-				return false;
-			}
 		}
 
 		return parent::preflight($type, $parent);
@@ -147,31 +139,5 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 	 */
 	public function postflight($type, $parent)
 	{
-		// Set extern_db to true if updating from 1.2.0 or earlier.
-		if ($type == 'update')
-		{
-			if (version_compare($this->oldRelease, '1.2.0', '<='))
-			{
-				$db    = Factory::getDbo();
-				$query = $db->getQuery(true);
-
-				$query->select($db->quoteName('params'));
-				$query->from('#__extensions');
-				$query->where($db->quoteName('element') . ' = ' . $db->quote('com_sichtweiten'));
-
-				$db->setQuery($query);
-				$params            = json_decode($db->loadResult());
-				$params->extern_db = 1;
-
-				$query = $db->getQuery(true);
-
-				$query->update('#__extensions');
-				$query->set($db->quoteName('params') . ' = ' . $db->quote(json_encode($params)));
-				$query->where($db->quoteName('element') . ' = ' . $db->quote('com_sichtweiten'));
-
-				$db->setQuery($query);
-				$db->execute();
-			}
-		}
 	}
 }

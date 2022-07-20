@@ -21,36 +21,6 @@ use Joomla\CMS\Uri\Uri;
 class SichtweitenModelSichtweitenmeldung extends AdminModel
 {
 	/**
-	 * Constructor.
-	 *
-	 * @param   array $config An optional associative array of configuration settings.
-	 *
-	 * @see     JModelLegacy
-	 * @since   1.0
-	 */
-	public function __construct($config = array())
-	{
-		$params = Factory::getApplication()->getParams();
-
-		if ($params->get('extern_db'))
-		{
-			// Taken from https://docs.joomla.org/Connecting_to_an_external_database
-			$option = array();
-
-			$option['driver']   = $params->get('db_type', 'mysqli');
-			$option['host']     = $params->get('db_host', 'localhost');
-			$option['database'] = $params->get('db_database');
-			$option['user']     = $params->get('db_user');
-			$option['password'] = $params->get('db_pass');
-			$option['prefix']   = $params->get('db_prefix', 'jos_');
-
-			$config['dbo'] = JDatabaseDriver::getInstance($option);
-		}
-
-		parent::__construct($config);
-	}
-
-	/**
 	 * Get the return URL.
 	 *
 	 * @return  string  The return URL.

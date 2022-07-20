@@ -40,26 +40,7 @@ class JFormFieldLocationlist extends JFormFieldGroupedList
 	 */
 	public function getGroups()
 	{
-		$params = ComponentHelper::getParams('com_sichtweiten');
-
-		if ($params->get('extern_db'))
-		{
-			// Taken from https://docs.joomla.org/Connecting_to_an_external_database
-			$option = array();
-
-			$option['driver']   = $params->get('db_type', 'mysqli');
-			$option['host']     = $params->get('db_host', 'localhost');
-			$option['database'] = $params->get('db_database');
-			$option['user']     = $params->get('db_user');
-			$option['password'] = $params->get('db_pass');
-			$option['prefix']   = $params->get('db_prefix', 'jos_');
-
-			$db = JDatabaseDriver::getInstance($option);
-		}
-		else
-		{
-			$db = Factory::getDbo();
-		}
+		$db = Factory::getDbo();
 
 		$query = $db->getQuery(true);
 		$query->select('a.id AS value');
