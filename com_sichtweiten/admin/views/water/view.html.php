@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * View to edit a water.
@@ -74,15 +75,15 @@ class SichtweitenViewWater extends HtmlView
 	{
 		Factory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
-		JToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_WATERS_TITLE'), Text::_('COM_SICHTWEITEN_WATER_TITLE')), 'pencil-2');
+		ToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_WATERS_TITLE'), Text::_('COM_SICHTWEITEN_WATER_TITLE')), 'pencil-2');
 
 		// Since it's an existing record, check the edit permission
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::apply('water.apply');
-			JToolbarHelper::save('water.save');
+			ToolbarHelper::apply('water.apply');
+			ToolbarHelper::save('water.save');
 		}
 
-		JToolbarHelper::cancel('water.cancel', 'JTOOLBAR_CLOSE');
+		ToolbarHelper::cancel('water.cancel', 'JTOOLBAR_CLOSE');
 	}
 }

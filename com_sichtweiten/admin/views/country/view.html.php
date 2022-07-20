@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * View to edit a place.
@@ -74,15 +75,15 @@ class SichtweitenViewCountry extends HtmlView
 	{
 		Factory::getApplication()->input->set('hidemainmenu', true);
 		$canDo = SichtweitenHelper::getActions();
-		JToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_COUNTRIES_TITLE'), Text::_('COM_SICHTWEITEN_COUNTRY_TITLE')), 'pencil-2');
+		ToolbarHelper::title(Text::sprintf('COM_SICHTWEITEN_PAGE_EDIT', Text::_('COM_SICHTWEITEN_COUNTRIES_TITLE'), Text::_('COM_SICHTWEITEN_COUNTRY_TITLE')), 'pencil-2');
 
 		// Since it's an existing record, check the edit permission
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::apply('country.apply');
-			JToolbarHelper::save('country.save');
+			ToolbarHelper::apply('country.apply');
+			ToolbarHelper::save('country.save');
 		}
 
-		JToolbarHelper::cancel('country.cancel', 'JTOOLBAR_CLOSE');
+		ToolbarHelper::cancel('country.cancel', 'JTOOLBAR_CLOSE');
 	}
 }

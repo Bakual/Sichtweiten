@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the Sichtweiten Component
@@ -100,21 +101,21 @@ class SichtweitenViewVisibilityreports extends HtmlView
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
+		ToolbarHelper::title(Text::_('COM_SICHTWEITEN_VISIBILITYREPORTS_TITLE'), 'users');
 
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::editList('visibilityreport.edit');
+			ToolbarHelper::editList('visibilityreport.edit');
 		}
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilityreports.delete');
+			ToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'visibilityreports.delete');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_sichtweiten');
+			ToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
 }

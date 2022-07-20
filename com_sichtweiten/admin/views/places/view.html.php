@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the Sichtweiten Component
@@ -106,26 +107,26 @@ class SichtweitenViewPlaces extends HtmlView
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_SICHTWEITEN_PLACES_TITLE'), 'users');
+		ToolbarHelper::title(Text::_('COM_SICHTWEITEN_PLACES_TITLE'), 'users');
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('place.add');
+			ToolbarHelper::addNew('place.add');
 		}
 
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::editList('place.edit');
+			ToolbarHelper::editList('place.edit');
 		}
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'places.delete');
+			ToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'places.delete');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_sichtweiten');
+			ToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
 }

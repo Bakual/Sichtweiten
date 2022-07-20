@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the Sichtweiten Component
@@ -83,32 +84,32 @@ class SichtweitenViewDivesites extends HtmlView
 	{
 		$canDo = SichtweitenHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_SICHTWEITEN_DIVESITES_TITLE'), 'users');
+		ToolbarHelper::title(Text::_('COM_SICHTWEITEN_DIVESITES_TITLE'), 'users');
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('divesite.add');
+			ToolbarHelper::addNew('divesite.add');
 		}
 
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::editList('divesite.edit');
+			ToolbarHelper::editList('divesite.edit');
 		}
 
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::publish('divesites.publish', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::unpublish('divesites.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+			ToolbarHelper::publish('divesites.publish', 'JTOOLBAR_PUBLISH', true);
+			ToolbarHelper::unpublish('divesites.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 		}
 
 		if ($canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'divesites.delete');
+			ToolbarHelper::deleteList('COM_SICHTWEITEN_CONFIRM_DELETE', 'divesites.delete');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_sichtweiten');
+			ToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
 }

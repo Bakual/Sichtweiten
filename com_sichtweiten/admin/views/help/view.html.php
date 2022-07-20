@@ -13,6 +13,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the Sichtweiten Component
@@ -63,11 +64,11 @@ class SichtweitenViewHelp extends HtmlView
 	protected function addToolbar()
 	{
 		$canDo = SichtweitenHelper::getActions();
-		JToolBarHelper::title(Text::_('JHELP'), 'support');
+		ToolbarHelper::title(Text::_('JHELP'), 'support');
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolBarHelper::preferences('com_sichtweiten');
+			ToolbarHelper::preferences('com_sichtweiten');
 		}
 	}
 }
