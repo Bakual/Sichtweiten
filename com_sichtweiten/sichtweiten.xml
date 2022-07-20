@@ -41,6 +41,7 @@
 	<administration>
 		<menu>COM_SICHTWEITEN</menu>
 		<submenu>
+			<menu view="main">COM_SICHTWEITEN_MENU_MAIN</menu>
 			<menu view="visibilityreports">COM_SICHTWEITEN_MENU_VISIBILITYREPORTS</menu>
 			<menu view="divesites">COM_SICHTWEITEN_MENU_DIVESITES</menu>
 			<menu view="waters">COM_SICHTWEITEN_MENU_WATERS</menu>
@@ -54,7 +55,6 @@
 			<filename>config.xml</filename>
 			<filename>access.xml</filename>
 			<filename>sichtweiten.php</filename>
-			<filename>sichtweiten.css</filename>
 			<filename>controller.php</filename>
 			<folder>controllers</folder>
 			<folder>layouts</folder>
