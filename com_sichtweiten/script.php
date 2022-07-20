@@ -174,26 +174,4 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 			}
 		}
 	}
-
-	/*
-	 * Get a variable from the manifest file (actually, from the manifest cache).
-	 *
-	 * @since  1.0
-	 *
-	 * return string
-	 */
-	private function getParam($name)
-	{
-		$db    = Factory::getDbo();
-		$query = $db->getQuery(true);
-
-		$query->select($db->quoteName('manifest_cache'));
-		$query->from('#__extensions');
-		$query->where($db->quoteName('name') . ' = ' . $db->quote('com_sichtweiten'));
-
-		$db->setQuery($query);
-		$manifest = json_decode($db->loadResult(), true);
-
-		return $manifest[$name];
-	}
 }
