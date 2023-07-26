@@ -16,7 +16,6 @@ use Joomla\CMS\Router\Route;
 
 // Load the tooltip behavior.
 HtmlHelper::_('bootstrap.tooltip');
-HtmlHelper::_('behavior.formvalidation');
 HtmlHelper::_('behavior.keepalive');
 
 $app   = Factory::getApplication();
