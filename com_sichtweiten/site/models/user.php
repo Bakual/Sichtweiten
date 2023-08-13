@@ -87,11 +87,6 @@ class SichtweitenModelUser extends ItemModel
 
 				$data = $db->loadObject();
 
-				if ($error = $db->getErrorMsg())
-				{
-					throw new Exception($error);
-				}
-
 				if (!$data)
 				{
 					throw new Exception(Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
