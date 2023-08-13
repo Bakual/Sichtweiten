@@ -98,7 +98,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 					</tbody>
 				</table>
 			<?php endif; ?>
-			<?php if ($this->pagination->get('pages.total') > 1) : ?>
+			<?php if ($this->pagination->pagesTotal > 1) : ?>
 				<div class="pagination">
 					<p class="counter pull-right">
 						<?php echo $this->pagination->getPagesCounter(); ?>
