@@ -18,26 +18,25 @@ use Joomla\CMS\Router\Route;
 HtmlHelper::_('bootstrap.tooltip');
 HtmlHelper::_('behavior.keepalive');
 
-$app   = Factory::getApplication();
-$input = $app->input;
+$app             = Factory::getApplication();
+$input           = $app->input;
+$this->useCoreUI = true;
 ?>
 
 <script type="text/javascript">
-	Joomla.submitbutton = function (task) {
-		if (task === 'depth.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-			Joomla.submitform(task, document.getElementById('adminForm'));
-		} else {
-			alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
-		}
-	}
+    Joomla.submitbutton = function (task) {
+        if (task === 'depth.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+            Joomla.submitform(task, document.getElementById('adminForm'));
+        } else {
+            alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+        }
+    }
 </script>
 
 <form action="<?php echo Route::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
-	method="post" name="adminForm" id="adminForm" class="form-validate">
+	  method="post" name="adminForm" id="adminForm" class="form-validate">
 	<div class="form-horizontal">
-		<?php foreach($this->form->getFieldset('general') as $field): ?>
-			<?php echo $field->getControlGroup(); ?>
-		<?php endforeach; ?>
+		<?php echo $this->form->renderFieldset('general'); ?>
 		<input type="hidden" name="task" value=""/>
 		<input type="hidden" name="return" value="<?php echo $input->getCmd('return'); ?>"/>
 		<?php echo HtmlHelper::_('form.token'); ?>

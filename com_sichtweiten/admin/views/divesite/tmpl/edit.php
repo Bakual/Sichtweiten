@@ -17,34 +17,31 @@ use Joomla\CMS\Router\Route;
 HtmlHelper::_('bootstrap.tooltip');
 HtmlHelper::_('behavior.keepalive');
 
-$app   = Factory::getApplication();
-$input = $app->input;
+$app             = Factory::getApplication();
+$input           = $app->input;
+$this->useCoreUI = true;
 ?>
 
 <script type="text/javascript">
-	Joomla.submitbutton = function (task) {
-		if (task === 'divesite.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-			Joomla.submitform(task, document.getElementById('adminForm'));
-		} else {
-			alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
-		}
-	}
+    Joomla.submitbutton = function (task) {
+        if (task === 'divesite.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+            Joomla.submitform(task, document.getElementById('adminForm'));
+        } else {
+            alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+        }
+    }
 </script>
 
 <form action="<?php echo Route::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
-	method="post" name="adminForm" id="adminForm" class="form-validate">
+	  method="post" name="adminForm" id="adminForm" class="form-validate">
 	<div class="form-horizontal">
 		<div class="row-fluid">
 			<div class="span8">
-				<?php foreach($this->form->getFieldset('general') as $field): ?>
-					<?php echo $field->getControlGroup(); ?>
-				<?php endforeach; ?>
+				<?php echo $this->form->renderFieldset('general'); ?>
 			</div>
 			<div class="span4">
 				<h3><?php echo Text::_('COM_SICHTWEITEN_FIELD_DIVESITE_SUBFORM_LABEL'); ?></h3>
-				<?php foreach($this->form->getFieldset('divesite_subform') as $field): ?>
-					<?php echo $field->getControlGroup(); ?>
-				<?php endforeach; ?>
+				<?php echo $this->form->renderFieldset('divesite_subform'); ?>
 			</div>
 		</div>
 		<input type="hidden" name="task" value=""/>
