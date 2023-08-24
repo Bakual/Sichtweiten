@@ -8,16 +8,19 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
+/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
+$wa = $this->document->getWebAssetManager();
+$wa->useScript('keepalive')
+	->useScript('form.validate');
+
 // Load the tooltip behavior.
 HTMLHelper::_('bootstrap.tooltip');
-HTMLHelper::_('behavior.keepalive');
 
 $this->useCoreUI = true;
 
 $app   = Factory::getApplication();
 $input = $app->input;
 ?>
-
 <form action="<?php echo Route::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
 	  method="post" name="adminForm" id="item-form" class="form-validate">
 	<div class="main-card">

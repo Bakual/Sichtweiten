@@ -14,25 +14,18 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
+/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
+$wa = $this->document->getWebAssetManager();
+$wa->useScript('keepalive')
+	->useScript('form.validate');
+
 // Load the tooltip behavior.
 HtmlHelper::_('bootstrap.tooltip');
-HtmlHelper::_('behavior.keepalive');
 
 $app             = Factory::getApplication();
 $input           = $app->input;
 $this->useCoreUI = true;
 ?>
-
-<script type="text/javascript">
-    Joomla.submitbutton = function (task) {
-        if (task === 'country.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-            Joomla.submitform(task, document.getElementById('adminForm'));
-        } else {
-            alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
-        }
-    }
-</script>
-
 <form action="<?php echo Route::_('index.php?option=com_sichtweiten&layout=edit&id=' . (int) $this->item->id); ?>"
 	  method="post" name="adminForm" id="adminForm" class="form-validate">
 	<div class="form-horizontal">
