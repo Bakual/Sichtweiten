@@ -21,6 +21,13 @@
 			label="COM_SICHTWEITEN_FIELD_KURZZEICHEN_LABEL"
 		/>
 		<field
+			name="flag"
+			type="media"
+			label="COM_SICHTWEITEN_FLAG"
+		>
+			<option value="">JNONE</option>
+		</field>
+		<field
 			name="displaynr"
 			type="text"
 			class="validate-numeric"

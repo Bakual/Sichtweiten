@@ -20,6 +20,7 @@ class SichtweitenModelCountries extends JModelList
 				'l.id',
 				'l.bezeichnung',
 				'l.kurzzeichen',
+				'l.flag',
 				'l.displaynr',
 			);
 		}
@@ -65,6 +66,7 @@ class SichtweitenModelCountries extends JModelList
 					'l.id',
 					'l.bezeichnung',
 					'l.kurzzeichen',
+					'l.flag',
 					'l.displaynr',
 				)
 			)

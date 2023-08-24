@@ -2,6 +2,9 @@
 // No direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Table\Table;
+use Joomla\Database\DatabaseDriver;
+
 /**
  * Depth Table class
  *
@@ -9,16 +12,16 @@ defined('_JEXEC') or die;
  *
  * @since    1.3.0
  */
-class SichtweitenTableTiefenbereich extends JTable
+class SichtweitenTableTiefenbereich extends Table
 {
 	/**
 	 * Constructor
 	 *
-	 * @param  JDatabaseDriver $db JDatabaseDriver object.
+	 * @param   DatabaseDriver  $db  Database connector object
 	 *
 	 * @since 1.3.0
 	 */
-	public function __construct(&$db)
+	public function __construct(DatabaseDriver $db)
 	{
 		parent::__construct('#__sicht_tiefenbereich', 'id', $db);
 	}

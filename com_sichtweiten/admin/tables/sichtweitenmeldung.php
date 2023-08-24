@@ -12,19 +12,24 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 
+use Joomla\CMS\Table\Table;
+use Joomla\Database\DatabaseDriver;
+
 /**
  * Visibilityreport Table class
  *
  * @package        Sichtweiten.Administrator
  */
-class SichtweitenTableSichtweitenmeldung extends JTable
+class SichtweitenTableSichtweitenmeldung extends Table
 {
 	/**
 	 * Constructor
 	 *
-	 * @param  JDatabaseDriver $db JDatabaseDriver object.
+	 * @param   DatabaseDriver  $db  Database connector object
+	 *
+	 * @since 1.3.0
 	 */
-	public function __construct(&$db)
+	public function __construct(DatabaseDriver $db)
 	{
 		parent::__construct('#__sicht_sichtweitenmeldung', 'id', $db);
 	}
@@ -43,7 +48,7 @@ class SichtweitenTableSichtweitenmeldung extends JTable
 	 */
 	public function check()
 	{
-		$date_now  = Factory::getDate('now', 'UTC');
+		$date_now = Factory::getDate('now', 'UTC');
 
 		if (!$date_form = date_create($this->datum, new DateTimeZone('UTC')))
 		{

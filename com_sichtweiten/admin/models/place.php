@@ -97,6 +97,10 @@ class SichtweitenModelPlace extends AdminModel
 	 */
 	protected function prepareTable($table)
 	{
+		if ($table->plz === '')
+		{
+			$table->plz = null;
+		}
 	}
 
 	/**

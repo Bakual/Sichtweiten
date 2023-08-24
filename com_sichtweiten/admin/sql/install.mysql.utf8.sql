@@ -53,6 +53,7 @@ CREATE TABLE `#__sicht_land` (
   `id`          INT(11) NOT NULL AUTO_INCREMENT,
   `bezeichnung` VARCHAR(255)     DEFAULT NULL,
   `kurzzeichen` VARCHAR(255)     DEFAULT NULL,
+  `flag`        VARCHAR(255)     DEFAULT NULL,
   `displaynr`   INT(11)          DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
