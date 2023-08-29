@@ -18,7 +18,7 @@ $listDirn  = $this->state->get('list.direction');
 
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
-<div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx')); ?>">
+<div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx', '')); ?>">
 	<div class="items">
 		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
 			<?php if (!count($this->items)) : ?>

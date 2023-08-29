@@ -18,7 +18,7 @@ $listDirn  = $this->vis_state->get('list.direction');
 
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
-<div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx')); ?>">
+<div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx', '')); ?>">
 	<h1><?php echo $this->escape(Text::_('COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_TITLE')); ?></h1>
 	<div class="tauchplatz <?php echo ($this->item->active) ? '' : 'system-unpublished'; ?>">
 		<dl class="dl-horizontal">
