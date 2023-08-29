@@ -31,17 +31,13 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 
 <div class="sichtweiten-container<?php echo $this->pageclass_sfx; ?> edit item-page<?php echo $this->pageclass_sfx; ?>">
 	<form action="<?php echo Route::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung'); ?>" method="post" name="adminForm" id="adminForm" class="form form-validate form-horizontal">
-		<div class="btn-toolbar">
-			<div class="btn-group">
-				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('sichtweitenmeldung.save')">
-					<span class="icon-ok"></span> <?php echo Text::_('JSAVE') ?>
-				</button>
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn" onclick="Joomla.submitbutton('sichtweitenmeldung.cancel')">
-					<span class="icon-cancel"></span> <?php echo Text::_('JCANCEL') ?>
-				</button>
-			</div>
+		<div class="mb-2">
+			<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('sichtweitenmeldung.save')">
+				<span class="icon-check"></span> <?php echo Text::_('JSAVE') ?>
+			</button>
+			<button type="button" class="btn btn-danger" onclick="Joomla.submitbutton('sichtweitenmeldung.cancel')">
+				<span class="icon-times"></span> <?php echo Text::_('JCANCEL') ?>
+			</button>
 		</div>
 		<fieldset>
 			<?php foreach($this->form->getFieldset('general') as $field): ?>
