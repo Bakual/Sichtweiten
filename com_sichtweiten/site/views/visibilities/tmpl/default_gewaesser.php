@@ -82,6 +82,7 @@ HTMLHelper::_('bootstrap.tooltip');
 			<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?>
 		</td>
 		<td class="kommentar">
+			<?php $item->kommentar = $item->kommentar ?: ''; ?>
 			<?php echo htmlspecialchars($item->kommentar); ?>
 			<?php if ($item->buddy_names) : ?>
 				<?php if ($item->kommentar) : ?>
