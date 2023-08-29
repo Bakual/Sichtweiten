@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Field\GroupedlistField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Language\Text;
 
@@ -22,7 +23,7 @@ FormHelper::loadFieldClass('groupedlist');
  * @package        Sichtweiten
  * @since          1.0
  */
-class JFormFieldLocationlist extends JFormFieldGroupedList
+class JFormFieldLocationlist extends GroupedlistField
 {
 	/**
 	 * The form field type.
