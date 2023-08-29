@@ -41,17 +41,6 @@
 			default="50"
 			/>
 		<field
-			name="css_icomoon"
-			type="radio"
-			label="COM_SICHTWEITEN_FIELD_CSS_ICOMOON_LABEL"
-			description="COM_SICHTWEITEN_FIELD_CSS_ICOMOON_DESC"
-			layout="joomla.form.field.radio.switcher"
-			default="0"
-		>
-			<option value="0">JNO</option>
-			<option value="1">JYES</option>
-		</field>
-		<field
 			name="country"
 			type="sql"
 			label="COM_SICHTWEITEN_FIELD_DEFAULT_COUNTRY_LABEL"

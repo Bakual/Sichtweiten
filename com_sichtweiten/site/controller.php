@@ -42,11 +42,6 @@ class SichtweitenController extends BaseController
 
 		$params   = Factory::getApplication()->getParams();
 
-		if ($params->get('css_icomoon'))
-		{
-			HTMLHelper::stylesheet('jui/icomoon.css', ['relative' => true]);
-		}
-
 		$urlparams = array(
 				'id'               => 'INT',
 				'limit'            => 'INT',
