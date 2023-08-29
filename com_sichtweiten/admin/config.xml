@@ -34,6 +34,13 @@
 			<option value="0">JNO</option>
 		</field>
 		<field
+			name="kommentar_length"
+			type="number"
+			label="COM_SICHTWEITEN_FIELD_KOMMENTAR_LENGTH_LABEL"
+			description="COM_SICHTWEITEN_FIELD_KOMMENTAR_LENGTH_DESC"
+			default="50"
+			/>
+		<field
 			name="css_icomoon"
 			type="radio"
 			label="COM_SICHTWEITEN_FIELD_CSS_ICOMOON_LABEL"
