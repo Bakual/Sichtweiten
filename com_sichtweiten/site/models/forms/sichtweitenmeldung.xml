@@ -18,7 +18,8 @@
 			name="tauchplatz_id"
 			type="locationlist"
 			label="COM_SICHTWEITEN_FIELD_LOCATION_LABEL"
-			class="validate-abovezero advancedSelect"
+			class="validate-abovezero"
+			layout="joomla.form.field.groupedlist-fancy-select"
 			required="true"
 		/>
 		<field
