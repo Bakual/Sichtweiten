@@ -23,6 +23,7 @@
 			key_field="id"
 			value_field="bezeichnung"
 			query="SELECT bezeichnung, id FROM #__sicht_land ORDER BY displaynr ASC"
+			layout="joomla.form.field.list-fancy-select"
 		>
 			<option value="">COM_SICHTWEITEN_FILTER_LAND_SELECT</option>
 		</field>

@@ -5,7 +5,6 @@
 			name="id"
 			type="text"
 			label="JGLOBAL_FIELD_ID_LABEL"
-			description="JGLOBAL_FIELD_ID_DESC"
 			class="readonly"
 			default="0"
 			readonly="true"
@@ -27,6 +26,7 @@
 			key_field="id"
 			value_field="bezeichnung"
 			query="SELECT bezeichnung, id FROM #__sicht_land ORDER BY displaynr ASC"
+			layout="joomla.form.field.list-fancy-select"
 		>
 			<option value="">COM_SICHTWEITEN_FILTER_LAND_SELECT</option>
 		</field>

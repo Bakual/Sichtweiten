@@ -13,6 +13,7 @@
 			type="locationlist"
 			label="COM_SICHTWEITEN_FILTER_DIVESITE_LABEL"
 			description="COM_SICHTWEITEN_FILTER_DIVESITE_DESC"
+			layout="joomla.form.field.groupedlist-fancy-select"
 			onchange="this.form.submit();"
 		/>
 	</fields>

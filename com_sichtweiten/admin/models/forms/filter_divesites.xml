@@ -28,6 +28,7 @@
 			key_field="id"
 			value_field="name"
 			query="SELECT name, id FROM #__sicht_gewaesser ORDER BY name ASC"
+			layout="joomla.form.field.list-fancy-select"
 			>
 			<option value="">COM_SICHTWEITEN_FILTER_GEWAESSER_SELECT</option>
 		</field>
@@ -40,6 +41,7 @@
 			key_field="id"
 			value_field="name"
 			query="SELECT name, id FROM #__sicht_ort ORDER BY name ASC"
+			layout="joomla.form.field.list-fancy-select"
 			>
 			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
 		</field>
