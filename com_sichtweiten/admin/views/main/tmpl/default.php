@@ -105,7 +105,7 @@ use Joomla\CMS\Session\Session;
 				</div>
 			</div>
 		</div>
-		<div class="col disabled" title="<?php echo Text::_('COM_SICHTWEITEN_CURRENTLY_NOT_USED'); ?>">
+		<div class="col" title="<?php echo Text::_('COM_SICHTWEITEN_CURRENTLY_NOT_USED'); ?>">
 			<div class="card text-center">
 				<div class="card-header bg-light">
 					<span class="fas fa-arrow-down fa-4x m-auto"></span>
