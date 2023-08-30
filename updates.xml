@@ -19,7 +19,7 @@
 		<maintainer>Thomas Hunziker</maintainer>
 		<maintainerurl>https://www.bakual.net/</maintainerurl>
 		<targetplatform name="joomla" version="4.([01234])"/>
-		<sha256>1D6E9CACB4D001219CB11197BE4DC29DC80E16C4D6DDED9972FF24FCFE7B8C0B</sha256>
+		<sha256>40C86C4F120508BF3E7A108778C82B1CCC76F8B8214376977C41365DE3A71BD0</sha256>
 	</update>
 	<update>
 		<name>Sichtweiten</name>
