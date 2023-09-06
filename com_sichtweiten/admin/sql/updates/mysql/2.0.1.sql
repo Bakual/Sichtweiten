@@ -1,0 +1,1 @@
+ALTER TABLE `#__sicht_land` ADD COLUMN `flag` VARCHAR(255) DEFAULT NULL;
