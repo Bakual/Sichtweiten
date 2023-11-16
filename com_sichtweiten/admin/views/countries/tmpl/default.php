@@ -39,7 +39,7 @@ $listDirn  = $this->state->get('list.direction');
 			<table class="table table-striped" id="countryList">
 				<thead>
 				<tr>
-					<th width="1%" class="hidden-phone">
+					<th class="hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value=""
 							   title="<?php echo Text::_('JGLOBAL_CHECK_ALL'); ?>"
 							   onclick="Joomla.checkAll(this)"/>
@@ -56,7 +56,7 @@ $listDirn  = $this->state->get('list.direction');
 					<th>
 						<?php echo HtmlHelper::_('searchtools.sort', 'JFIELD_ORDERING_LABEL', 'l.displaynr', $listDirn, $listOrder); ?>
 					</th>
-					<th width="1%" class="nowrap hidden-phone">
+					<th class="nowrap hidden-phone">
 						<?php echo HtmlHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'l.id', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
@@ -69,7 +69,7 @@ $listDirn  = $this->state->get('list.direction');
 						</td>
 						<td>
 							<?php if ($canEdit) : ?>
-								<a href="<?php echo JRoute::_('index.php?option=com_sichtweiten&task=country.edit&id=' . (int) $item->id); ?>">
+								<a href="<?php echo Route::_('index.php?option=com_sichtweiten&task=country.edit&id=' . (int) $item->id); ?>">
 									<?php echo $item->bezeichnung; ?></a>
 							<?php else : ?>
 								<?php echo $item->bezeichnung; ?>
@@ -80,7 +80,7 @@ $listDirn  = $this->state->get('list.direction');
 						</td>
 						<td>
 							<?php if ($item->flag) : ?>
-								<img src="<?php echo Uri::root() . MediaHelper::getCleanMediaFieldValue($item->flag); ?>" title="<?php echo $item->kurzzeichen ?>">
+								<img src="<?php echo Uri::root() . MediaHelper::getCleanMediaFieldValue($item->flag); ?>" title="<?php echo $item->kurzzeichen ?>" alt="">
 							<?php elseif (HtmlHelper::_('image', 'mod_languages/' . $item->kurzzeichen . '.gif', null, null, true, true)) : ?>
 								<?php // Fall back to flags from mod_language if present. ?>
 								<?php echo HtmlHelper::_('image', 'mod_languages/' . $item->kurzzeichen . '.gif', $item->kurzzeichen, array('title' => $item->kurzzeichen), true); ?>

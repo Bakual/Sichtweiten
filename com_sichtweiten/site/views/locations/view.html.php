@@ -9,12 +9,14 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * HTML View class for the Sichtweiten Component
  *
  * @since  1.0
  */
-class SichtweitenViewLocations extends JViewLegacy
+class SichtweitenViewLocations extends HtmlView
 {
 	/**
 	 * Contains model state
@@ -44,9 +46,9 @@ class SichtweitenViewLocations extends JViewLegacy
 	 *
 	 * @throws  Exception
 	 *
-	 * @return  mixed  A string if successful, otherwise a Error object.
+	 * @return  void
 	 *
-	 * @see     JViewLegacy::loadTemplate()
+	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
 	 */
 	public function display($tpl = null)

@@ -32,16 +32,16 @@ class SichtweitenModelDivesite extends AdminModel
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param    string $type   The table type to instantiate
-	 * @param    string $prefix A prefix for the table class name. Optional.
-	 * @param    array  $config Configuration array for model. Optional.
+	 * @param string $name    The table name. Optional.
+	 * @param string $prefix  The class prefix. Optional.
+	 * @param array  $options Configuration array for model. Optional.
 	 *
-	 * @return    JTable    A database object
+	 * @return   Table    A database object
 	 * @since    1.3.0
 	 */
-	public function getTable($type = 'Tauchplatz', $prefix = 'SichtweitenTable', $config = array())
+	public function getTable($name = 'Tauchplatz', $prefix = 'SichtweitenTable', $options = array())
 	{
-		return Table::getInstance($type, $prefix, $config);
+		return Table::getInstance($name, $prefix, $options);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class SichtweitenModelDivesite extends AdminModel
 	 * @param   array   $data     Data for the form.
 	 * @param   boolean $loadData True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  JForm|boolean  A JForm object on success, false on failure
+	 * @return  Form|boolean  A Form object on success, false on failure
 	 *
 	 * @since    1.3.0
 	 */
@@ -127,7 +127,7 @@ class SichtweitenModelDivesite extends AdminModel
 	 *
 	 * @since    1.3.0
 	 *
-	 * @param \JTable $table
+	 * @param Table $table
 	 */
 	protected function prepareTable($table)
 	{

@@ -9,23 +9,26 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 /**
  * Visibility controller class.
  *
- * @package        Sichtweiten.Administrator
+ * @package  Sichtweiten.Administrator
  *
- * @since          1.3.0
+ * @since    1.3.0
  */
-class SichtweitenControllerVisibility extends JControllerForm
+class SichtweitenControllerVisibility extends FormController
 {
 	/**
 	 * Method override to check if you can add a new record.
 	 *
-	 * @param    array $data An array of input data.
+	 * @param   array  $data  An array of input data.
 	 *
-	 * @since          1.3.0
+	 * @return  boolean
+	 * @since   1.3.0
 	 *
-	 * @return    boolean
 	 */
 	protected function allowAdd($data = array())
 	{
@@ -35,12 +38,12 @@ class SichtweitenControllerVisibility extends JControllerForm
 	/**
 	 * Method to check if you can add a new record.
 	 *
-	 * @param   array  $data An array of input data.
-	 * @param   string $key  The name of the key for the primary key.
-	 *
-	 * @since          1.3.0
+	 * @param   array   $data  An array of input data.
+	 * @param   string  $key   The name of the key for the primary key.
 	 *
 	 * @return  boolean
+	 * @since   1.3.0
+	 *
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
@@ -51,14 +54,14 @@ class SichtweitenControllerVisibility extends JControllerForm
 	 * Function that allows child controller access to model data
 	 * after the data has been saved.
 	 *
-	 * @param   JModelLegacy $model     The data model object.
-	 * @param   array        $validData The validated data.
-	 *
-	 * @since   1.3.0
+	 * @param   BaseDatabaseModel  $model      The data model object.
+	 * @param   array              $validData  The validated data.
 	 *
 	 * @return  void
+	 * @since   1.3.0
+	 *
 	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
+	protected function postSaveHook(BaseDatabaseModel $model, $validData = array())
 	{
 	}
 }

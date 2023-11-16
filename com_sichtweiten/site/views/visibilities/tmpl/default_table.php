@@ -75,8 +75,8 @@ HTMLHelper::_('bootstrap.tooltip');
 						<?php echo $kommentar_truncated; ?>
 					<?php else : ?>
 						<span title="<?php echo $kommentar; ?>" class="hasTooltip">
-					<?php echo $kommentar_truncated; ?>
-				</span>
+							<?php echo $kommentar_truncated; ?>
+						</span>
 					<?php endif; ?>
 					<?php if ($item->buddy_names) : ?>
 						| <?php echo Text::_('COM_SICHTWEITEN_BUDDIES'); ?>:

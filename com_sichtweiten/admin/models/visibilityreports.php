@@ -1,7 +1,11 @@
 <?php
 defined('_JEXEC') or die;
 
-class SichtweitenModelVisibilityreports extends JModelList
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\Database\QueryInterface;
+
+class SichtweitenModelVisibilityreports extends ListModel
 {
 	/**
 	 * Constructor.
@@ -40,7 +44,7 @@ class SichtweitenModelVisibilityreports extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$params = ComponentHelper::getParams('com_sichtweiten');
 		$this->setState('params', $params);
 
 		parent::populateState('swm.datum', 'desc');
@@ -49,7 +53,7 @@ class SichtweitenModelVisibilityreports extends JModelList
 	/**
 	 * Build an SQL query to load the list data.
 	 *
-	 * @return    JDatabaseQuery
+	 * @return   QueryInterface
 	 * @since    1.0
 	 */
 	protected function getListQuery()

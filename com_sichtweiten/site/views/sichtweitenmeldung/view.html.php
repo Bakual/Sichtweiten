@@ -36,9 +36,9 @@ class SichtweitenViewSichtweitenmeldung extends HtmlView
 	 *
 	 * @throws  Exception
 	 *
-	 * @return  mixed  A string if successful, otherwise a Error object.
+	 * @return  void
 	 *
-	 * @see     JViewLegacy::loadTemplate()
+	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
 	 */
 	public function display($tpl = null)
@@ -75,6 +75,6 @@ class SichtweitenViewSichtweitenmeldung extends HtmlView
 		// Escape strings for HTML output
 		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx', ''));
 
-		return parent::display($tpl);
+		parent::display($tpl);
 	}
 }

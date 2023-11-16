@@ -8,8 +8,11 @@
  **/
 
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Router\Route;
+
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_sichtweiten&view=help'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_sichtweiten&view=help'); ?>" method="post" name="adminForm" id="adminForm">
 	<div id="j-main-container">
 		<h1>Sichtweiten <?php echo $this->version; ?></h1>
 		<h2>License</h2>

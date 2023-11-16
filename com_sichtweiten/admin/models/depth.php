@@ -32,25 +32,25 @@ class SichtweitenModelDepth extends AdminModel
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param    string $type   The table type to instantiate
-	 * @param    string $prefix A prefix for the table class name. Optional.
-	 * @param    array  $config Configuration array for model. Optional.
+	 * @param string $name    The table name. Optional.
+	 * @param string $prefix  The class prefix. Optional.
+	 * @param array  $options Configuration array for model. Optional.
 	 *
-	 * @return    JTable    A database object
+	 * @return   Table    A database object
 	 * @since    1.3.0
 	 */
-	public function getTable($type = 'Tiefenbereich', $prefix = 'SichtweitenTable', $config = array())
+	public function getTable($name = 'Tiefenbereich', $prefix = 'SichtweitenTable', $options = array())
 	{
-		return Table::getInstance($type, $prefix, $config);
+		return Table::getInstance($name, $prefix, $options);
 	}
 
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param   array   $data     Data for the form.
-	 * @param   boolean $loadData True if the form is to load its own data (default case), false if not.
+	 * @param array   $data     Data for the form.
+	 * @param boolean $loadData True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  JForm|boolean  A JForm object on success, false on failure
+	 * @return  Form|boolean  A Form object on success, false on failure
 	 *
 	 * @since    1.3.0
 	 */
@@ -91,9 +91,10 @@ class SichtweitenModelDepth extends AdminModel
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
+	 * @param Table $table
+	 *
 	 * @since    1.3.0
 	 *
-	 * @param \JTable $table
 	 */
 	protected function prepareTable($table)
 	{
@@ -104,7 +105,7 @@ class SichtweitenModelDepth extends AdminModel
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param Form $form
+	 * @param Form   $form
 	 * @param mixed  $data
 	 * @param string $group
 	 *

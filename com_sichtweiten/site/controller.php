@@ -32,7 +32,7 @@ class SichtweitenController extends BaseController
 	 * @param   boolean  $cachable   If true, the view output will be cached
 	 * @param   array    $urlparams  An array of safe url parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
 	 *
-	 * @return  JControllerLegacy  A JControllerLegacy object to support chaining.
+	 * @return  BaseController  A BaseController object to support chaining.
 	 *
 	 * @since   1.0
 	 */

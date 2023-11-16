@@ -35,7 +35,7 @@ class SichtweitenTableSichtweitenmeldung extends Table
 	}
 
 	/**
-	 * Method to perform sanity checks on the JTable instance properties to ensure
+	 * Method to perform sanity checks on the Table instance properties to ensure
 	 * they are safe to store in the database.  Child classes should override this
 	 * method to make sure the data they are storing in the database is safe and
 	 * as expected before storage.
@@ -44,7 +44,7 @@ class SichtweitenTableSichtweitenmeldung extends Table
 	 *
 	 * @throws \Exception
 	 * @since   1.0
-	 * @link    https://docs.joomla.org/JTable/check
+	 * @link    https://docs.joomla.org/Table/check
 	 */
 	public function check()
 	{

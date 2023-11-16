@@ -10,12 +10,13 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\Controller\AdminController;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
  * Waters list controller class.
  *
- * @package        Sichtweiten.Administrator
- * @since          1.3.0
+ * @package  Sichtweiten.Administrator
+ * @since    1.3.0
  */
 class SichtweitenControllerCountries extends AdminController
 {
@@ -34,7 +35,7 @@ class SichtweitenControllerCountries extends AdminController
 	 * @param   string  $prefix  The class prefix. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  \JModelLegacy|boolean  Model object on success; otherwise false on failure.
+	 * @return  BaseDatabaseModel|boolean  Model object on success; otherwise false on failure.
 	 *
 	 * @since   1.0
 	 */

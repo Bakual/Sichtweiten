@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\Form\FormHelper;
 
 FormHelper::loadFieldClass('list');
@@ -18,24 +19,24 @@ FormHelper::loadFieldClass('list');
 /**
  * Userlist Field class for the Sichtweiten.
  *
- * @package        Sichtweiten
- * @since          1.0
+ * @package  Sichtweiten
+ * @since    1.0
  */
-class JFormFieldUserlist extends JFormFieldList
+class JFormFieldUserlist extends ListField
 {
 	/**
 	 * The form field type.
 	 *
-	 * @var      string
-	 * @since    1.0
+	 * @var    string
+	 * @since  1.0
 	 */
 	protected $type = 'Userlist';
 
 	/**
 	 * Method to get the field options.
 	 *
-	 * @return   array    The field option objects.
-	 * @since    1.0
+	 * @return  array    The field option objects.
+	 * @since   1.0
 	 */
 	public function getOptions()
 	{

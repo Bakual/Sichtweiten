@@ -29,7 +29,7 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 	 * @var    string
 	 * @since  2.0.0
 	 */
-	protected $extension = 'com_sermonspeaker';
+	protected $extension = 'com_sichtweiten';
 	/**
 	 * Minimum PHP version required to install the extension
 	 *

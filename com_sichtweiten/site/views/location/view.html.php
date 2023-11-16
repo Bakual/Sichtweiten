@@ -50,9 +50,9 @@ class SichtweitenViewLocation extends HtmlView
 	 *
 	 * @throws  Exception
 	 *
-	 * @return  mixed  A string if successful, otherwise a Error object.
+	 * @return  void
 	 *
-	 * @see     JViewLegacy::loadTemplate()
+	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
 	 */
 	public function display($tpl = null)
@@ -90,6 +90,6 @@ class SichtweitenViewLocation extends HtmlView
 		$this->items      = $visibilities_model->getItems();
 		$this->pagination = $visibilities_model->getPagination();
 
-		return parent::display($tpl);
+		parent::display($tpl);
 	}
 }

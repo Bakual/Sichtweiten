@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
 
@@ -21,7 +22,7 @@ use Joomla\Utilities\ArrayHelper;
  * @package  Sichtweiten.Administrator
  * @since    1.0.0
  */
-class SichtweitenModelVisibilityreport extends JModelAdmin
+class SichtweitenModelVisibilityreport extends AdminModel
 {
 	/**
 	 * @var   string    The prefix to use with controller messages.
@@ -33,25 +34,25 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param    string $type   The table type to instantiate
-	 * @param    string $prefix A prefix for the table class name. Optional.
-	 * @param    array  $config Configuration array for model. Optional.
+	 * @param string $name    The table name. Optional.
+	 * @param string $prefix  The class prefix. Optional.
+	 * @param array  $options Configuration array for model. Optional.
 	 *
 	 * @return    Table    A database object
 	 * @since    1.0
 	 */
-	public function getTable($type = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $config = array())
+	public function getTable($name = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $options = array())
 	{
-		return Table::getInstance($type, $prefix, $config);
+		return Table::getInstance($name, $prefix, $options);
 	}
 
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param    array   $data     An optional array of data for the form to interogate.
-	 * @param    boolean $loadData True if the form is to load its own data (default case), false if not.
+	 * @param   array    $data      An optional array of data for the form to interogate.
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  Form|boolean  A JForm object on success, false on failure
+	 * @return  Form|boolean  A Form object on success, false on failure
 	 * @since    1.3.0
 	 */
 	public function getForm($data = array(), $loadData = true)
@@ -91,7 +92,7 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
-	 * @param \JTable $table
+	 * @param   Table  $table
 	 *
 	 * @since    1.6
 	 *
@@ -106,9 +107,9 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param Form $form
-	 * @param mixed  $data
-	 * @param string $group
+	 * @param   Form    $form
+	 * @param   mixed   $data
+	 * @param   string  $group
 	 *
 	 * @since    3.0
 	 */
@@ -120,7 +121,7 @@ class SichtweitenModelVisibilityreport extends JModelAdmin
 	/**
 	 * Method to delete one or more records.
 	 *
-	 * @param   array &$pks An array of record primary keys.
+	 * @param   array &$pks  An array of record primary keys.
 	 *
 	 * @return  boolean  True if successful, false if an error occurs.
 	 *

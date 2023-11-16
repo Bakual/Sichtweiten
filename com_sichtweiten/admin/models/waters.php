@@ -1,12 +1,16 @@
 <?php
 defined('_JEXEC') or die;
 
-class SichtweitenModelWaters extends JModelList
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\Database\QueryInterface;
+
+class SichtweitenModelWaters extends ListModel
 {
 	/**
 	 * Constructor.
 	 *
-	 * @param  array $config An optional associative array of configuration settings.
+	 * @param array $config An optional associative array of configuration settings.
 	 *
 	 * @see    JController
 	 * @since  1.6
@@ -38,15 +42,15 @@ class SichtweitenModelWaters extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param   string  $ordering   An optional ordering field.
-	 * @param   string  $direction  An optional direction (asc|desc).
+	 * @param string $ordering  An optional ordering field.
+	 * @param string $direction An optional direction (asc|desc).
 	 *
 	 * @return  void
 	 * @since   1.3.0
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$params = JComponentHelper::getParams('com_sichtweiten');
+		$params = ComponentHelper::getParams('com_sichtweiten');
 		$this->setState('params', $params);
 
 		parent::populateState('g.name', 'asc');
@@ -55,7 +59,7 @@ class SichtweitenModelWaters extends JModelList
 	/**
 	 * Build an SQL query to load the list data.
 	 *
-	 * @return  JDatabaseQuery
+	 * @return  QueryInterface
 	 * @since   1.3.0
 	 */
 	protected function getListQuery()

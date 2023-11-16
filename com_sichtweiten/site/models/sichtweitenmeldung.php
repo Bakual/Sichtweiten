@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Table\Table;
 use Joomla\CMS\Uri\Uri;
 
 /**
@@ -81,22 +82,22 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param    string  $type      The table type to instantiate
-	 * @param    string  $prefix    A prefix for the table class name. Optional.
-	 * @param    array   $config    Configuration array for model. Optional.
+	 * @param string $name    The table name. Optional.
+	 * @param string $prefix  The class prefix. Optional.
+	 * @param array  $options Configuration array for model. Optional.
 	 *
-	 * @return    JTable    A database object
+	 * @return   Table    A database object
 	 * @since    1.0
 	 */
-	public function getTable($type = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $config = array())
+	public function getTable($name = 'Sichtweitenmeldung', $prefix = 'SichtweitenTable', $options = array())
 	{
-		return parent::getTable($type, $prefix, $config);
+		return parent::getTable($name, $prefix, $options);
 	}
 
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
-	 * @param   JTable $table The JTable object
+	 * @param   Table $table The Table object
 	 *
 	 * @return  void
 	 *

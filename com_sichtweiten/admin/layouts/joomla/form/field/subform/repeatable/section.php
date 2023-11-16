@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Form\Form;
+
 /**
  * Make thing clear
  *
- * @var JForm   $form       The form instance for render the section
+ * @var Form   $form       The form instance for render the section
  * @var string  $basegroup  The base group name
  * @var string  $group      Current group name
  * @var array   $buttons    Array of the buttons that will be rendered

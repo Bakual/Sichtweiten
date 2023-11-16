@@ -87,7 +87,16 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?>
 							</td>
 							<td class="kommentar">
-								<?php echo htmlspecialchars($item->kommentar); ?>
+								<?php $kommentar = $item->kommentar ?: ''; ?>
+								<?php $kommentar = htmlspecialchars($kommentar); ?>
+								<?php $kommentar_truncated = HTMLHelper::_('string.truncate', $kommentar, $this->params->get('kommentar_length', 50)); ?>
+								<?php if ($kommentar_truncated === $kommentar) : ?>
+									<?php echo $kommentar_truncated; ?>
+								<?php else : ?>
+									<span title="<?php echo $kommentar; ?>" class="hasTooltip">
+										<?php echo $kommentar_truncated; ?>
+									</span>
+								<?php endif; ?>
 								<?php if ($item->buddy_names) : ?>
 									| <?php echo Text::_('COM_SICHTWEITEN_BUDDIES'); ?>:
 									<?php echo SichtweitenHelperSichtweiten::getBuddies($item->buddy_names, $item->buddy_emails); ?>

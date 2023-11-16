@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
@@ -41,7 +42,7 @@ class SichtweitenViewVisibilityreports extends HtmlView
 	protected $state;
 
 	/**
-	 * @var    JForm
+	 * @var    Form
 	 * @since  1.3.0
 	 */
 	public $filterForm;
@@ -57,7 +58,7 @@ class SichtweitenViewVisibilityreports extends HtmlView
 	 *
 	 * @param   string $tpl The name of the template file to parse; automatically searches through the template paths.
 	 *
-	 * @return mixed A string if successful, otherwise a Error object.
+	 * @return void
 	 *
 	 * @throws Exception
 	 *
@@ -79,7 +80,7 @@ class SichtweitenViewVisibilityreports extends HtmlView
 
 		$this->addToolbar();
 
-		return parent::display($tpl);
+		parent::display($tpl);
 	}
 
 	/**
