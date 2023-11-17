@@ -9,12 +9,17 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction', 'asc');
+
+$menu   = Factory::getApplication()->getMenu();
+$active = $menu->getActive();
+$itemId = $active->id;
 
 HTMLHelper::_('bootstrap.tooltip');
 ?>
@@ -53,7 +58,7 @@ HTMLHelper::_('bootstrap.tooltip');
 	<?php endif; ?>
 	<tr>
 		<td class="ort">
-			<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>"
+			<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id . '&Itemid=' . $itemId); ?>"
 				class="hasTooltip"
 				title="<?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL') . ': ' . $item->ort_name; ?><br />
 				<?php echo Text::_('COM_SICHTWEITEN_FIELD_LAND_LABEL') . ': ' . $item->land_ort_bezeichnung; ?>">
@@ -102,7 +107,7 @@ HTMLHelper::_('bootstrap.tooltip');
 		</td>
 		<td class="user">
 			<?php if ($item->user_id) : ?>
-				<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id); ?>"><?php echo $item->user_name; ?></a>
+				<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id . '&Itemid=' . $itemId); ?>"><?php echo $item->user_name; ?></a>
 			<?php endif; ?>
 		</td>
 	</tr>
