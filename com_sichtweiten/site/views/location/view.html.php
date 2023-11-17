@@ -90,6 +90,58 @@ class SichtweitenViewLocation extends HtmlView
 		$this->items      = $visibilities_model->getItems();
 		$this->pagination = $visibilities_model->getPagination();
 
+		$this->_prepareDocument();
+
 		parent::display($tpl);
+	}
+
+	/**
+	 * Prepares the document
+	 *
+	 * @return  void
+	 *
+	 * @throws Exception
+	 * @since 2.1.0
+	 */
+	protected function _prepareDocument()
+	{
+		$app     = Factory::getApplication();
+		$pathway = $app->getPathway();
+
+		/**
+		 * Because the application sets a default page title,
+		 * we need to get it from the menu item itself
+		 */
+		$menu = $app->getMenu()->getActive();
+
+		if ($menu)
+		{
+			$this->params->def('page_heading', $this->params->get('page_title', $menu->title));
+		}
+		else
+		{
+			$this->params->def('page_heading', Text::_('JGLOBAL_ARTICLES'));
+		}
+
+		$title = $this->params->get('page_title', '');
+
+		// If the menu item does not concern this item
+		if ($menu && ($menu->query['option'] != 'com_sichtweiten' || $menu->query['view'] != 'location' || $menu->query['id'] != $this->item->id))
+		{
+			if ($this->item->name)
+			{
+				$title = $this->item->name;
+			}
+		}
+
+		if (empty($title))
+		{
+			$title = $this->item->name;
+		}
+
+		$this->setDocumentTitle($title);
+
+		$pathway->addItem($this->item->gewaesser_displayName, '');
+		$pathway->addItem($title, '');
 	}
 }
