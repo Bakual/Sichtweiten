@@ -12,6 +12,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 /**
@@ -97,5 +98,13 @@ class SichtweitenControllerSichtweitenmeldung extends FormController
 	{
 		$model->insertSichtweiteneintrag($validData);
 		$model->insertTauchpartner($validData);
+
+		// Redirect to Tauchplatz
+		$this->setRedirect(
+			Route::_(
+				'index.php?option=' . $this->option . '&view=location&id=' . $validData['tauchplatz_id'],
+				false
+			)
+		);
 	}
 }
