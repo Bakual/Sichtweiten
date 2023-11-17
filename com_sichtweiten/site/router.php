@@ -39,8 +39,7 @@ class SichtweitenRouter extends RouterBase
 
 		if (empty($query['Itemid']))
 		{
-			$menuItem        = $menu->getActive();
-			$query['Itemid'] = $menuItem->id;
+			$menuItem = $menu->getActive();
 		}
 		else
 		{
