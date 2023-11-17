@@ -1,47 +1,37 @@
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite105,
-.table-hover tbody tr:hover > td.sichtweite105,
-td.sichtweite105,
-li.sichtweite105 {
-	background-color: #8f5d4f;
+.sichtweite105 {
+	background-color: #8f5d4f !important;
+	--t4-table-bg-type: #8f5d4f !important;
+	--t4-table-bg-state: #8f5d4f !important;
 }
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite106,
-.table-hover tbody tr:hover > td.sichtweite106,
-td.sichtweite106,
-li.sichtweite106 {
-	background-color: #a28274;
+.sichtweite106 {
+	background-color: #a28274 !important;
+	--t4-table-bg-type: #a28274 !important;
+	--t4-table-bg-state: #a28274 !important;
 }
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite107,
-.table-hover tbody tr:hover > td.sichtweite107,
-td.sichtweite107,
-li.sichtweite107 {
-	background-color: #a3a7ab;
+.sichtweite107 {
+	background-color: #a3a7ab !important;
+	--t4-table-bg-type: #a3a7ab !important;
+	--t4-table-bg-state: #a3a7ab !important;
 }
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite108,
-.table-hover tbody tr:hover > td.sichtweite108,
-td.sichtweite108,
-li.sichtweite108 {
+.sichtweite108 {
 	background-color: #9ab5c9;
+	--t4-table-bg-type: #9ab5c9 !important;
+	--t4-table-bg-state: #9ab5c9 !important;
 }
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite109,
-.table-hover tbody tr:hover > td.sichtweite109,
-td.sichtweite109,
-li.sichtweite109 {
-	background-color: #a6d6ec;
+.sichtweite109 {
+	background-color: #a6d6ec !important;
+	--t4-table-bg-type: #a6d6ec !important;
+	--t4-table-bg-state: #a6d6ec !important;
 }
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite110,
-.table-hover tbody tr:hover > td.sichtweite110,
-td.sichtweite110,
-li.sichtweite110 {
-	background-color: #beedff;
+.sichtweite110 {
+	background-color: #beedff !important;
+	--t4-table-bg-type: #beedff !important;
+	--t4-table-bg-state: #beedff !important;
 }
-.table-striped tbody > tr:nth-child(odd) > td.sichtweite111,
-.table-hover tbody tr:hover > td.sichtweite111,
-td.sichtweite111,
-li.sichtweite111 {
-	background-color: #e5faff;
-}
-.sichtweiten-container td.datum {
-//	width: 10%;
+.sichtweite111 {
+	background-color: #e5faff !important;
+	--t4-table-bg-type: #e5faff !important;
+	--t4-table-bg-state: #e5faff !important;
 }
 .sichtweiten-container td.tiefe {
 	width: 9%;
