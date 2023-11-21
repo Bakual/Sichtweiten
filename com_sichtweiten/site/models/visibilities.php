@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\Database\QueryInterface;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -39,9 +40,9 @@ class SichtweitenModelVisibilities extends ListModel
 	/**
 	 * Constructor.
 	 *
-	 * @param   array $config An optional associative array of configuration settings.
+	 * @param array $config An optional associative array of configuration settings.
 	 *
-	 * @see     JModelLegacy
+	 * @see     BaseDatabaseModel
 	 * @since   1.0
 	 */
 	public function __construct($config = array())
@@ -66,7 +67,7 @@ class SichtweitenModelVisibilities extends ListModel
 	/**
 	 * Method to get a JDatabaseQuery object for retrieving the data set from a database.
 	 *
-	 * @return  JDatabaseQuery   A JDatabaseQuery object to retrieve the data set.
+	 * @return  QueryInterface   A JDatabaseQuery object to retrieve the data set.
 	 *
 	 * @since   1.0
 	 */
@@ -99,6 +100,7 @@ class SichtweitenModelVisibilities extends ListModel
 		// Join over Gewaesser table
 		$query->select(
 			array(
+				$db->quoteName('g.id', 'gewaesser_id'),
 				$db->quoteName('g.name', 'gewaesser_name'),
 				$db->quoteName('g.displayName', 'gewaesser_displayName'),
 			)
@@ -205,16 +207,16 @@ class SichtweitenModelVisibilities extends ListModel
 		foreach ($tiefenbereich as $key => $value)
 		{
 			$query->select(
-					$db->quoteName(
-							array(
-									'swe' . $key . '.sichtweite_id',
-									'swe' . $key . '.tiefenbereich_id',
-							),
-							array(
-									'sichtweite_id_' . $key,
-									'tiefenbereich_id_' . $key,
-							)
+				$db->quoteName(
+					array(
+						'swe' . $key . '.sichtweite_id',
+						'swe' . $key . '.tiefenbereich_id',
+					),
+					array(
+						'sichtweite_id_' . $key,
+						'tiefenbereich_id_' . $key,
 					)
+				)
 			);
 
 			$query->join('LEFT', '#__sicht_sichtweiteneintrag AS swe' . $key . ' ON swe' . $key . '.sichtweitenmeldung_id = swm.id');
@@ -260,8 +262,8 @@ class SichtweitenModelVisibilities extends ListModel
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param   string $ordering  An optional ordering field.
-	 * @param   string $direction An optional direction (asc|desc).
+	 * @param string $ordering  An optional ordering field.
+	 * @param string $direction An optional direction (asc|desc).
 	 *
 	 * @return  void
 	 *
