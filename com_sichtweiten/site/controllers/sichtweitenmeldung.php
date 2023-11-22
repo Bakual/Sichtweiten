@@ -52,11 +52,6 @@ class SichtweitenControllerSichtweitenmeldung extends FormController
 	{
 		$append = parent::getRedirectToItemAppend($recordId, $urlVar);
 
-		if ($itemId = Factory::getApplication()->input->get('Itemid', 0, 'int'))
-		{
-			$append .= '&Itemid=' . $itemId;
-		}
-
 		if ($return = $this->getReturnPage())
 		{
 			$append .= '&return=' . base64_encode($return);

@@ -48,6 +48,7 @@ class SichtweitenModelVisibilities extends ListModel
 	public function __construct($config = array())
 	{
 		$this->filter_fields = array(
+			'g.displayName',
 			'tp.name',
 			'datum',
 			'kommentar',
@@ -118,6 +119,15 @@ class SichtweitenModelVisibilities extends ListModel
 		{
 			$query->where($db->quoteName('tp.gewaesser_id') . ' = ' . $gewaesser);
 		}
+
+		// Join over Gewaesser table. Needed eg in user view.
+		$query->select(
+			array(
+				$db->quoteName('g.displayName', 'gewaesser_name'),
+			)
+		);
+
+		$query->join('LEFT', '#__sicht_gewaesser AS g ON tp.gewaesser_id = g.id');
 
 		// Join over Ort table
 		$query->select(

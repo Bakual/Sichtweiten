@@ -115,7 +115,9 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 							</td>
 							<td class="user">
 								<?php if ($item->user_id) : ?>
-									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id); ?>"><?php echo $item->user_name; ?></a>
+									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id ); ?>">
+										<?php echo $item->user_name; ?>
+									</a>
 								<?php endif; ?>
 							</td>
 						</tr>

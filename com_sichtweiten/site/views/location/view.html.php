@@ -132,6 +132,11 @@ class SichtweitenViewLocation extends HtmlView
 			{
 				$title = $this->item->name;
 			}
+
+			$pathway->addItem(
+				$this->item->gewaesser_displayName,
+				Route::_('index.php?option=com_sichtweiten&view=visibilities&gewaesser=' . $this->item->gewaesser_id));
+			$pathway->addItem($title, '');
 		}
 
 		if (empty($title))
@@ -140,8 +145,5 @@ class SichtweitenViewLocation extends HtmlView
 		}
 
 		$this->setDocumentTitle($title);
-
-		$pathway->addItem($this->item->gewaesser_displayName, '');
-		$pathway->addItem($title, '');
 	}
 }

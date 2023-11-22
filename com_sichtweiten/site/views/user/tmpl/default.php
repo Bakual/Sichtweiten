@@ -58,7 +58,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 					<?php foreach($this->items as $i => $item) : ?>
 						<tr>
 							<td class="ort">
-								<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>">
+								<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id ); ?>">
 									<?php echo $item->name; ?>
 								</a>
 							</td>

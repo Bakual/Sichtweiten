@@ -28,6 +28,7 @@
 	<files folder="site">
 		<filename>sichtweiten.php</filename>
 		<filename>controller.php</filename>
+		<filename>router.php</filename>
 		<folder>controllers</folder>
 		<folder>helpers</folder>
 		<folder>views</folder>

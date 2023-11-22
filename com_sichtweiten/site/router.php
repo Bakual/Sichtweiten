@@ -7,22 +7,97 @@
  * @license     http://www.gnu.org/licenses/gpl.html
  **/
 
-use Joomla\CMS\Component\Router\RouterBase;
-use Joomla\CMS\Factory;
-
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Component\Router\RouterView;
+use Joomla\CMS\Component\Router\RouterViewConfiguration;
+use Joomla\CMS\Component\Router\Rules\NomenuRules;
+use Joomla\CMS\Component\Router\Rules\StandardRules;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Component\Router\Rules\MenuRules;
+
 /**
- * Routing class 
+ * Routing class
  *
  * @since  2.1.0
  */
-class SichtweitenRouter extends RouterBase
+class SichtweitenRouter extends RouterView
 {
+	/**
+	 * Class constructor.
+	 *
+	 * @param   \Joomla\CMS\Application\CMSApplication  $app   Application-object that the router should use
+	 * @param   \Joomla\CMS\Menu\AbstractMenu           $menu  Menu-object that the router should use
+	 *
+	 * @since   2.1.0
+	 */
+	public function __construct($app = null, $menu = null)
+	{
+		$this->registerView(new RouterViewConfiguration('visibilities'));
+
+		$location = new RouterViewConfiguration('location');
+		$location->setKey('id');
+		$this->registerView($location);
+
+		$user = new RouterViewConfiguration('user');
+		$user->setKey('id');
+		$this->registerView($user);
+
+		parent::__construct($app, $menu);
+
+		$this->attachRule(new MenuRules($this));
+		$this->attachRule(new StandardRules($this));
+		$this->attachRule(new NomenuRules($this));
+	}
+
+	/**
+	 * Method to get the segment(s) for a user
+	 *
+	 * @param   string  $id     ID of the user to retrieve the segments for
+	 * @param   array   $query  The request that is built right now
+	 *
+	 * @return  array|string  The segments of this item
+	 *
+	 * @since 2.1.0
+	 */
+	public function getUserSegment($id, $query)
+	{
+		return [(int) $id => $id];
+	}
+
+	/**
+	 * Method to get the segment(s) for the location
+	 *
+	 * @param   string  $id     ID of the location to retrieve the segments for
+	 * @param   array   $query  The request that is built right now
+	 *
+	 * @return  array|string  The segments of this item
+	 *
+	 * @since 2.1.0
+	 */
+	public function getLocationSegment($id, $query)
+	{
+		return [(int) $id => $id];
+	}
+
+	/**
+	 * Generic method to preprocess a URL
+	 *
+	 * @param   array  $query  An associative array of URL arguments
+	 *
+	 * @return  array  The URL arguments to use to assemble the subsequent URL.
+	 *
+	 * @since   3.3
+	 */
+	public function preprocess($query)
+	{
+		return parent::preprocess($query);
+	}
+
 	/**
 	 * Build the route
 	 *
-	 * @param array $query An array of URL arguments
+	 * @param   array  $query  An array of URL arguments
 	 *
 	 * @return  array  The URL arguments to use to assemble the subsequent URL.
 	 *
@@ -55,7 +130,7 @@ class SichtweitenRouter extends RouterBase
 		// Calculate View
 		if (isset($query['view']))
 		{
-			$menuView = isset($menuItem->query['view']) ? $menuItem->query['view'] : '';
+			$menuView = $menuItem->query['view'] ?? '';
 			$view     = $query['view'];
 			unset($query['view']);
 
@@ -102,7 +177,7 @@ class SichtweitenRouter extends RouterBase
 	/**
 	 * Parse the segments of a URL.
 	 *
-	 * @param   array &$segments The segments of the URL to parse.
+	 * @param   array &$segments  The segments of the URL to parse.
 	 *
 	 * @return  array  The URL attributes to be used by the application.
 	 *
@@ -119,6 +194,22 @@ class SichtweitenRouter extends RouterBase
 				$vars['view'] = 'location';
 				$id           = explode(':', $segments[1]);
 				$vars['id']   = (int) $id[0];
+				unset($segments[1]);
+
+				break;
+			case 'user':
+				unset($segments[0]);
+				$vars['view'] = 'user';
+				$id           = explode(':', $segments[1]);
+				$vars['id']   = (int) $id[0];
+				unset($segments[1]);
+
+				break;
+			case 'visibilities':
+				unset($segments[0]);
+				$vars['view']      = 'visibilities';
+				$gewaesser         = explode(':', $segments[1]);
+				$vars['gewaesser'] = (int) $gewaesser[0];
 				unset($segments[1]);
 
 				break;

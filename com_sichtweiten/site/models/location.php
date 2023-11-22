@@ -87,9 +87,17 @@ class SichtweitenModelLocation extends ItemModel
 
 				// Join over Gewaesser table
 				$query->select(
-					array(
-						$db->quoteName('g.name', 'gewaesser_name'),
-						$db->quoteName('g.displayName', 'gewaesser_displayName'),
+					$db->quoteName(
+						array(
+							'g.id',
+							'g.name',
+							'g.displayName',
+						),
+						array(
+							'gewaesser_id',
+							'gewaesser_name',
+							'gewaesser_displayName',
+						)
 					)
 				);
 
