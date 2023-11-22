@@ -1,35 +1,49 @@
 .sichtweite105 {
 	background-color: #8f5d4f !important;
+	--table-bg-type: #8f5d4f !important;
+	--table-bg-state: #8f5d4f !important;
 	--t4-table-bg-type: #8f5d4f !important;
 	--t4-table-bg-state: #8f5d4f !important;
 }
 .sichtweite106 {
 	background-color: #a28274 !important;
+	--table-bg-type: #a28274 !important;
+	--table-bg-state: #a28274 !important;
 	--t4-table-bg-type: #a28274 !important;
 	--t4-table-bg-state: #a28274 !important;
 }
 .sichtweite107 {
 	background-color: #a3a7ab !important;
+	--table-bg-type: #a3a7ab !important;
+	--table-bg-state: #a3a7ab !important;
 	--t4-table-bg-type: #a3a7ab !important;
 	--t4-table-bg-state: #a3a7ab !important;
 }
 .sichtweite108 {
 	background-color: #9ab5c9;
+	--table-bg-type: #9ab5c9 !important;
+	--table-bg-state: #9ab5c9 !important;
 	--t4-table-bg-type: #9ab5c9 !important;
 	--t4-table-bg-state: #9ab5c9 !important;
 }
 .sichtweite109 {
 	background-color: #a6d6ec !important;
+	--table-bg-type: #a6d6ec !important;
+	--table-bg-state: #a6d6ec !important;
 	--t4-table-bg-type: #a6d6ec !important;
 	--t4-table-bg-state: #a6d6ec !important;
 }
 .sichtweite110 {
 	background-color: #beedff !important;
+	--table-bg-type: #beedff !important;
+	--table-bg-state: #beedff !important;
 	--t4-table-bg-type: #beedff !important;
 	--t4-table-bg-state: #beedff !important;
 }
 .sichtweite111 {
 	background-color: #e5faff !important;
+	--table-bg-type: #e5faff !important;
+	--table-bg-state: #e5faff !important;
 	--t4-table-bg-type: #e5faff !important;
 	--t4-table-bg-state: #e5faff !important;
 }
