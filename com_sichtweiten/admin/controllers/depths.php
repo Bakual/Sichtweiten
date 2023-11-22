@@ -9,13 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\AdminController;
+
 /**
  * Depths list controller class.
  *
  * @package        Sichtweiten.Administrator
  * @since          1.3.0
  */
-class SichtweitenControllerDepths extends JControllerAdmin
+class SichtweitenControllerDepths extends AdminController
 {
 	/**
 	 * The prefix to use with controller messages.
