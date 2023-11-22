@@ -40,9 +40,9 @@ class SichtweitenModelVisibilities extends ListModel
 	/**
 	 * Constructor.
 	 *
-	 * @param array $config An optional associative array of configuration settings.
+	 * @param   array $config An optional associative array of configuration settings.
 	 *
-	 * @see     BaseDatabaseModel
+	 * @see     JModelLegacy
 	 * @since   1.0
 	 */
 	public function __construct($config = array())
@@ -51,7 +51,6 @@ class SichtweitenModelVisibilities extends ListModel
 			'tp.name',
 			'datum',
 			'kommentar',
-			'g.displayName',
 			'sichtweite_id_0',
 			'sichtweite_id_1',
 			'sichtweite_id_2',
@@ -65,16 +64,33 @@ class SichtweitenModelVisibilities extends ListModel
 	}
 
 	/**
-	 * Method to get a JDatabaseQuery object for retrieving the data set from a database.
+	 * Method to get a store id based on model configuration state.
 	 *
-	 * @return  QueryInterface   A JDatabaseQuery object to retrieve the data set.
+	 * @param   string  $id  A prefix for the store id.
+	 *
+	 * @return  string  A store id.
+	 *
+	 * @since   2.1.0
+	 */
+	protected function getStoreId($id = '')
+	{
+		// Compile the store id.
+		$id .= ':' . $this->getState('filter.location');
+		$id .= ':' . $this->getState('filter.gewaesser');
+
+		return parent::getStoreId($id);
+	}
+	/**
+	 * Method to get a QueryInterface object for retrieving the data set from a database.
+	 *
+	 * @return  QueryInterface   A QueryInterface object to retrieve the data set.
 	 *
 	 * @since   1.0
 	 */
 	protected function getListQuery()
 	{
 		// Create a new query object.
-		$db    = $this->getDbo();
+		$db    = $this->getDatabase();
 		$query = $db->getQuery(true);
 
 		// Select required fields from the table
@@ -97,32 +113,11 @@ class SichtweitenModelVisibilities extends ListModel
 			$query->where($db->quoteName('tp.id') . ' = ' . $location);
 		}
 
-		// Join over Gewaesser table
-		$query->select(
-			array(
-				$db->quoteName('g.id', 'gewaesser_id'),
-				$db->quoteName('g.name', 'gewaesser_name'),
-				$db->quoteName('g.displayName', 'gewaesser_displayName'),
-			)
-		);
-
-		$query->join('LEFT', '#__sicht_gewaesser AS g ON tp.gewaesser_id = g.id');
-
-		// Join over Land table
-		$query->select(
-			$db->quoteName(
-				array(
-					'lg.bezeichnung',
-					'lg.kurzzeichen',
-				),
-				array(
-					'land_gewaesser_bezeichnung',
-					'land_gewaesser_kurzzeichen',
-				)
-			)
-		);
-
-		$query->join('LEFT', '#__sicht_land AS lg ON g.land_id = lg.id');
+		// Filter by a specific gewaesser. Needed for visibilities overview view.
+		if ($gewaesser = (int) $this->getState('filter.gewaesser'))
+		{
+			$query->where($db->quoteName('tp.gewaesser_id') . ' = ' . $gewaesser);
+		}
 
 		// Join over Ort table
 		$query->select(
@@ -207,16 +202,16 @@ class SichtweitenModelVisibilities extends ListModel
 		foreach ($tiefenbereich as $key => $value)
 		{
 			$query->select(
-				$db->quoteName(
-					array(
-						'swe' . $key . '.sichtweite_id',
-						'swe' . $key . '.tiefenbereich_id',
-					),
-					array(
-						'sichtweite_id_' . $key,
-						'tiefenbereich_id_' . $key,
+					$db->quoteName(
+							array(
+									'swe' . $key . '.sichtweite_id',
+									'swe' . $key . '.tiefenbereich_id',
+							),
+							array(
+									'sichtweite_id_' . $key,
+									'tiefenbereich_id_' . $key,
+							)
 					)
-				)
 			);
 
 			$query->join('LEFT', '#__sicht_sichtweiteneintrag AS swe' . $key . ' ON swe' . $key . '.sichtweitenmeldung_id = swm.id');
@@ -241,16 +236,79 @@ class SichtweitenModelVisibilities extends ListModel
 		}
 
 		// Add the list ordering clause.
-		if ($this->getState('list.ordering', 'g.displayName') == 'g.displayName')
-		{
-			$query->order('g.displayName ' . $db->escape($this->getState('list.direction', 'ASC')) . ', swm.datum DESC');
-		}
-		else
-		{
-			$query->order($db->escape($this->getState('list.ordering')) . ' ' . $db->escape($this->getState('list.direction', 'ASC')));
-		}
+		$query->order($db->escape($this->getState('list.ordering')) . ' ' . $db->escape($this->getState('list.direction', 'ASC')));
 
 		return $query;
+	}
+
+	/**
+	 * Method to get the Gewaesser.
+	 *
+	 * @return  Array   An array of Gewaesser.
+	 *
+	 * @since   2.1.0
+	 */
+	public function getGewaesser()
+	{
+		// Create a new query object.
+		$db    = $this->getDatabase();
+		$query = $db->getQuery(true);
+
+		// Select required fields from the table
+
+		$query->select('DISTINCT ' . $db->quoteName('g.id'));
+		$query->select(
+			$db->quoteName(
+				array(
+					'g.name',
+					'g.displayName',
+				)
+			)
+		);
+
+		$query->from('#__sicht_gewaesser AS g');
+
+		// Join over Land table
+		$query->select(
+			$db->quoteName(
+				array(
+					'l.bezeichnung',
+					'l.kurzzeichen',
+				),
+				array(
+					'land_bezeichnung',
+					'land_kurzzeichen',
+				)
+			)
+		);
+
+		$query->join('LEFT', '#__sicht_land AS l ON g.land_id = l.id');
+
+		if ($period = (int) $this->getState('filter.period'))
+		{
+			// Join over Tauchplatz and Sichtweitenmeldung table to get only Gewaesser with recent entries
+			$query->join('LEFT','`#__sicht_tauchplatz` AS tp ON tp.gewaesser_id = g.id');
+			$query->join('LEFT','`#__sicht_sichtweitenmeldung` AS swm ON swm.tauchplatz_id = tp.id');
+
+//			$query->group($db->quoteName('g.id'));
+			$query->where($db->quoteName('swm.datum') . ' >= DATE_SUB(CURDATE(), INTERVAL ' . $period . ' DAY)');
+
+			// Filter by state
+			$state = $this->getState('filter.state');
+
+			if (is_numeric($state))
+			{
+				$query->where($db->quoteName('tp.active') . ' = ' . (int) $state);
+			}
+
+		}
+
+		// Add the list ordering clause.
+		$query->order('g.displayName ASC');
+
+		$db->setQuery($query);
+
+		return $db->loadObjectList();
 	}
 
 	/**
@@ -262,11 +320,12 @@ class SichtweitenModelVisibilities extends ListModel
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param string $ordering  An optional ordering field.
-	 * @param string $direction An optional direction (asc|desc).
+	 * @param   string  $ordering   An optional ordering field.
+	 * @param   string  $direction  An optional direction (asc|desc).
 	 *
 	 * @return  void
 	 *
+	 * @throws \Exception
 	 * @since   1.0
 	 */
 	protected function populateState($ordering = null, $direction = null)
@@ -297,6 +356,6 @@ class SichtweitenModelVisibilities extends ListModel
 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter-search', '', 'STRING');
 		$this->setState('filter.search', $search);
 
-		parent::populateState('g.displayName', 'ASC');
+		parent::populateState('datum', 'DESC');
 	}
 }

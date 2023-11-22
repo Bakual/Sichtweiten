@@ -57,7 +57,13 @@ class SichtweitenViewVisibilities extends HtmlView
 		$this->state      = $this->get('State');
 		$this->state->set('list.start', 0);
 		$this->state->set('list.limit', 0);
-		$this->items      = $this->get('Items');
+		$this->gewaesser  = $this->get('Gewaesser');
+
+		foreach ($this->gewaesser as $see)
+		{
+			$this->state->set('filter.gewaesser', $see->id);
+			$see->visibilities = $this->get('Items');
+		}
 
 		// Check for errors
 		if (count($errors = $this->get('Errors')))

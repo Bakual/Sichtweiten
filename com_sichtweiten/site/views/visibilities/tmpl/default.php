@@ -21,14 +21,10 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 <div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx', '')); ?>">
 	<div class="items">
 		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
-			<?php if (!count($this->items)) : ?>
+			<?php if (!count($this->gewaesser)) : ?>
 				<div class="no_entries alert alert-error"><?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
 			<?php else : ?>
-				<?php if ($listOrder == 'g.displayName') : ?>
-	 				<?php echo $this->loadTemplate('gewaesser'); ?>
-				<?php else: ?>
-	 				<?php echo $this->loadTemplate('table'); ?>
-				<?php endif; ?>
+ 				<?php echo $this->loadTemplate('gewaesser'); ?>
 			<?php endif; ?>
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
