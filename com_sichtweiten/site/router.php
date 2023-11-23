@@ -35,9 +35,16 @@ class SichtweitenRouter extends RouterView
 	{
 		$this->registerView(new RouterViewConfiguration('visibilities'));
 
+		$locations = new RouterViewConfiguration('locations');
+		$this->registerView($locations);
+
 		$location = new RouterViewConfiguration('location');
 		$location->setKey('id');
+		$location->setParent($locations);
 		$this->registerView($location);
+
+		$sichtweitenmeldung = new RouterViewConfiguration('sichtweitenmeldung');
+		$this->registerView($sichtweitenmeldung);
 
 		$user = new RouterViewConfiguration('user');
 		$user->setKey('id');
@@ -194,6 +201,17 @@ class SichtweitenRouter extends RouterView
 				$vars['view'] = 'location';
 				$id           = explode(':', $segments[1]);
 				$vars['id']   = (int) $id[0];
+				unset($segments[1]);
+
+				break;
+			case 'locations':
+				unset($segments[0]);
+				$vars['view'] = 'locations';
+
+				break;
+			case 'sichtweitenmeldung':
+				unset($segments[0]);
+				$vars['view'] = 'sichtweitenmeldung';
 				unset($segments[1]);
 
 				break;
