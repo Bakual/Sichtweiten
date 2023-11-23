@@ -125,6 +125,8 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 	 */
 	public function update($parent)
 	{
+		$this->deleteFiles[] = '/components/com_sichtweiten/views/visibilities/tmpl/default_gewaesser.php';
+		$this->deleteFiles[] = '/components/com_sichtweiten/views/visibilities/tmpl/default_table.php';
 	}
 
 	/**
@@ -139,5 +141,6 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 	 */
 	public function postflight($type, $parent)
 	{
+		$this->removeFiles();
 	}
 }
