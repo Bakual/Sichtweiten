@@ -66,6 +66,13 @@ class SichtweitenControllerDivesite extends FormController
 	{
 		$db = Factory::getDbo();
 
+		$recordId = (int) $model->getState($this->context . '.id');
+
+		if (empty($validData['id']))
+		{
+			$validData['id'] = $recordId;
+		}
+
 		$query = $db->getQuery(true);
 		$query->delete('#__sicht_bezeichnung');
 		$query->where($db->quoteName('tauchplatz_id') . ' = ' . (int) $validData['id']);
