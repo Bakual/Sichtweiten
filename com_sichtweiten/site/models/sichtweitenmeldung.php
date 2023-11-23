@@ -12,7 +12,6 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
-use Joomla\CMS\Uri\Uri;
 
 /**
  * Model class for the Sichtweiten Component
@@ -25,6 +24,8 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 	 * Get the return URL.
 	 *
 	 * @return  string  The return URL.
+	 *
+	 * @since 1.0.0
 	 */
 	public function getReturnPage()
 	{
@@ -36,40 +37,64 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param   string $ordering  Ordering column
-	 * @param   string $direction 'ASC' or 'DESC'
+	 * @param   string  $ordering   Ordering column
+	 * @param   string  $direction  'ASC' or 'DESC'
 	 *
 	 * @return  void
+	 *
+	 * @throws \Exception
+	 * @since 1.0.0
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app    = Factory::getApplication();
-		$jinput = $app->input;
+		$app   = Factory::getApplication();
+		$input = $app->getInput();
 
-		$return = $jinput->get('return', '', 'base64');
+		$this->setState('sichtweiten.tp', $input->getInt('tp'));
 
-		if (!Uri::isInternal(base64_decode($return)))
-		{
-			$return = '';
-		}
-
+		$return = $input->get('return', '', 'base64');
 		$this->setState('return_page', base64_decode($return));
 
 		// Load the parameters.
 		$params = $app->getParams();
 		$this->setState('params', $params);
 
-		$this->setState('layout', $jinput->get('layout'));
+		$this->setState('layout', $input->getString('layout'));
+	}
+
+	/**
+	 * Method to get the data that should be injected in the form.
+	 *
+	 * @return  array  the data for the form.
+	 *
+	 * @since   2.1.0
+	 */
+	protected function loadFormData()
+	{
+		$app = Factory::getApplication();
+		$data = $app->getUserState('com_sichtweiten.edit.sichtweitenmeldung.data', []);
+
+		$tp  = $app->getInput()->getInt('tp', 0);
+
+		if ($tp && empty($data['tauchplatz_id']))
+		{
+			$data['tauchplatz_id'] = $tp;
+		}
+
+		$this->preprocessData('com_sichtweiten.sichtweitenmeldung', $data);
+
+		return $data;
 	}
 
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param   array   $data     Data for the form.
-	 * @param   boolean $loadData True if the form is to load its own data (default case), false if not.
+	 * @param   array    $data      Data for the form.
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
 	 * @return  mixed  A JForm object on success, false on failure
 	 *
+	 * @throws \Exception
 	 * @since   1.0
 	 */
 	public function getForm($data = array(), $loadData = true)
@@ -103,16 +128,16 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 	 *
 	 * @since   1.0
 	 */
-	protected function prepareTable($table)
+	protected function prepareTable($table): void
 	{
 		$table->meldedatum = Factory::getDate()->toSql();
 
-		$user = Factory::getUser();
+		$user = $this->getCurrentUser();
 
 		if (!$user->guest)
 		{
 			// Lookup the matching user_id
-			$db    = $this->getDbo();
+			$db    = $this->getDatabase();
 			$query = $db->getQuery(true);
 
 			$query->select('id');
