@@ -84,6 +84,7 @@ class SichtweitenModelLocations extends ListModel
 		// Join over Gewaesser table
 		$query->select(
 			array(
+				$db->quoteName('g.id', 'gewaesser_id'),
 				$db->quoteName('g.name', 'gewaesser_name'),
 				$db->quoteName('g.displayName', 'gewaesser_displayName'),
 			)
@@ -95,10 +96,12 @@ class SichtweitenModelLocations extends ListModel
 		$query->select(
 			$db->quoteName(
 				array(
+					'lg.id',
 					'lg.bezeichnung',
 					'lg.kurzzeichen',
 				),
 				array(
+					'land_gewaesser_id',
 					'land_gewaesser_bezeichnung',
 					'land_gewaesser_kurzzeichen',
 				)

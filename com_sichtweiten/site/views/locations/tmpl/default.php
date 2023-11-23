@@ -20,29 +20,37 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 		<?php if (!count($this->items)) : ?>
 			<div class="no_entries alert alert-error"><?php echo Text::sprintf('COM_SICHTWEITEN_NO_ENTRIES', Text::_('COM_SICHTWEITEN_LOCATIONS')); ?></div>
 		<?php else : ?>
+			<?php echo HTMLHelper::_('bootstrap.startAccordion', 'landAccordion', ['active' => 'collapse' . $this->items[0]->land_gewaesser_id]); ?>
+			<?php echo HTMLHelper::_('bootstrap.startAccordion', 'locationsAccordion'); ?>
 			<?php $land      = ''; ?>
 			<?php $gewaesser = ''; ?>
 			<?php foreach($this->items as $i => $item) : ?>
 				<?php if ($item->gewaesser_name != $gewaesser) : ?>
 					<?php // Close old table if there was already a Gewaesser before ?>
 					<?php if ($gewaesser) : ?>
-						</tbody>
-						</table>
+							</tbody>
+							</table>
+						<?php echo HTMLHelper::_('bootstrap.endSlide'); ?>
+						</div>
 					<?php endif; ?>
 					<?php if ($item->land_gewaesser_kurzzeichen != $land) : ?>
+						<?php if ($land) : ?>
+							<?php echo HTMLHelper::_('bootstrap.endSlide'); ?>
+						<?php endif; ?>
 						<?php $land = $item->land_gewaesser_kurzzeichen; ?>
-						<h2><?php echo $item->land_gewaesser_bezeichnung; ?></h2>
+						<?php echo HTMLHelper::_('bootstrap.addSlide', 'landAccordion', $item->land_gewaesser_bezeichnung, 'collapse' . $item->land_gewaesser_id); ?>
 					<?php endif; ?>
 					<?php $gewaesser = $item->gewaesser_name; ?>
-					<h3><?php echo $item->gewaesser_displayName; ?></h3>
-					<table class="table table-striped table-hover table-condensed">
-					<thead><tr>
-						<th class="ort"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></th>
-						<th class="location"><?php echo Text::_('COM_SICHTWEITEN_FIELD_LOCATION_LABEL'); ?></th>
-						<th class="alternate"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></th>
-						<th class="bemerkungen"><?php echo Text::_('COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL'); ?></th>
-					</tr></thead>
-					<tbody>
+					<div class="mb-2 bg-light">
+						<?php echo HTMLHelper::_('bootstrap.addSlide', 'locationsAccordion', $item->gewaesser_displayName, 'collapse' . $item->gewaesser_id); ?>
+						<table class="table table-striped table-hover table-condensed">
+						<thead><tr>
+							<th class="ort"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></th>
+							<th class="location"><?php echo Text::_('COM_SICHTWEITEN_FIELD_LOCATION_LABEL'); ?></th>
+							<th class="alternate"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></th>
+							<th class="bemerkungen"><?php echo Text::_('COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL'); ?></th>
+						</tr></thead>
+						<tbody>
 				<?php endif; ?>
 				<tr>
 					<td class="ort">
@@ -63,6 +71,9 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 			<?php endforeach; ?>
 			</tbody>
 			</table>
+			</div>
+			<?php echo HTMLHelper::_('bootstrap.endSlide'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endAccordion'); ?>
 		<?php endif; ?>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
