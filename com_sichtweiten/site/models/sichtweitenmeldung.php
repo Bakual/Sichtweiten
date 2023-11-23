@@ -16,7 +16,7 @@ use Joomla\CMS\Table\Table;
 /**
  * Model class for the Sichtweiten Component
  *
- * @since  5
+ * @since  1.0.0
  */
 class SichtweitenModelSichtweitenmeldung extends AdminModel
 {
