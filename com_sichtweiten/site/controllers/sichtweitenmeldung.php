@@ -34,6 +34,7 @@ class SichtweitenControllerSichtweitenmeldung extends FormController
 	 * @param   array  $config Configuration array for model. Optional
 	 *
 	 * @return  object  The model
+	 * @since 1.0.0
 	 */
 	public function getModel($name = 'sichtweitenmeldung', $prefix = '', $config = array('ignore_request' => true))
 	{
@@ -43,10 +44,12 @@ class SichtweitenControllerSichtweitenmeldung extends FormController
 	/**
 	 * Gets the URL arguments to append to an item redirect
 	 *
-	 * @param   int    $recordId The primary key id for the item
-	 * @param   string $urlVar   The name of the URL variable for the id
+	 * @param   int     $recordId  The primary key id for the item
+	 * @param   string  $urlVar    The name of the URL variable for the id
 	 *
 	 * @return  string  The arguments to append to the redirect URL
+	 * @throws \Exception
+	 * @since 1.0.0
 	 */
 	protected function getRedirectToItemAppend($recordId = null, $urlVar = null)
 	{
@@ -66,6 +69,8 @@ class SichtweitenControllerSichtweitenmeldung extends FormController
 	 * If a "return" variable has been passed in the request
 	 *
 	 * @return  string  The return URL
+	 * @throws \Exception
+	 * @since 1.0.0
 	 */
 	protected function getReturnPage()
 	{
@@ -88,6 +93,7 @@ class SichtweitenControllerSichtweitenmeldung extends FormController
 	 * @param   array        $validData The validated data
 	 *
 	 * @return  void
+	 * @since 1.0.0
 	 */
 	protected function postSaveHook(BaseDatabaseModel $model, $validData = array())
 	{
