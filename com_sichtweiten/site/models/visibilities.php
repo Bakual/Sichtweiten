@@ -300,7 +300,6 @@ class SichtweitenModelVisibilities extends ListModel
 			$query->join('LEFT','`#__sicht_tauchplatz` AS tp ON tp.gewaesser_id = g.id');
 			$query->join('LEFT','`#__sicht_sichtweitenmeldung` AS swm ON swm.tauchplatz_id = tp.id');
 
-//			$query->group($db->quoteName('g.id'));
 			$query->where($db->quoteName('swm.datum') . ' >= DATE_SUB(CURDATE(), INTERVAL ' . $period . ' DAY)');
 
 			// Filter by state
