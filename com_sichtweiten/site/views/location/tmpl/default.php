@@ -59,7 +59,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 				</div>
 			</div>
 			<?php if (!count($this->items)) : ?>
-				<div class="no_entries alert alert-error"><?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
+				<div class="no_entries alert alert-error"><?php echo Text::sprintf('COM_SICHTWEITEN_NO_ENTRIES', Text::_('COM_SICHTWEITEN_VISIBILITIES')); ?></div>
 			<?php else : ?>
 				<table class="table table-striped table-hover table-condensed">
 					<thead><tr>
@@ -137,6 +137,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
 		</form>
+		<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung&tp=' . $this->item->id); ?>" role="button" class="btn btn-primary"><?php echo Text::_('COM_SICHTWEITEN_NEW_SICHTWEITE'); ?></a>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
 		<div class="copyright"><small><?php echo Text::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
