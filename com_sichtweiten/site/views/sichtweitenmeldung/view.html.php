@@ -36,7 +36,7 @@ class SichtweitenViewSichtweitenmeldung extends HtmlView
 	 *
 	 * @throws  Exception
 	 *
-	 * @return  void
+	 * @return  void|boolean
 	 *
 	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
@@ -44,7 +44,8 @@ class SichtweitenViewSichtweitenmeldung extends HtmlView
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$this->user = Factory::getUser();
+		$user = $this->getCurrentUser();
+		$app  = Factory::getApplication();
 
 		// Get model data
 		$this->state       = $this->get('State');
@@ -52,24 +53,27 @@ class SichtweitenViewSichtweitenmeldung extends HtmlView
 		$this->form        = $this->get('Form');
 		$this->return_page = $this->get('ReturnPage');
 
-		if (!$this->user->authorise('core.create', 'com_sichtweiten'))
+		if (!$user->authorise('core.create', 'com_sichtweiten'))
 		{
-			if ($this->user->guest)
+			if ($user->guest)
 			{
-				$app = Factory::getApplication();
 				$app->enqueueMessage(Text::_('JGLOBAL_YOU_MUST_LOGIN_FIRST'), 'message');
 				$app->redirect(Route::_('index.php?option=com_users&view=login', false));
 			}
 			else
 			{
-				throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
+				$app->enqueueMessage(Text::_('JERROR_ALERTNOAUTHOR'), 'error');
+				$app->setHeader('status', 403, true);
+
+				return false;
 			}
 		}
 
 		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			throw new Exception(implode("\n", $errors), 500);
+		if (\count($errors = $this->get('Errors'))) {
+			$app->enqueueMessage(implode("\n", $errors), 'error');
+
+			return false;
 		}
 
 		// Escape strings for HTML output

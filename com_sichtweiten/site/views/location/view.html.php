@@ -26,6 +26,7 @@ class SichtweitenViewLocation extends HtmlView
 	 * Contains model state
 	 *
 	 * @var    Joomla\Registry\Registry
+	 * @since 1.0
 	 */
 	protected $state;
 
@@ -33,6 +34,7 @@ class SichtweitenViewLocation extends HtmlView
 	 * Array of objects
 	 *
 	 * @var    array
+	 * @since 1.0
 	 */
 	protected $item;
 
@@ -40,6 +42,7 @@ class SichtweitenViewLocation extends HtmlView
 	 * Contains the merged component and menuitem params
 	 *
 	 * @var    \Joomla\Registry\Registry
+	 * @since 1.0
 	 */
 	protected $params;
 
