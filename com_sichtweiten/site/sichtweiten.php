@@ -13,7 +13,7 @@ use Joomla\CMS\MVC\Controller\BaseController;
 defined('_JEXEC') or die;
 
 // Register Helperclasses for autoloading
-JLoader::discover('SichtweitenHelper', JPATH_COMPONENT . '/helpers');
+JLoader::discover('SichtweitenHelper', JPATH_BASE . '/components/com_sichtweiten/helpers');
 
 $controller = BaseController::getInstance('Sichtweiten');
 $controller->execute(Factory::getApplication()->input->get('task'));
