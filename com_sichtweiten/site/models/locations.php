@@ -64,7 +64,7 @@ class SichtweitenModelLocations extends ListModel
 	protected function getListQuery()
 	{
 		// Create a new query object.
-		$db    = $this->getDatabase()
+		$db    = $this->getDatabase();
 		$query = $db->createQuery();
 
 		// Select required fields from the table
