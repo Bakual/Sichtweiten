@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
@@ -84,6 +85,15 @@ class SichtweitenViewDivesite extends HtmlView
 			ToolbarHelper::save('divesite.save');
 		}
 
-		ToolbarHelper::cancel('divesite.cancel', 'JTOOLBAR_CLOSE');
+		if (empty($this->item->id))
+		{
+			ToolbarHelper::cancel('divesite.cancel', 'JTOOLBAR_CANCEL');
+		} else {
+			ToolbarHelper::cancel('divesite.cancel');
+
+			if (ComponentHelper::isEnabled('com_contenthistory') && $this->state->params->get('save_history', 0) && $canDo->get('core.edit')) {
+				ToolbarHelper::versions('com_sichtweiten.divesite', $this->item->id);
+			}
+		}
 	}
 }

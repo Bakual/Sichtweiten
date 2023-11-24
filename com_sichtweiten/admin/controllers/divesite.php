@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Versioning\VersionableControllerTrait;
 
 /**
  * Divesite controller class.
@@ -22,6 +23,16 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
  */
 class SichtweitenControllerDivesite extends FormController
 {
+	use VersionableControllerTrait;
+
+	/**
+	 * The type alias for this content type.
+	 *
+	 * @var    string
+	 * @since  3.2
+	 */
+	public $typeAlias = 'com_sichtweiten.divesite';
+
 	/**
 	 * Method override to check if you can add a new record.
 	 *

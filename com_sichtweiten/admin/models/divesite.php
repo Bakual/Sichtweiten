@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Versioning\VersionableModelTrait;
 
 /**
  * Divesite model.
@@ -23,6 +24,16 @@ use Joomla\CMS\Table\Table;
  */
 class SichtweitenModelDivesite extends AdminModel
 {
+	use VersionableModelTrait;
+
+	/**
+	 * The type alias for this content type (for example, 'com_content.article').
+	 *
+	 * @var    string
+	 * @since  2.1.0
+	 */
+	public $typeAlias = 'com_sichtweiten.divesite';
+
 	/**
 	 * @var     string    The prefix to use with controller messages.
 	 * @since   1.3.0
@@ -131,6 +142,8 @@ class SichtweitenModelDivesite extends AdminModel
 	 */
 	protected function prepareTable($table)
 	{
+		// Increment the content version number.
+		$table->version++;
 	}
 
 	/**
