@@ -45,7 +45,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 							<?php $title .= '&nbsp;<small>(' . $see->land_bezeichnung . ')</small>'; ?>
 						<?php endif; ?>
 						<?php echo HTMLHelper::_('bootstrap.addSlide', 'gewaesserAccordion', $title, 'collapse' . $see->id); ?>
-						<table class="table table-light table-hover">
+						<table class="sichtweitentable table table-light table-hover table-responsive">
 							<thead>
 							<tr>
 								<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.name', $listDirn, $listOrder); ?></th>
@@ -56,8 +56,8 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_LABEL', 'sichtweite_id_3', $listDirn, $listOrder); ?></th>
 								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL', 'sichtweite_id_4', $listDirn, $listOrder); ?></th>
 								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL', 'sichtweite_id_5', $listDirn, $listOrder); ?></th>
-								<th class="kommentar"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
-								<th class="user"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_USER', 'user_id', $listDirn, $listOrder); ?></th>
+								<th class="kommentar d-none d-md-table-cell"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
+								<th class="user d-none d-md-table-cell"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_USER', 'user_id', $listDirn, $listOrder); ?></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -72,27 +72,28 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 										</a>
 									</td>
 									<td class="datum">
-										<?php echo HTMLHelper::_('date', $item->datum, Text::_('DATE_FORMAT_LC4'), 'UTC'); ?>
+										<span class="d-none d-md-inline"><?php echo HTMLHelper::_('date', $item->datum, Text::_('DATE_FORMAT_LC4'), 'UTC'); ?></span>
+										<span class="d-md-none"><?php echo HTMLHelper::_('date', $item->datum, Text::_('COM_SICHTWEITEN_DATE_FORMAT_SHORT'), 'UTC'); ?></span>
 									</td>
 									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_0; ?>">
-										<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_0); ?>
+										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_0); ?></span>
 									</td>
 									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_1; ?>">
-										<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_1); ?>
+										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_1); ?></span>
 									</td>
 									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_2; ?>">
-										<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_2); ?>
+										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_2); ?></span>
 									</td>
 									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_3; ?>">
-										<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_3); ?>
+										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_3); ?></span>
 									</td>
 									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_4; ?>">
-										<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_4); ?>
+										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_4); ?></span>
 									</td>
 									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_5; ?>">
-										<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?>
+										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?></span>
 									</td>
-									<td class="kommentar">
+									<td class="kommentar d-none d-md-table-cell">
 										<?php $kommentar = $item->kommentar ?: ''; ?>
 										<?php $kommentar = htmlspecialchars($kommentar); ?>
 										<?php $kommentar_truncated = HTMLHelper::_('string.truncate', $kommentar, $this->params->get('kommentar_length', 50)); ?>
@@ -110,7 +111,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 											<?php echo SichtweitenHelperSichtweiten::getBuddies($item->buddy_names, $item->buddy_emails); ?>
 										<?php endif; ?>
 									</td>
-									<td class="user">
+									<td class="user d-none d-md-table-cell">
 										<?php if ($item->user_id) : ?>
 											<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id); ?>">
 												<?php echo $item->user_name; ?>

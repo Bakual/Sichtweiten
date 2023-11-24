@@ -47,6 +47,9 @@
 	--t4-table-bg-type: #e5faff !important;
 	--t4-table-bg-state: #e5faff !important;
 }
+.sichtweitentable thead th {
+	white-space: normal;
+}
 .sichtweiten-container td.tiefe {
 	width: 9%;
 }
