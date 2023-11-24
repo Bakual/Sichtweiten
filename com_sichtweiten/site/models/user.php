@@ -66,7 +66,7 @@ class SichtweitenModelUser extends ItemModel
 		{
 			try
 			{
-				$db    = $this->getDatabase()
+				$db    = $this->getDatabase();
 				$query = $db->createQuery();
 
 				$query->select(

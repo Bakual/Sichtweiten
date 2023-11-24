@@ -187,7 +187,7 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 
 		$id = (int) $this->state->get('sichtweitenmeldung.id');
 
-		$db    = $this->getDatabase()
+		$db    = $this->getDatabase();
 		$query = $db->createQuery();
 
 		$query->insert('#__sicht_sichtweiteneintrag');
@@ -215,7 +215,7 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 	{
 		$id = (int) $this->state->get('sichtweitenmeldung.id');
 
-		$db    = $this->getDatabase()
+		$db    = $this->getDatabase();
 		$query = $db->createQuery();
 
 		$query->insert('#__sicht_tauchpartner');
