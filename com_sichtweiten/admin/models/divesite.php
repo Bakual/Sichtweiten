@@ -75,6 +75,16 @@ class SichtweitenModelDivesite extends AdminModel
 			return false;
 		}
 
+		// Modify the form based on access controls.
+		if (!$this->canEditState((object) $data)) {
+			// Disable fields for display.
+			$form->setFieldAttribute('active', 'disabled', 'true');
+
+			// Disable fields while saving.
+			// The controller has already verified this is a record you can edit.
+			$form->setFieldAttribute('active', 'filter', 'unset');
+		}
+
 		return $form;
 	}
 
