@@ -50,6 +50,9 @@
 .sichtweitentable thead th {
 	white-space: normal;
 }
+#gewaesserAccordion .accordion-body {
+	overflow-x: auto;
+}
 .sichtweiten-container td.tiefe {
 	width: 9%;
 }
