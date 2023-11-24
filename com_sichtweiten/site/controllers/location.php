@@ -102,4 +102,23 @@ class SichtweitenControllerLocation extends SichtweitenControllerDivesite
 		return $append;
 	}
 
+	/**
+	 * Get the return URL.
+	 *
+	 * If a "return" variable has been passed in the request
+	 *
+	 * @return  string  The return URL.
+	 *
+	 * @since   2.1.0
+	 */
+	protected function getReturnPage()
+	{
+		$return = $this->input->get('return', null, 'base64');
+
+		if (empty($return) || !Uri::isInternal(base64_decode($return))) {
+			return Uri::base();
+		}
+
+		return base64_decode($return);
+	}
 }

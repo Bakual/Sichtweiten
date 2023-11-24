@@ -172,7 +172,7 @@ class SichtweitenRouter extends RouterView
 			}
 		}
 
-		if (isset($query['id']))
+		if (!isset($query['task']) && isset($query['id']))
 		{
 			$segments[] = $query['id'];
 			unset($query['id']);
@@ -199,6 +199,14 @@ class SichtweitenRouter extends RouterView
 			case 'location':
 				unset($segments[0]);
 				$vars['view'] = 'location';
+				$id           = explode(':', $segments[1]);
+				$vars['id']   = (int) $id[0];
+				unset($segments[1]);
+
+				break;
+			case 'locationform':
+				unset($segments[0]);
+				$vars['view'] = 'locationform';
 				$id           = explode(':', $segments[1]);
 				$vars['id']   = (int) $id[0];
 				unset($segments[1]);
