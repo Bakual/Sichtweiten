@@ -92,7 +92,7 @@ class SichtweitenModelVisibilities extends ListModel
 	{
 		// Create a new query object.
 		$db    = $this->getDatabase();
-		$query = $db->getQuery(true);
+		$query = $db->createQuery();
 
 		// Select required fields from the table
 		$query->select(
@@ -262,7 +262,7 @@ class SichtweitenModelVisibilities extends ListModel
 	{
 		// Create a new query object.
 		$db    = $this->getDatabase();
-		$query = $db->getQuery(true);
+		$query = $db->createQuery();
 
 		// Select required fields from the table
 

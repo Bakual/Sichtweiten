@@ -138,7 +138,7 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 		{
 			// Lookup the matching user_id
 			$db    = $this->getDatabase();
-			$query = $db->getQuery(true);
+			$query = $db->createQuery();
 
 			$query->select('id');
 			$query->from('#__sicht_user');
@@ -149,7 +149,7 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 
 			if (!$id)
 			{
-				$queryInsert = $db->getQuery(true);
+				$queryInsert = $db->createQuery();
 				$queryInsert->insert('#__sicht_user');
 				$queryInsert->columns($db->quoteName(array('name', 'joomla_id')));
 				$queryInsert->values($db->quote($user->username) . ', ' . (int) $user->id);
@@ -187,8 +187,8 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 
 		$id = (int) $this->state->get('sichtweitenmeldung.id');
 
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true);
+		$db    = $this->getDatabase()
+		$query = $db->createQuery();
 
 		$query->insert('#__sicht_sichtweiteneintrag');
 		$query->columns(array('sichtweite_id', 'sichtweitenmeldung_id', 'tiefenbereich_id'));
@@ -215,8 +215,8 @@ class SichtweitenModelSichtweitenmeldung extends AdminModel
 	{
 		$id = (int) $this->state->get('sichtweitenmeldung.id');
 
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true);
+		$db    = $this->getDatabase()
+		$query = $db->createQuery();
 
 		$query->insert('#__sicht_tauchpartner');
 		$query->columns(array('sichtweitenmeldung_id', 'name', 'email'));

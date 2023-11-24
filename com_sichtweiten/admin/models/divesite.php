@@ -93,8 +93,8 @@ class SichtweitenModelDivesite extends AdminModel
 
 		if ($item->id)
 		{
-			$db = $this->getDbo();
-			$query = $db->getQuery(true);
+			$db = $this->getDatabase();
+			$query = $db->createQuery();
 			$query->select($db->quoteName('name'));
 			$query->from('#__sicht_bezeichnung');
 			$query->where($db->quoteName('tauchplatz_id') . ' = ' . (int) $item->id);

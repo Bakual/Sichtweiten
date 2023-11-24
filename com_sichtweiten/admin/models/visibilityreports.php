@@ -59,8 +59,8 @@ class SichtweitenModelVisibilityreports extends ListModel
 	protected function getListQuery()
 	{
 		// Create a new query object.
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true);
+		$db    = $this->getDatabase();
+		$query = $db->createQuery();
 
 		// Select the required fields from the table.
 		$query->select(

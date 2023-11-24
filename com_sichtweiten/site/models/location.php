@@ -66,8 +66,8 @@ class SichtweitenModelLocation extends ItemModel
 		{
 			try
 			{
-				$db    = $this->getDbo();
-				$query = $db->getQuery(true);
+				$db    = $this->getDatabase()
+				$query = $db->createQuery();
 
 				$query->select(
 					$db->quoteName(
