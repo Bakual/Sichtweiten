@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\Database\QueryInterface;
 
 /**
  * Model class for the Sichtweiten Component
@@ -25,7 +26,7 @@ class SichtweitenModelLocations extends ListModel
 	 * @var    array
 	 * @since  1.0
 	 */
-	protected $item;
+	protected $item = array();
 
 	/**
 	 * A blacklist of filter variables to not merge into the model's state
@@ -38,10 +39,11 @@ class SichtweitenModelLocations extends ListModel
 	/**
 	 * Constructor.
 	 *
-	 * @param   array $config An optional associative array of configuration settings.
+	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
-	 * @see     JModelLegacy
+	 * @throws \Exception
 	 * @since   1.0
+	 * @see     BaseDatabaseModel
 	 */
 	public function __construct($config = array())
 	{
@@ -57,7 +59,7 @@ class SichtweitenModelLocations extends ListModel
 	/**
 	 * Method to get a JDatabaseQuery object for retrieving the data set from a database.
 	 *
-	 * @return  JDatabaseQuery   A JDatabaseQuery object to retrieve the data set.
+	 * @return  QueryInterface   A QueryInterface object to retrieve the data set.
 	 *
 	 * @since   1.0
 	 */
