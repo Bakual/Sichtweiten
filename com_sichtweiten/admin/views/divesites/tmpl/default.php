@@ -46,7 +46,7 @@ $listDirn  = $this->state->get('list.direction');
 							<?php echo HtmlHelper::_('searchtools.sort', 'JSTATUS', 'tp.active', $listDirn, $listOrder); ?>
 						</th>
 						<th class="nowrap">
-							<?php echo HtmlHelper::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.name', $listDirn, $listOrder); ?>
+							<?php echo HtmlHelper::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.title', $listDirn, $listOrder); ?>
 						</th>
 						<th>
 							<?php echo HtmlHelper::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL', 'g.name', $listDirn, $listOrder); ?>
@@ -67,18 +67,18 @@ $listDirn  = $this->state->get('list.direction');
 							</td>
 							<td class="center">
 								<div class="btn-group">
-									<?php echo HtmlHelper::_('jgrid.published', $item->active, $i, 'divesites.', $canEdit, 'cb'); ?>
+									<?php echo HtmlHelper::_('jgrid.published', $item->state, $i, 'divesites.', $canEdit, 'cb'); ?>
 								</div>
 							</td>
 							<td>
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&task=divesite.edit&id=' . (int) $item->id); ?>">
-										<?php echo $item->name; ?></a>
+										<?php echo $item->title; ?></a>
 								<?php else : ?>
-									<?php echo $item->name; ?>
+									<?php echo $item->title; ?>
 								<?php endif; ?>
-								<?php if ($item->alt_name) : ?>
-									<small>(<?php echo $item->alt_name; ?>)</small>
+								<?php if ($item->alt_names) : ?>
+									<small>(<?php echo $item->alt_names; ?>)</small>
 								<?php endif; ?>
 							</td>
 							<td>

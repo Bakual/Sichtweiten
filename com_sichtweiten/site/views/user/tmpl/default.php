@@ -43,7 +43,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 			<?php else : ?>
 				<table class="table table-striped table-hover table-condensed">
 					<thead><tr>
-						<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.name', $listDirn, $listOrder); ?></th>
+						<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.title', $listDirn, $listOrder); ?></th>
 						<th class="gewaesser"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL', 'g.displayName', $listDirn, $listOrder); ?></th>
 						<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
 						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_0', $listDirn, $listOrder); ?></th>
@@ -59,7 +59,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 						<tr>
 							<td class="ort">
 								<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id ); ?>">
-									<?php echo $item->name; ?>
+									<?php echo $item->title; ?>
 								</a>
 							</td>
 							<td class="gewaesser">

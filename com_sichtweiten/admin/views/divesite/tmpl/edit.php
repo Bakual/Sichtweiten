@@ -32,14 +32,8 @@ $this->useCoreUI = true;
 
 		<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'general', Text::_('COM_SICHTWEITEN_GENERAL_FIELDSET_LABEL')); ?>
 		<div class="row">
-			<div class="col-lg-8">
-					<?php echo $this->form->renderFieldset('general'); ?>
-			</div>
-			<div class="col-lg-4">
-				<fieldset class="options-form">
-					<legend><?php echo Text::_('COM_SICHTWEITEN_FIELD_DIVESITE_SUBFORM_LABEL'); ?></legend>
-					<?php echo $this->form->renderFieldset('divesite_subform'); ?>
-				</fieldset>
+			<div>
+				<?php echo $this->form->renderFieldset('general'); ?>
 			</div>
 		</div>
 

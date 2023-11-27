@@ -32,7 +32,6 @@ class SichtweitenModelLocation extends ItemModel
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		/** @var JApplicationSite $app */
 		$app    = Factory::getApplication();
 		$params = $app->getParams();
 
@@ -73,9 +72,10 @@ class SichtweitenModelLocation extends ItemModel
 					$db->quoteName(
 						array(
 							'tp.id',
-							'tp.name',
+							'tp.title',
 							'tp.bemerkungen',
-							'tp.active',
+							'tp.state',
+							'tp.alt_names',
 						)
 					)
 				);
@@ -83,7 +83,7 @@ class SichtweitenModelLocation extends ItemModel
 				$query->from('#__sicht_tauchplatz AS tp');
 
 				$query->where($db->quoteName('tp.id') . ' = ' . (int) $id);
-				$query->where($db->quoteName('tp.active') . ' = 1');
+				$query->where($db->quoteName('tp.state') . ' = 1');
 
 				// Join over Gewaesser table
 				$query->select(
@@ -144,11 +144,6 @@ class SichtweitenModelLocation extends ItemModel
 				);
 
 				$query->join('LEFT', '#__sicht_land AS lo ON o.land_id = lo.id');
-
-				// Join over Bezeichnung table
-				$query->select("GROUP_CONCAT(b.name SEPARATOR ', ') AS alt_name");
-				$query->join('LEFT', '#__sicht_bezeichnung AS b ON tp.id = b.tauchplatz_id');
-				$query->group('tp.id');
 
 				$db->setQuery($query);
 

@@ -22,8 +22,8 @@ class SichtweitenModelDivesites extends ListModel
 			// Filter Fields define valid ordering fields.
 			$config['filter_fields'] = array(
 				'tp.id',
-				'tp.name',
-				'tp.active',
+				'tp.title',
+				'tp.state',
 				'g.name',
 				'o.name',
 			);
@@ -31,7 +31,7 @@ class SichtweitenModelDivesites extends ListModel
 			// Parent::getActiveFilters uses them for SearchTools. Has to match filter name (eg "foo" for "filters.foo")
 			$config['filter_fields'][] = 'gewaesser';
 			$config['filter_fields'][] = 'ort';
-			$config['filter_fields'][] = 'published';
+			$config['filter_fields'][] = 'state';
 		}
 
 		parent::__construct($config);
@@ -53,7 +53,7 @@ class SichtweitenModelDivesites extends ListModel
 		$params = ComponentHelper::getParams('com_sichtweiten');
 		$this->setState('params', $params);
 
-		parent::populateState('tp.name', 'asc');
+		parent::populateState('tp.title', 'asc');
 	}
 
 	/**
@@ -73,11 +73,12 @@ class SichtweitenModelDivesites extends ListModel
 			$db->quoteName(
 				array(
 					'tp.id',
-					'tp.name',
-					'tp.active',
+					'tp.title',
+					'tp.state',
 					'tp.spezielles',
 					'tp.einschraenkungen',
 					'tp.bemerkungen',
+					'tp.alt_names',
 				)
 			)
 		);
@@ -115,17 +116,12 @@ class SichtweitenModelDivesites extends ListModel
 			$query->where('tp.ort_id = ' . (int) $ort);
 		}
 
-		// Join over Bezeichnung table
-		$query->select("GROUP_CONCAT(b.name SEPARATOR ', ') AS alt_name");
-		$query->join('LEFT', '#__sicht_bezeichnung AS b ON tp.id = b.tauchplatz_id');
-		$query->group('tp.id');
-
 		// Filter by published state.
 		$published = $this->getState('filter.published');
 
 		if (is_numeric($published))
 		{
-			$query->where($db->quoteName('tp.active') . ' = ' . (int) $published);
+			$query->where($db->quoteName('tp.state') . ' = ' . (int) $published);
 		}
 
 		// Filter by search in title
@@ -140,7 +136,7 @@ class SichtweitenModelDivesites extends ListModel
 			else
 			{
 				$search = $db->quote('%' . $db->escape($search, true) . '%');
-				$query->where('(tp.name LIKE ' . $search . ')');
+				$query->where('(tp.title LIKE ' . $search . ')');
 			}
 		}
 

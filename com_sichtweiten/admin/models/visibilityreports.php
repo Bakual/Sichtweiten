@@ -25,7 +25,7 @@ class SichtweitenModelVisibilityreports extends ListModel
 				'swm.datum',
 				'swm.meldedatum',
 				'swm.user',
-				'tp.name',
+				'tp.title',
 			);
 
 			// Parent::getActiveFilters uses them for SearchTools. Has to match filter name (eg "foo" for "filters.foo")
@@ -76,7 +76,7 @@ class SichtweitenModelVisibilityreports extends ListModel
 		$query->from('`#__sicht_sichtweitenmeldung` AS swm');
 
 		// Join Tauchplatz table
-		$query->select('tp.name AS tauchplatz');
+		$query->select('tp.title AS tauchplatz');
 		$query->join('LEFT', '`#__sicht_tauchplatz` AS tp ON tp.id = swm.tauchplatz_id');
 
 		// Filter by dive site

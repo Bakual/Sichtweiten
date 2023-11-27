@@ -49,7 +49,7 @@ class SichtweitenModelVisibilities extends ListModel
 	{
 		$this->filter_fields = array(
 			'g.displayName',
-			'tp.name',
+			'tp.title',
 			'datum',
 			'kommentar',
 			'sichtweite_id_0',
@@ -99,9 +99,9 @@ class SichtweitenModelVisibilities extends ListModel
 			$db->quoteName(
 				array(
 					'tp.id',
-					'tp.name',
+					'tp.title',
 					'tp.bemerkungen',
-					'tp.active',
+					'tp.state',
 				)
 			)
 		);
@@ -234,7 +234,7 @@ class SichtweitenModelVisibilities extends ListModel
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where($db->quoteName('tp.name') . ' LIKE ' . $search . ')');
+			$query->where($db->quoteName('tp.title') . ' LIKE ' . $search . ')');
 		}
 
 		// Filter by state
@@ -242,7 +242,7 @@ class SichtweitenModelVisibilities extends ListModel
 
 		if (is_numeric($state))
 		{
-			$query->where($db->quoteName('tp.active') . ' = ' . (int) $state);
+			$query->where($db->quoteName('tp.state') . ' = ' . (int) $state);
 		}
 
 		// Add the list ordering clause.
@@ -307,7 +307,7 @@ class SichtweitenModelVisibilities extends ListModel
 
 			if (is_numeric($state))
 			{
-				$query->where($db->quoteName('tp.active') . ' = ' . (int) $state);
+				$query->where($db->quoteName('tp.state') . ' = ' . (int) $state);
 			}
 
 		}

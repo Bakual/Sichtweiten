@@ -37,10 +37,10 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 			</div>
 		</div>
 	<?php endif; ?>
-	<div class="tauchplatz <?php echo ($this->item->active) ? '' : 'system-unpublished'; ?>">
+	<div class="tauchplatz <?php echo ($this->item->state) ? '' : 'system-unpublished'; ?>">
 		<dl class="dl-horizontal">
 			<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_TAUCHPLATZ_NAME_LABEL'); ?></dt>
-			<dd><?php echo htmlspecialchars($this->item->name); ?></dd>
+			<dd><?php echo htmlspecialchars($this->item->title); ?></dd>
 			<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL'); ?></dt>
 			<dd>
 				<?php echo htmlspecialchars($this->item->gewaesser_displayName); ?>
@@ -55,9 +55,9 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 					<small>(<?php echo htmlspecialchars($this->item->land_ort_bezeichnung); ?>)</small>
 				<?php endif; ?>
 			</dd>
-			<?php if ($this->item->alt_name) : ?>
+			<?php if ($this->item->alt_names) : ?>
 				<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></dt>
-				<dd><?php echo htmlspecialchars($this->item->alt_name); ?></dd>
+				<dd><?php echo htmlspecialchars($this->item->alt_names); ?></dd>
 			<?php endif; ?>
 			<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL'); ?></dt>
 			<dd><?php echo htmlspecialchars($this->item->bemerkungen); ?></dd>

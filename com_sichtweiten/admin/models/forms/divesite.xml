@@ -10,9 +10,15 @@
 			readonly="true"
 		/>
 		<field
-			name="name"
+			name="title"
 			type="text"
 			label="JGLOBAL_TITLE"
+		/>
+		<field
+			name="alt_names"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_ALT_NAMES_LABEL"
+			DESC="COM_SICHTWEITEN_FIELD_ALT_NAMES_DESC"
 		/>
 		<field
 			name="gewaesser_id"
@@ -37,7 +43,7 @@
 			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
 		</field>
 		<field
-			name="active"
+			name="state"
 			type="radio"
 			label="JSTATUS"
 			layout="joomla.form.field.radio.switcher"
@@ -66,16 +72,6 @@
 			type="text"
 			label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
 			maxlength="255"
-		/>
-	</fieldset>
-	<fieldset name="divesite_subform">
-		<field
-			name="altnames"
-			type="subform"
-			label="COM_SICHTWEITEN_FIELD_DIVESITE_SUBFORM_LABEL"
-			formsource="divesite_subform"
-			multiple="true"
-			hidden="true"
 		/>
 	</fieldset>
 </form>

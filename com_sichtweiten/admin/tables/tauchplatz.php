@@ -30,7 +30,7 @@ class SichtweitenTableTauchplatz extends Table implements VersionableTableInterf
 	 *
 	 * @since 1.3.0
 	 */
-	protected $_columnAlias = array('published' => 'active');
+	protected $_columnAlias = array('published' => 'state');
 
 	/**
 	 * Constructor

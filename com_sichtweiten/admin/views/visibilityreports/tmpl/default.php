@@ -45,7 +45,7 @@ $listDirn  = $this->state->get('list.direction');
 							<?php echo HTMLHelper::_('searchtools.sort', 'JDATE', 'swm.datum', $listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo HTMLHelper::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.name', $listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_TAUCHPLATZ_LABEL', 'tp.title', $listDirn, $listOrder); ?>
 						</th>
 						<th class="hidden-phone">
 							<?php echo HTMLHelper::_('searchtools.sort', 'COM_SICHTWEITEN_FIELD_MELDEDATUM_LABEL', 'swm.meldedatum', $listDirn, $listOrder); ?>

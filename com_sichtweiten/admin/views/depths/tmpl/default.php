@@ -43,10 +43,10 @@ $listDirn  = $this->state->get('list.direction');
 								onclick="Joomla.checkAll(this)"/>
 						</th>
 						<th class="nowrap">
-							<?php echo HtmlHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 's.bezeichnung', $listDirn, $listOrder); ?>
+							<?php echo HtmlHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 't.title', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
-							<?php echo HtmlHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 's.id', $listDirn, $listOrder); ?>
+							<?php echo HtmlHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 't.id', $listDirn, $listOrder); ?>
 						</th>
 					</tr>
 					</thead>
@@ -59,9 +59,9 @@ $listDirn  = $this->state->get('list.direction');
 							<td>
 								<?php if ($canEdit) : ?>
 									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&task=depth.edit&id=' . (int) $item->id); ?>">
-										<?php echo $item->bezeichnung; ?></a>
+										<?php echo $item->title; ?></a>
 								<?php else : ?>
-									<?php echo $item->bezeichnung; ?>
+									<?php echo $item->title; ?>
 								<?php endif; ?>
 							</td>
 							<td class="center hidden-phone">

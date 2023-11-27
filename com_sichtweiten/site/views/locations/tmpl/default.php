@@ -58,11 +58,11 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 					</td>
 					<td class="location">
 						<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=location&id=' . $item->id); ?>">
-							<?php echo $item->name; ?>
+							<?php echo $item->title; ?>
 						</a>
 					</td>
 					<td class="alternate">
-						<?php echo $item->alt_name ? htmlspecialchars($item->alt_name) : '-'; ?>
+						<?php echo $item->alt_names ? htmlspecialchars($item->alt_names) : '-'; ?>
 					</td>
 					<td class="bemerkungen">
 						<?php echo htmlspecialchars($item->bemerkungen); ?>

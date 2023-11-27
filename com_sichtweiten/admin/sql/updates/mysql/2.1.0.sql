@@ -5,7 +5,7 @@ VALUES
      'com_sichtweiten.divesite',
      '{"special":{"dbtable":"#__sicht_tauchplatz","key":"id","type":"Tauchplatz","prefix":"SichtweitenTable","config":"array()"}}',
      '',
-     '{"common":{"core_content_item_id":"id","core_title":"name","core_state":"active","core_body":"bemerkungen"},"special":{}}',
+     '{"common":{"core_content_item_id":"id","core_title":"title","core_state":"state","core_body":"bemerkungen"},"special":{}}',
      'SichtweitenHelperRoute::getLocationRoute',
      '{"formFile":"administrator\/components\/com_sichtweiten\/models\/forms\/divesite.xml",
      "hideFields":["asset_id","checked_out","checked_out_time","version","lft","rgt","level","path"],

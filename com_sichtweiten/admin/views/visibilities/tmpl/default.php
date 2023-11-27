@@ -43,7 +43,7 @@ $listDirn  = $this->state->get('list.direction');
 									<?php echo HTMLHelper::_('grid.checkall'); ?>
 								</td>
 								<th scope="col" style="min-width:100px">
-									<?php echo HTMLHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 's.bezeichnung', $listDirn, $listOrder); ?>
+									<?php echo HTMLHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 's.title', $listDirn, $listOrder); ?>
 								</th>
 								<th scope="col" style="width:40%" class="d-none d-md-table-cell">
 									<?php echo Text::_('COM_SICHTWEITEN_FIELD_DISPLAYNAME_LABEL'); ?>
@@ -63,10 +63,10 @@ $listDirn  = $this->state->get('list.direction');
 									<?php if ($canEdit) : ?>
 										<a href="<?php echo Route::_('index.php?option=com_sichtweiten&task=visibility.edit&id=' . (int) $item->id); ?>"
 										   title="<?php echo Text::_('JACTION_EDIT'); ?>">
-											<?php echo $item->bezeichnung; ?>
+											<?php echo $item->title; ?>
 										</a>
 									<?php else : ?>
-										<?php echo $item->bezeichnung; ?>
+										<?php echo $item->title; ?>
 									<?php endif; ?>
 								</td>
 								<td class="small d-none d-md-table-cell">

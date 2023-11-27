@@ -48,7 +48,7 @@ class SichtweitenModelLocations extends ListModel
 	public function __construct($config = array())
 	{
 		$this->filter_fields = array(
-			'tp.name',
+			'tp.title',
 			'tp.bemerkungen',
 			'g.displayName',
 		);
@@ -74,9 +74,10 @@ class SichtweitenModelLocations extends ListModel
 			$db->quoteName(
 				array(
 					'tp.id',
-					'tp.name',
+					'tp.title',
+					'tp.alt_names',
 					'tp.bemerkungen',
-					'tp.active',
+					'tp.state',
 				)
 			)
 		);
@@ -112,11 +113,6 @@ class SichtweitenModelLocations extends ListModel
 
 		$query->join('LEFT', '#__sicht_land AS lg ON g.land_id = lg.id');
 
-		// Join over Bezeichnung table
-		$query->select("GROUP_CONCAT(b.name SEPARATOR ', ') AS alt_name");
-		$query->join('LEFT', '#__sicht_bezeichnung AS b ON tp.id = b.tauchplatz_id');
-		$query->group('tp.id');
-
 		// Join over Ort table
 		$query->select(
 			array(
@@ -148,7 +144,7 @@ class SichtweitenModelLocations extends ListModel
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where($db->quoteName('tp.name') . ' LIKE ' . $search . ')');
+			$query->where($db->quoteName('tp.title') . ' LIKE ' . $search . ')');
 		}
 
 		// Filter by state
@@ -156,11 +152,11 @@ class SichtweitenModelLocations extends ListModel
 
 		if (is_numeric($state))
 		{
-			$query->where($db->quoteName('tp.active') . ' = ' . (int) $state);
+			$query->where($db->quoteName('tp.state') . ' = ' . (int) $state);
 		}
 
 		// Add a hardcoded list ordering clause.
-		$query->order('lg.bezeichnung DESC, g.displayName ASC, tp.name ASC');
+		$query->order('lg.bezeichnung DESC, g.displayName ASC, tp.title ASC');
 
 		return $query;
 	}

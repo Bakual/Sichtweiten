@@ -131,9 +131,9 @@ class SichtweitenViewLocation extends HtmlView
 		// If the menu item does not concern this item
 		if ($menu && ($menu->query['option'] != 'com_sichtweiten' || $menu->query['view'] != 'location' || $menu->query['id'] != $this->item->id))
 		{
-			if ($this->item->name)
+			if ($this->item->title)
 			{
-				$title = $this->item->name;
+				$title = $this->item->title;
 			}
 
 			$pathway->addItem(
@@ -144,7 +144,7 @@ class SichtweitenViewLocation extends HtmlView
 
 		if (empty($title))
 		{
-			$title = $this->item->name;
+			$title = $this->item->title;
 		}
 
 		$this->setDocumentTitle($title);

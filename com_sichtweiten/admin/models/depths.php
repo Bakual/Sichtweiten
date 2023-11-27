@@ -22,7 +22,7 @@ class SichtweitenModelDepths extends ListModel
 			// Filter Fields define valid ordering fields.
 			$config['filter_fields'] = array(
 				't.id',
-				't.bezeichnung',
+				't.title',
 			);
 		}
 
@@ -65,7 +65,9 @@ class SichtweitenModelDepths extends ListModel
 			$db->quoteName(
 				array(
 					't.id',
-					't.bezeichnung',
+					't.title',
+					't.ordering',
+					't.languagestring',
 				)
 			)
 		);

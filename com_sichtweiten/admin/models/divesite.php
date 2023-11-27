@@ -78,11 +78,11 @@ class SichtweitenModelDivesite extends AdminModel
 		// Modify the form based on access controls.
 		if (!$this->canEditState((object) $data)) {
 			// Disable fields for display.
-			$form->setFieldAttribute('active', 'disabled', 'true');
+			$form->setFieldAttribute('state', 'disabled', 'true');
 
 			// Disable fields while saving.
 			// The controller has already verified this is a record you can edit.
-			$form->setFieldAttribute('active', 'filter', 'unset');
+			$form->setFieldAttribute('state', 'filter', 'unset');
 		}
 
 		return $form;
@@ -99,27 +99,7 @@ class SichtweitenModelDivesite extends AdminModel
 	 */
 	public function getItem($pk = null)
 	{
-		$item = parent::getItem($pk);
-
-		if ($item->id)
-		{
-			$db = $this->getDatabase();
-			$query = $db->createQuery();
-			$query->select($db->quoteName('name'));
-			$query->from('#__sicht_bezeichnung');
-			$query->where($db->quoteName('tauchplatz_id') . ' = ' . (int) $item->id);
-			$query->order($db->quoteName('id'));
-
-			$db->setQuery($query);
-			$rows = $db->loadRowList();
-
-			foreach ($rows as $row)
-			{
-				$item->altnames[]['alt_name'] = $row[0];
-			}
-		}
-
-		return $item;
+		return parent::getItem($pk);
 	}
 
 	/**

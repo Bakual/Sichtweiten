@@ -13,7 +13,7 @@
 	</fieldset>
 	<fieldset name="general">
 		<field
-			name="name"
+			name="title"
 			type="text"
 			label="JGLOBAL_TITLE"
 		/>
@@ -40,7 +40,7 @@
 			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
 		</field>
 		<field
-			name="active"
+			name="state"
 			type="radio"
 			label="JSTATUS"
 			layout="joomla.form.field.radio.switcher"
@@ -49,21 +49,17 @@
 			<option value="1">JPUBLISHED</option>
 		</field>
 		<field
+			name="alt_names"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_ALT_NAMES_LABEL"
+			DESC="COM_SICHTWEITEN_FIELD_ALT_NAMES_DESC"
+		/>
+		<field
 			name="bemerkungen"
 			type="textarea"
 			label="COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL"
 			rows="5"
 			class="input-xxlarge"
-		/>
-	</fieldset>
-	<fieldset name="divesite_subform">
-		<field
-			name="altnames"
-			type="subform"
-			label="COM_SICHTWEITEN_FIELD_DIVESITE_SUBFORM_LABEL"
-			formsource="divesite_subform"
-			multiple="true"
-			hidden="true"
 		/>
 	</fieldset>
 </form>

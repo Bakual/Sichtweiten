@@ -48,7 +48,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 						<table class="sichtweitentable table table-light table-hover table-responsive">
 							<thead>
 							<tr>
-								<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.name', $listDirn, $listOrder); ?></th>
+								<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.title', $listDirn, $listOrder); ?></th>
 								<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
 								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_0', $listDirn, $listOrder); ?></th>
 								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_LABEL', 'sichtweite_id_1', $listDirn, $listOrder); ?></th>
@@ -68,7 +68,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 										   class="hasTooltip"
 										   title="<?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL') . ': ' . $item->ort_name; ?><br />
 											<?php echo Text::_('COM_SICHTWEITEN_FIELD_LAND_LABEL') . ': ' . $item->land_ort_bezeichnung; ?>">
-											<?php echo $item->name; ?>
+											<?php echo $item->title; ?>
 										</a>
 									</td>
 									<td class="datum">

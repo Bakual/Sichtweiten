@@ -10,7 +10,7 @@
 			readonly="true"
 		/>
 		<field
-			name="bezeichnung"
+			name="title"
 			type="text"
 			label="JGLOBAL_TITLE"
 		/>

@@ -45,12 +45,12 @@ class JFormFieldLocationlist extends GroupedlistField
 
 		$query = $db->createQuery();
 		$query->select('a.id AS value');
-		$query->select("CONCAT(a.name, ', ', c.name) AS text");
+		$query->select("CONCAT(a.title, ', ', c.name) AS text");
 		$query->from('#__sicht_tauchplatz AS a');
 
 		$query->select('b.displayName');
 		$query->join('LEFT', '#__sicht_gewaesser AS b ON a.gewaesser_id = b.id');
-		$query->order('b.displayName ASC, a.name ASC');
+		$query->order('b.displayName ASC, a.title ASC');
 
 		$query->join('LEFT', '#__sicht_ort AS c ON a.ort_id = c.id');
 
