@@ -114,7 +114,6 @@
 			name="swm_captcha"
 			type="captcha"
 			label="COM_SICHTWEITEN_FIELD_SWM_CAPTCHA_LABEL"
-			description="COM_SICHTWEITEN_FIELD_SWM_CAPTCHA_DESC"
 			validate="captcha"
 		/>
 	</fieldset>
