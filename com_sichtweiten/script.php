@@ -127,6 +127,8 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 	{
 		$this->deleteFiles[] = '/components/com_sichtweiten/views/visibilities/tmpl/default_gewaesser.php';
 		$this->deleteFiles[] = '/components/com_sichtweiten/views/visibilities/tmpl/default_table.php';
+		$this->deleteFiles[] = '/components/com_sichtweiten/models/forms/divesite_subform.xml';
+		$this->deleteFiles[] = '/administrator/components/com_sichtweiten/models/forms/divesite_subform.xml';
 
 		if (version_compare($this->oldRelease, '2.1.1', '<'))
 		{
