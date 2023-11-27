@@ -127,6 +127,22 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 	{
 		$this->deleteFiles[] = '/components/com_sichtweiten/views/visibilities/tmpl/default_gewaesser.php';
 		$this->deleteFiles[] = '/components/com_sichtweiten/views/visibilities/tmpl/default_table.php';
+
+		if (version_compare($this->oldRelease, '2.1.1', '<'))
+		{
+			// Migrate alt names from separate table into textfield.
+			$db = Factory::getDbo();
+
+			$query= 'UPDATE ' . $db->quoteName('#__sicht_tauchplatz') . ' AS t '
+			. 'INNER JOIN ('
+				. 'SELECT `tauchplatz_id`, GROUP_CONCAT(`name`) AS names '
+				. 'FROM ' . $db->quoteName('#__sicht_bezeichnung') . ' AS b '
+				. 'GROUP BY b.`tauchplatz_id`'
+			. ') AS alt ON alt.tauchplatz_id = t.id '
+			. 'SET t.alt_names = alt.names;';
+			$db->setQuery($query);
+			$db->execute();
+		}
 	}
 
 	/**
