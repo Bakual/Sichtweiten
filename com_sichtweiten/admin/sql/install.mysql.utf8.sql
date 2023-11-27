@@ -72,13 +72,17 @@ CREATE TABLE `#__sicht_ort` (
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE `#__sicht_sichtweite` (
-  `id`          INT(11) NOT NULL AUTO_INCREMENT,
-  `bezeichnung` VARCHAR(255)     DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `#__sicht_sichtweite`
+(
+    `id`             INT(11)                 NOT NULL AUTO_INCREMENT,
+    `title`          VARCHAR(255) DEFAULT '' NOT NULL,
+    `value`          TINYINT      DEFAULT 0  NOT NULL,
+    `ordering`       TINYINT      DEFAULT 0  NOT NULL,
+    `languagestring` TINYTEXT                NULL,
+    PRIMARY KEY (`id`)
 )
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8;
+    ENGINE = MyISAM
+    DEFAULT CHARSET = utf8;
 
 CREATE TABLE `#__sicht_sichtweiteneintrag` (
   `id`                    INT(11) NOT NULL AUTO_INCREMENT,
@@ -120,36 +124,39 @@ CREATE TABLE `#__sicht_tauchpartner` (
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE `#__sicht_tauchplatz` (
-  `id`               INT(11) NOT NULL AUTO_INCREMENT,
-  `gewaesser_id`     INT(11)          DEFAULT NULL,
-  `fuelllstation_id` INT(11)          DEFAULT NULL,
-  `ort_id`           INT(11)          DEFAULT NULL,
-  `ersetztdurch_id`  INT(11)          DEFAULT NULL,
-  `erfasstvon_id`    INT(11)          DEFAULT NULL,
-  `name`             VARCHAR(255)     DEFAULT NULL,
-  `longitude`        DOUBLE           DEFAULT NULL,
-  `latitude`         DOUBLE           DEFAULT NULL,
-  `einschraenkungen` TEXT,
-  `spezielles`       VARCHAR(255)     DEFAULT NULL,
-  `bemerkungen`      TEXT,
-  `active`           TINYINT(1)       DEFAULT NULL,
-  `oldKey`           VARCHAR(255)     DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `gewaesser_id` (`gewaesser_id`),
-  KEY `ort_id` (`ort_id`),
-  KEY `fuelllstation_id` (`fuelllstation_id`)
+CREATE TABLE `#__sicht_tauchplatz`
+(
+    `id`               INT(11)                 NOT NULL AUTO_INCREMENT,
+    `title`            VARCHAR(255) DEFAULT '' NOT NULL,
+    `alias`            VARCHAR(400) DEFAULT '' NOT NULL,
+    `alt_names`        TEXT                    NULL,
+    `gewaesser_id`     INT(11)      DEFAULT NULL,
+    `ort_id`           INT(11)      DEFAULT NULL,
+    `modified_by`      INT UNSIGNED            NULL,
+    `created_by`       INT UNSIGNED            NULL,
+    `longitude`        DOUBLE       DEFAULT NULL,
+    `latitude`         DOUBLE       DEFAULT NULL,
+    `einschraenkungen` TEXT,
+    `spezielles`       VARCHAR(255) DEFAULT NULL,
+    `bemerkungen`      TEXT,
+    `state`            TINYINT      DEFAULT 0  NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `gewaesser_id` (`gewaesser_id`),
+    KEY `ort_id` (`ort_id`)
 )
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8;
+    ENGINE = MyISAM
+    DEFAULT CHARSET = utf8;
 
-CREATE TABLE `#__sicht_tiefenbereich` (
-  `id`          INT(11) NOT NULL AUTO_INCREMENT,
-  `bezeichnung` VARCHAR(255)     DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `#__sicht_tiefenbereich`
+(
+    `id`             INT(11)                 NOT NULL AUTO_INCREMENT,
+    `title`          VARCHAR(255) DEFAULT '' NOT NULL,
+    `ordering`       TINYINT      DEFAULT 0  NOT NULL,
+    `languagestring` TINYTEXT                NULL,
+    PRIMARY KEY (`id`)
 )
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8;
+    ENGINE = MyISAM
+    DEFAULT CHARSET = utf8;
 
 CREATE TABLE `#__sicht_user` (
   `id`         INT(11) NOT NULL AUTO_INCREMENT,
