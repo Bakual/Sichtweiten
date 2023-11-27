@@ -56,7 +56,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 				<?php endif; ?>
 			</dd>
 			<?php if ($this->item->alt_names) : ?>
-				<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></dt>
+				<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAMES_LABEL'); ?></dt>
 				<dd><?php echo htmlspecialchars($this->item->alt_names); ?></dd>
 			<?php endif; ?>
 			<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL'); ?></dt>

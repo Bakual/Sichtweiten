@@ -47,7 +47,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 						<thead><tr>
 							<th class="ort"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></th>
 							<th class="location"><?php echo Text::_('COM_SICHTWEITEN_FIELD_LOCATION_LABEL'); ?></th>
-							<th class="alternate"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAME_LABEL'); ?></th>
+							<th class="alternate"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ALT_NAMES_LABEL'); ?></th>
 							<th class="bemerkungen"><?php echo Text::_('COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL'); ?></th>
 						</tr></thead>
 						<tbody>
