@@ -55,7 +55,7 @@
 			type="radio"
 			layout="joomla.form.field.radio.switcher"
 			label="JGLOBAL_SAVE_HISTORY_OPTIONS_LABEL"
-			default="0"
+			default="1"
 		>
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>

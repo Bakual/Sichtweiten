@@ -91,7 +91,7 @@ class SichtweitenViewDivesite extends HtmlView
 		} else {
 			ToolbarHelper::cancel('divesite.cancel');
 
-			if (ComponentHelper::isEnabled('com_contenthistory') && $this->state->params->get('save_history', 0) && $canDo->get('core.edit')) {
+			if (ComponentHelper::isEnabled('com_contenthistory') && $this->state->params->get('save_history', 1) && $canDo->get('core.edit')) {
 				ToolbarHelper::versions('com_sichtweiten.divesite', $this->item->id);
 			}
 		}

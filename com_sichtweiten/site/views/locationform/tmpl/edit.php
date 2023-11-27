@@ -52,7 +52,7 @@ $this->useCoreUI        = true;
 				<span class="icon-times" aria-hidden="true"></span>
 				<?php echo Text::_('JCANCEL') ?>
 			</button>
-			<?php if ($this->params->get('save_history', 0) && $this->item->id) : ?>
+			<?php if ($this->params->get('save_history', 1) && $this->item->id) : ?>
 				<?php echo $this->form->getInput('contenthistory'); ?>
 			<?php endif; ?>
 		</div>
