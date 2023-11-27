@@ -42,7 +42,7 @@ class JFormFieldUserlist extends ListField
 	{
 		$db = Factory::getDbo();
 
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 		$query->select('id AS value');
 		$query->select('name AS text');
 		$query->from('#__sicht_user');

@@ -67,7 +67,7 @@ class SichtweitenModelUser extends ItemModel
 			try
 			{
 				$db    = $this->getDatabase();
-				$query = $db->createQuery();
+				$query = $db->getQuery(true);
 
 				$query->select(
 					$db->quoteName(

@@ -43,7 +43,7 @@ class JFormFieldLocationlist extends GroupedlistField
 	{
 		$db = Factory::getDbo();
 
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 		$query->select('a.id AS value');
 		$query->select("CONCAT(a.title, ', ', c.name) AS text");
 		$query->from('#__sicht_tauchplatz AS a');

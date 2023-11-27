@@ -43,7 +43,7 @@ class JFormFieldSichtweitenlist extends ListField
 	{
 		$db = Factory::getDbo();
 
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 		$query->select('a.id AS value');
 		$query->from('#__sicht_sichtweite AS a');
 		$query->order('a.id ASC');

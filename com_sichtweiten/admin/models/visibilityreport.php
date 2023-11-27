@@ -142,7 +142,7 @@ class SichtweitenModelVisibilityreport extends AdminModel
 		$pks = ArrayHelper::toInteger($pks);
 
 		$db    = $this->getDatabase();
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 
 		$query->delete('#__sicht_sichtweitenmeldung');
 		$query->where($db->quoteName('id') . ' IN (' . implode(',', $pks) . ')');
@@ -150,7 +150,7 @@ class SichtweitenModelVisibilityreport extends AdminModel
 		$db->setQuery($query);
 		$db->execute();
 
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 
 		$query->delete('#__sicht_sichtweiteneintrag');
 		$query->where($db->quoteName('sichtweitenmeldung_id') . ' IN (' . implode(',', $pks) . ')');
@@ -158,7 +158,7 @@ class SichtweitenModelVisibilityreport extends AdminModel
 		$db->setQuery($query);
 		$db->execute();
 
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 
 		$query->delete('#__sicht_tauchpartner');
 		$query->where($db->quoteName('sichtweitenmeldung_id') . ' IN (' . implode(',', $pks) . ')');
