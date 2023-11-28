@@ -15,6 +15,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 HTMLHelper::_('jquery.framework');
+HTMLHelper::_('bootstrap.tooltip');
 
 HTMLHelper::stylesheet('system/joomla-fontawesome.min.css', ['relative' => true]);
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
@@ -36,13 +37,19 @@ HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 
 				<button type="submit" name="filter_submit"
 						class="btn btn-primary"><span class="fa fa-search"></span></button>
-				<button type="reset" name="filter-clear-button"
-						class="btn btn-secondary reset-button"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></button>
+				<button type="reset" name="filter-clear-button" class="btn btn-secondary reset-button">
+					<span class="d-sm-none">
+						<span class="fa fa-eraser hasTooltip" title="<?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?>"></span>
+					</span>
+					<span class="d-none d-sm-block"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></span>
+				</button>
 			</div>
 			<?php if (!count($this->items)) : ?>
 				<div class="no_entries alert alert-error mt-2"><?php echo Text::sprintf('COM_SICHTWEITEN_NO_ENTRIES', Text::_('COM_SICHTWEITEN_LOCATIONS')); ?></div>
 			<?php else : ?>
-				<button class="btn btn-primary accordion-toggle float-end" type="button" data-accordion="#landAccordion "><span class="fa fa-plus"></span></button>
+				<button class="btn btn-primary accordion-toggle btn-group float-end" type="button" data-accordion="#landAccordion">
+					<span class="fa fa-plus"></span></button>
+				<div class="clearfix"></div>
 				<?php echo HTMLHelper::_('bootstrap.startAccordion', 'landAccordion', ['active' => 'collapse' . $this->items[0]->land_gewaesser_id]); ?>
 				<?php echo HTMLHelper::_('bootstrap.startAccordion', 'locationsAccordion'); ?>
 				<?php $land      = ''; ?>

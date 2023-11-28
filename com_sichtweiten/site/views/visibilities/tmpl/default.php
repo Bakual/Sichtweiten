@@ -48,15 +48,19 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 
 				<button type="submit" name="filter_submit"
 						class="btn btn-primary"><span class="fa fa-search"></span></button>
-				<button type="reset" name="filter-clear-button"
-						class="btn btn-secondary reset-button"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></button>
+				<button type="reset" name="filter-clear-button" class="btn btn-secondary reset-button">
+					<span class="d-sm-none">
+						<span class="fa fa-eraser hasTooltip" title="<?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?>"></span>
+					</span>
+					<span class="d-none d-sm-block"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></span>
+				</button>
 			</div>
 			<?php if (!count($this->gewaesser)) : ?>
 				<div class="no_entries alert alert-error mt-2"><?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
 			<?php else : ?>
-				<button class="btn btn-primary accordion-toggle float-end" type="button"
-						data-accordion="#gewaesserAccordion">
+				<button class="btn btn-primary accordion-toggle btn-group float-end" type="button" data-accordion="#gewaesserAccordion">
 					<span class="fa fa-plus"></span></button>
+				<div class="clearfix"></div>
 				<?php echo HTMLHelper::_('bootstrap.startAccordion', 'gewaesserAccordion', $accordionOptions); ?>
 				<?php foreach ($this->gewaesser as $see) : ?>
 					<div class="mb-3 bg-light">
