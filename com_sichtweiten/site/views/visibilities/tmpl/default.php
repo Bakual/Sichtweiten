@@ -18,8 +18,10 @@ use Joomla\CMS\Router\Route;
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 
+HTMLHelper::_('jquery.framework');
 HTMLHelper::_('bootstrap.tooltip');
 
+HTMLHelper::stylesheet('system/joomla-fontawesome.min.css', ['relative' => true]);
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 
@@ -45,7 +47,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 					   placeholder="<?php echo Text::_('COM_SICHTWEITEN_FILTER_LABEL'); ?>">
 
 				<button type="submit" name="filter_submit"
-						class="btn btn-primary"><span class="fa fa-magnifying-glass"></span></button>
+						class="btn btn-primary"><span class="fa fa-search"></span></button>
 				<button type="reset" name="filter-clear-button"
 						class="btn btn-secondary reset-button"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></button>
 			</div>

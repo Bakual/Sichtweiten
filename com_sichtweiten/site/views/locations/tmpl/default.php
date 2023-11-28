@@ -14,6 +14,9 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
+HTMLHelper::_('jquery.framework');
+
+HTMLHelper::stylesheet('system/joomla-fontawesome.min.css', ['relative' => true]);
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 
@@ -32,7 +35,7 @@ HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 					   placeholder="<?php echo Text::_('COM_SICHTWEITEN_FILTER_LABEL'); ?>">
 
 				<button type="submit" name="filter_submit"
-						class="btn btn-primary"><span class="fa fa-magnifying-glass"></span></button>
+						class="btn btn-primary"><span class="fa fa-search"></span></button>
 				<button type="reset" name="filter-clear-button"
 						class="btn btn-secondary reset-button"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></button>
 			</div>
@@ -92,7 +95,6 @@ HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 				<?php echo HTMLHelper::_('bootstrap.endSlide'); ?>
 				<?php echo HTMLHelper::_('bootstrap.endAccordion'); ?>
 			<?php endif; ?>
-			</div>
 		</form>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
