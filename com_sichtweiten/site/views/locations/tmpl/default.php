@@ -14,12 +14,15 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
+HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
+
 ?>
 <div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx', '')); ?>">
 	<div class="items">
 		<?php if (!count($this->items)) : ?>
 			<div class="no_entries alert alert-error"><?php echo Text::sprintf('COM_SICHTWEITEN_NO_ENTRIES', Text::_('COM_SICHTWEITEN_LOCATIONS')); ?></div>
 		<?php else : ?>
+			<button class="btn btn-primary accordion-toggle" type="button" data-accordion="#landAccordion "><span class="fa fa-plus"></span></button>
 			<?php echo HTMLHelper::_('bootstrap.startAccordion', 'landAccordion', ['active' => 'collapse' . $this->items[0]->land_gewaesser_id]); ?>
 			<?php echo HTMLHelper::_('bootstrap.startAccordion', 'locationsAccordion'); ?>
 			<?php $land      = ''; ?>
@@ -38,11 +41,11 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 							<?php echo HTMLHelper::_('bootstrap.endSlide'); ?>
 						<?php endif; ?>
 						<?php $land = $item->land_gewaesser_kurzzeichen; ?>
-						<?php echo HTMLHelper::_('bootstrap.addSlide', 'landAccordion', $item->land_gewaesser_bezeichnung, 'collapse' . $item->land_gewaesser_id); ?>
+						<?php echo HTMLHelper::_('bootstrap.addSlide', 'landAccordion', $item->land_gewaesser_bezeichnung, 'land-collapse' . $item->land_gewaesser_id); ?>
 					<?php endif; ?>
 					<?php $gewaesser = $item->gewaesser_name; ?>
 					<div class="mb-2 bg-light">
-						<?php echo HTMLHelper::_('bootstrap.addSlide', 'locationsAccordion', $item->gewaesser_displayName, 'collapse' . $item->gewaesser_id); ?>
+						<?php echo HTMLHelper::_('bootstrap.addSlide', 'locationsAccordion', $item->gewaesser_displayName, 'loc-collapse' . $item->gewaesser_id); ?>
 						<table class="table table-striped table-hover table-condensed">
 						<thead><tr>
 							<th class="ort"><?php echo Text::_('COM_SICHTWEITEN_FIELD_ORT_LABEL'); ?></th>

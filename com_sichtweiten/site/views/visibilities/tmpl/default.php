@@ -21,6 +21,7 @@ $listDirn  = $this->state->get('list.direction');
 HTMLHelper::_('bootstrap.tooltip');
 
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
+HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 
 // Prepare Accordion
 $accordionOptions = array();
@@ -37,6 +38,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 			<?php if (!count($this->gewaesser)) : ?>
 				<div class="no_entries alert alert-error"><?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?></div>
 			<?php else : ?>
+				<button class="btn btn-primary accordion-toggle" type="button" data-accordion="#gewaesserAccordion"><span class="fa fa-plus"></span></button>
 				<?php echo HTMLHelper::_('bootstrap.startAccordion', 'gewaesserAccordion', $accordionOptions); ?>
 				<?php foreach ($this->gewaesser as $see) : ?>
 					<div class="mb-3 bg-light">
