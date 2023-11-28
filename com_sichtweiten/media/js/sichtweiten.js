@@ -13,4 +13,8 @@ $(document).ready(function () {
             span.addClass('fa-plus');
         }
     });
+    $('#adminForm .reset-button').on('click', function() {
+        $('#adminForm #filter-search').val('');
+        $('#adminForm').submit();
+    });
 });

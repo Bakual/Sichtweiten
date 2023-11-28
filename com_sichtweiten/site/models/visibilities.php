@@ -234,7 +234,7 @@ class SichtweitenModelVisibilities extends ListModel
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where($db->quoteName('tp.title') . ' LIKE ' . $search . ')');
+			$query->where($db->quoteName('tp.title') . ' LIKE ' . $search);
 		}
 
 		// Filter by state
@@ -301,6 +301,15 @@ class SichtweitenModelVisibilities extends ListModel
 			$query->join('LEFT','`#__sicht_sichtweitenmeldung` AS swm ON swm.tauchplatz_id = tp.id');
 
 			$query->where($db->quoteName('swm.datum') . ' >= DATE_SUB(CURDATE(), INTERVAL ' . $period . ' DAY)');
+
+			// Filter by search in title
+			$search = $this->getState('filter.search');
+
+			if ($search)
+			{
+				$search = $db->quote('%' . $db->escape($search, true) . '%');
+				$query->where($db->quoteName('tp.title') . ' LIKE ' . $search);
+			}
 
 			// Filter by state
 			$state = $this->getState('filter.state');

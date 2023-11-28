@@ -144,7 +144,7 @@ class SichtweitenModelLocations extends ListModel
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where($db->quoteName('tp.title') . ' LIKE ' . $search . ')');
+			$query->where($db->quoteName('tp.title') . ' LIKE ' . $search);
 		}
 
 		// Filter by state
