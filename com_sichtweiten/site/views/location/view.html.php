@@ -81,6 +81,7 @@ class SichtweitenViewLocation extends HtmlView
 		/** @var SichtweitenModelVisibilities $visibilities_model */
 		$visibilities_model = BaseDatabaseModel::getInstance('Visibilities', 'SichtweitenModel');
 		$this->vis_state = $visibilities_model->getState();
+		$this->vis_state->set('filter.search', '');
 		$this->vis_state->set('filter.period', 0);
 		$this->vis_state->set('filter.location', (int) $this->item->id);
 
