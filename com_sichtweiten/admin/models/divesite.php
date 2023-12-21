@@ -9,9 +9,11 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Event\AbstractEvent;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Versioning\VersionableModelTrait;
 
@@ -150,5 +152,94 @@ class SichtweitenModelDivesite extends AdminModel
 	protected function preprocessForm(Form $form, $data, $group = 'sichtweiten')
 	{
 		parent::preprocessForm($form, $data, $group);
+	}
+
+	/**
+	 * Method to save the form data.
+	 *
+	 * @param   array  $data  The form data.
+	 *
+	 * @return  boolean  True on success, False on error.
+	 *
+	 * @since   2.2
+	 */
+	public function save($data)
+	{
+		if ($this->getCurrentUser()->authorise('com_visibilities', 'core.edit.state'))
+		{
+			// Save directly if user is allowed to publish ('edit.state')
+			return parent::save($data);
+		}
+		else
+		{
+			// Else, just write a version entry with the suggested changes. Basically what parent does, but skipping $table->store.
+			$table      = $this->getTable();
+			$context    = $this->option . '.' . $this->name;
+			$app        = Factory::getApplication();
+
+			if (\array_key_exists('tags', $data) && \is_array($data['tags'])) {
+				$table->newTags = $data['tags'];
+			}
+
+			$key   = $table->getKeyName();
+			$pk    = (isset($data[$key])) ? $data[$key] : (int) $this->getState($this->getName() . '.id');
+			$isNew = true;
+
+			// Include the plugins for the save events.
+			PluginHelper::importPlugin($this->events_map['save']);
+
+			// Allow an exception to be thrown.
+			try {
+				// Load the row if saving an existing record.
+				if ($pk > 0) {
+					$table->load($pk);
+					$isNew = false;
+				}
+
+				// Bind the data.
+				if (!$table->bind($data)) {
+					$this->setError($table->getError());
+
+					return false;
+				}
+
+				// Prepare the row for saving
+				$this->prepareTable($table);
+
+				// Check the data.
+				if (!$table->check()) {
+					$this->setError($table->getError());
+
+					return false;
+				}
+
+				// Trigger the before save event.
+				$result = $app->triggerEvent($this->event_before_save, [$context, $table, $isNew, $data]);
+
+				if (\in_array(false, $result, true)) {
+					$this->setError($table->getError());
+
+					return false;
+				}
+			}
+			catch (\Exception $e)
+			{
+				$this->setError($e->getMessage());
+
+				return false;
+			}
+
+			// Post-processing by observers
+			$event = AbstractEvent::create(
+				'onTableAfterStore',
+				[
+					'subject' => $table,
+					'result'  => &$result,
+				]
+			);
+			$this->getDispatcher()->dispatch('onTableAfterStore', $event);
+
+			return $result;
+		}
 	}
 }
