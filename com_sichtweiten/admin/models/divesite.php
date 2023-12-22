@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Event\AbstractEvent;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Table\Table;
@@ -45,9 +46,9 @@ class SichtweitenModelDivesite extends AdminModel
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param string $name    The table name. Optional.
-	 * @param string $prefix  The class prefix. Optional.
-	 * @param array  $options Configuration array for model. Optional.
+	 * @param   string  $name     The table name. Optional.
+	 * @param   string  $prefix   The class prefix. Optional.
+	 * @param   array   $options  Configuration array for model. Optional.
 	 *
 	 * @return   Table    A database object
 	 * @since    1.3.0
@@ -60,8 +61,8 @@ class SichtweitenModelDivesite extends AdminModel
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param   array   $data     Data for the form.
-	 * @param   boolean $loadData True if the form is to load its own data (default case), false if not.
+	 * @param   array    $data      Data for the form.
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
 	 * @return  Form|boolean  A Form object on success, false on failure
 	 *
@@ -78,7 +79,8 @@ class SichtweitenModelDivesite extends AdminModel
 		}
 
 		// Modify the form based on access controls.
-		if (!$this->canEditState((object) $data)) {
+		if (!$this->canEditState((object) $data))
+		{
 			// Disable fields for display.
 			$form->setFieldAttribute('state', 'disabled', 'true');
 
@@ -128,9 +130,10 @@ class SichtweitenModelDivesite extends AdminModel
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
+	 * @param   Table  $table
+	 *
 	 * @since    1.3.0
 	 *
-	 * @param Table $table
 	 */
 	protected function prepareTable($table)
 	{
@@ -143,9 +146,9 @@ class SichtweitenModelDivesite extends AdminModel
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param Form $form
-	 * @param mixed  $data
-	 * @param string $group
+	 * @param   Form    $form
+	 * @param   mixed   $data
+	 * @param   string  $group
 	 *
 	 * @since    1.3.0
 	 */
@@ -165,39 +168,47 @@ class SichtweitenModelDivesite extends AdminModel
 	 */
 	public function save($data)
 	{
-		if ($this->getCurrentUser()->authorise('com_visibilities', 'core.edit.state'))
+		if (empty($data['id']) || $this->getCurrentUser()->authorise('com_visibilities', 'core.edit.state'))
 		{
-			// Save directly if user is allowed to publish ('edit.state')
+			// Save directly if it is a new dive site or the user is allowed to publish ('edit.state')
 			return parent::save($data);
 		}
 		else
 		{
 			// Else, just write a version entry with the suggested changes. Basically what parent does, but skipping $table->store.
-			$table      = $this->getTable();
-			$context    = $this->option . '.' . $this->name;
-			$app        = Factory::getApplication();
+			$table   = $this->getTable();
+			$context = $this->option . '.' . $this->name;
+			$app     = Factory::getApplication();
 
-			if (\array_key_exists('tags', $data) && \is_array($data['tags'])) {
+			if (\array_key_exists('tags', $data) && \is_array($data['tags']))
+			{
 				$table->newTags = $data['tags'];
 			}
 
-			$key   = $table->getKeyName();
-			$pk    = (isset($data[$key])) ? $data[$key] : (int) $this->getState($this->getName() . '.id');
-			$isNew = true;
+			$input = Factory::getApplication()->getInput();
+			$jform = $input->get('jform', [], 'array');
+
+			$jform['version_note'] = Text::_('COM_SICHTWEITEN_DIVESITE_SUGGESTION_NOTE');
+			$input->set('jform', $jform);
+
+			$key = $table->getKeyName();
+			$pk  = (isset($data[$key])) ? $data[$key] : (int) $this->getState($this->getName() . '.id');
 
 			// Include the plugins for the save events.
 			PluginHelper::importPlugin($this->events_map['save']);
 
 			// Allow an exception to be thrown.
-			try {
+			try
+			{
 				// Load the row if saving an existing record.
-				if ($pk > 0) {
+				if ($pk > 0)
+				{
 					$table->load($pk);
-					$isNew = false;
 				}
 
 				// Bind the data.
-				if (!$table->bind($data)) {
+				if (!$table->bind($data))
+				{
 					$this->setError($table->getError());
 
 					return false;
@@ -207,16 +218,18 @@ class SichtweitenModelDivesite extends AdminModel
 				$this->prepareTable($table);
 
 				// Check the data.
-				if (!$table->check()) {
+				if (!$table->check())
+				{
 					$this->setError($table->getError());
 
 					return false;
 				}
 
 				// Trigger the before save event.
-				$result = $app->triggerEvent($this->event_before_save, [$context, $table, $isNew, $data]);
+				$result = $app->triggerEvent($this->event_before_save, [$context, $table, false, $data]);
 
-				if (\in_array(false, $result, true)) {
+				if (\in_array(false, $result, true))
+				{
 					$this->setError($table->getError());
 
 					return false;
