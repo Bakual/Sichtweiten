@@ -155,6 +155,9 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 		</form>
+		<div class="mb-2">
+			<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung'); ?>" role="button" class="btn btn-primary"><?php echo Text::_('COM_SICHTWEITEN_NEW_SICHTWEITE'); ?></a>
+		</div>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
 		<div class="copyright"><small><?php echo Text::_('COM_SICHTWEITEN_COPYRIGHT'); ?></small></div>
