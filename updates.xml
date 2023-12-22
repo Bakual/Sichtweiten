@@ -5,12 +5,12 @@
 		<description>SermonSpeaker Component</description>
 		<element>com_sichtweiten</element>
 		<type>component</type>
-		<version>2.1.5</version>
+		<version>2.2.0</version>
 		<client>administrator</client>
-		<infourl title="Sichtweiten 2.1.5">https://github.com/Bakual/Sichtweiten/releases/tag/2.1.5</infourl>
+		<infourl title="Sichtweiten 2.1.5">https://github.com/Bakual/Sichtweiten/releases/tag/2.2.0</infourl>
 		<downloads>
 			<downloadurl type="full" format="zip">
-				https://github.com/Bakual/Sichtweiten/releases/download/2.1.5/com_sichtweiten.zip
+				https://github.com/Bakual/Sichtweiten/releases/download/2.2.0/com_sichtweiten.zip
 			</downloadurl>
 		</downloads>
 		<tags>
@@ -19,7 +19,7 @@
 		<maintainer>Thomas Hunziker</maintainer>
 		<maintainerurl>https://www.bakual.net/</maintainerurl>
 		<targetplatform name="joomla" version="([45]).([01234])"/>
-		<sha256>6f54495eaa3ab1e3f97615da6e8044ea402385d7f01f91a78b44c5046fcc786d</sha256>
+		<sha256>34759d85073e35ee58f7eb334cd48c6eb64712890afc94493f7ed5828b4f1f73</sha256>
 	</update>
 	<update>
 		<name>Sichtweiten</name>
