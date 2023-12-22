@@ -56,9 +56,10 @@
 		/>
 		<field
 			name="bemerkungen"
-			type="textarea"
+			type="editor"
 			label="COM_SICHTWEITEN_FIELD_BEMERKUNGEN_LABEL"
-			rows="5"
+			height="20em"
+			filter="safehtml"
 			class="input-xxlarge"
 		/>
 	</fieldset>

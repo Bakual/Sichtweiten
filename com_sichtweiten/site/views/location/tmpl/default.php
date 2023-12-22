@@ -60,7 +60,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 				<dd><?php echo htmlspecialchars($this->item->alt_names); ?></dd>
 			<?php endif; ?>
 			<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL'); ?></dt>
-			<dd><?php echo htmlspecialchars($this->item->bemerkungen); ?></dd>
+			<dd><?php echo $this->item->bemerkungen; ?></dd>
 		</dl>
 	</div>
 	<h3><?php echo Text::_('COM_SICHTWEITEN_HISTORY'); ?></h3>
