@@ -70,6 +70,27 @@
 			showon="save_history:1"
 		/>
 
+		<field
+			name="divesite_edit"
+			type="radio"
+			layout="joomla.form.field.radio.switcher"
+			label="COM_SICHTWEITEN_FIELD_DIVESITE_EDIT_LABEL"
+			showon="save_history:1"
+			default="0"
+		>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field
+			name="divesite_edit_notification"
+			type="usergrouplist"
+			label="COM_SICHTWEITEN_FIELD_DIVESITE_EDIT_NOTIFICATION_LABEL"
+			multiple="true"
+			layout="joomla.form.field.list-fancy-select"
+			showon="save_history:1[AND]divesite_edit:1"
+		/>
+
 	</fieldset>
 	<fieldset
 		name="permissions"

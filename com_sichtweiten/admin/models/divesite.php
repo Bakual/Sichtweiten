@@ -9,13 +9,18 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Access\Access;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Event\AbstractEvent;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\LanguageFactoryInterface;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\CMS\Versioning\VersionableModelTrait;
 
 /**
@@ -168,10 +173,14 @@ class SichtweitenModelDivesite extends AdminModel
 	 */
 	public function save($data)
 	{
-		if (empty($data['id']) || $this->getCurrentUser()->authorise('com_visibilities', 'core.edit.state'))
+		$user         = $this->getCurrentUser();
+		$canEditState = $user->authorise('com_visibilities', 'core.edit.state');
+		$isNew        = empty($data['id']);
+
+		if ($isNew || $canEditState)
 		{
 			// Save directly if it is a new dive site or the user is allowed to publish ('edit.state')
-			return parent::save($data);
+			$result = parent::save($data);
 		}
 		else
 		{
@@ -251,8 +260,73 @@ class SichtweitenModelDivesite extends AdminModel
 				]
 			);
 			$this->getDispatcher()->dispatch('onTableAfterStore', $event);
-
-			return $result;
 		}
+
+		if (!$result)
+		{
+			return false;
+		}
+
+		// Send a message
+		if (!$canEditState)
+		{
+			// Load table for new dive sites
+			if ($isNew)
+			{
+				$id    = $this->getState($this->getName() . '.id');
+				$table = $this->getTable();
+				$table->load($id);
+			}
+
+			$app = Factory::getApplication();
+
+			// Get the model for private messages
+			$model_message = $app->bootComponent('com_messages')
+				->getMVCFactory()->createModel('Message', 'Administrator');
+
+			// Prepare Language for messages
+			$defaultLanguage = ComponentHelper::getParams('com_languages')->get('administrator');
+			$debug           = $app->get('debug_lang');
+
+			$params        = ComponentHelper::getParams('com_sichtweiten');
+			$userGroups    = $params->get('divesite_edit_notification');
+			$userIds       = array();
+			$titleString   = 'COM_SICHTWEITEN_DIVESITE_SUGGESTION_NOTIFICATION_TITLE_' . ($isNew ? 'NEW' : 'EDIT');
+			$messageString = 'COM_SICHTWEITEN_DIVESITE_SUGGESTION_NOTIFICATION_MESSAGE_' . ($isNew ? 'NEW' : 'EDIT');
+			$editUrl        = Uri::root() . '/administrator/index.php?option=com_sichtweiten&task=divesite.edit&id=' . $table->id;
+
+			foreach ($userGroups as $userGroup)
+			{
+				$userIds = array_merge($userIds, Access::getUsersByGroup($userGroup));
+			}
+
+			$userIds = array_unique($userIds);
+
+			// Send Email to receivers
+			foreach ($userIds as $userId)
+			{
+				$receiver = Factory::getContainer()->get(UserFactoryInterface::class)->loadUserById($userId);
+
+				if ($receiver->authorise('core.manage', 'com_messages'))
+				{
+					// Load language for messaging
+					$lang = Factory::getContainer()->get(LanguageFactoryInterface::class)->createLanguage($user->getParam('admin_language', $defaultLanguage), $debug);
+					$lang->load('com_sichtweiten');
+					$titleText   = Text::sprintf($titleString, $user->name, $table->title);
+					$messageText = Text::sprintf($messageString, $editUrl, $table->title);
+
+					$message = [
+						'id'         => 0,
+						'user_id_to' => $receiver->id,
+						'subject'    => $titleText,
+						'message'    => $messageText,
+					];
+
+					$model_message->save($message);
+				}
+			}
+		}
+
+		return true;
 	}
 }
