@@ -189,6 +189,8 @@ class SichtweitenModelDivesite extends AdminModel
 			$context = $this->option . '.' . $this->name;
 			$app     = Factory::getApplication();
 
+			$app->enqueueMessage(Text::_('COM_SICHTWEITEN_DIVESITE_SUGGESTION_SAVE_MESSAGE'));
+
 			if (\array_key_exists('tags', $data) && \is_array($data['tags']))
 			{
 				$table->newTags = $data['tags'];
@@ -293,7 +295,7 @@ class SichtweitenModelDivesite extends AdminModel
 			$userIds       = array();
 			$titleString   = 'COM_SICHTWEITEN_DIVESITE_SUGGESTION_NOTIFICATION_TITLE_' . ($isNew ? 'NEW' : 'EDIT');
 			$messageString = 'COM_SICHTWEITEN_DIVESITE_SUGGESTION_NOTIFICATION_MESSAGE_' . ($isNew ? 'NEW' : 'EDIT');
-			$editUrl        = Uri::root() . '/administrator/index.php?option=com_sichtweiten&task=divesite.edit&id=' . $table->id;
+			$editUrl       = Uri::root() . '/administrator/index.php?option=com_sichtweiten&task=divesite.edit&id=' . $table->id;
 
 			foreach ($userGroups as $userGroup)
 			{
@@ -312,14 +314,17 @@ class SichtweitenModelDivesite extends AdminModel
 					// Load language for messaging
 					$lang = Factory::getContainer()->get(LanguageFactoryInterface::class)->createLanguage($user->getParam('admin_language', $defaultLanguage), $debug);
 					$lang->load('com_sichtweiten');
-					$titleText   = Text::sprintf($titleString, $user->name, $table->title);
-					$messageText = Text::sprintf($messageString, $editUrl, $table->title);
+					$userName     = $user->guest ? Text::_('COM_SICHTWEITEN_DIVESITE_GUEST') : $user->name;
+					$titleText    = Text::sprintf($titleString, $userName, $table->title);
+					$messageText  = Text::sprintf($messageString, $editUrl, $table->title);
+					$user_id_from = $this->getCurrentUser()->get('id') ?: $receiver->id;
 
 					$message = [
-						'id'         => 0,
-						'user_id_to' => $receiver->id,
-						'subject'    => $titleText,
-						'message'    => $messageText,
+						'id'           => 0,
+						'user_id_from' => $user_id_from,
+						'user_id_to'   => $receiver->id,
+						'subject'      => $titleText,
+						'message'      => $messageText,
 					];
 
 					$model_message->save($message);
