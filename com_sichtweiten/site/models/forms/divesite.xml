@@ -62,5 +62,11 @@
 			filter="safehtml"
 			class="input-xxlarge"
 		/>
+		<field
+			name="swm_captcha"
+			type="captcha"
+			label="COM_SICHTWEITEN_FIELD_SWM_CAPTCHA_LABEL"
+			validate="captcha"
+		/>
 	</fieldset>
 </form>
