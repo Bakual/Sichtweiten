@@ -23,6 +23,7 @@ class SichtweitenModelVisibilities extends ListModel
 			$config['filter_fields'] = array(
 				's.id',
 				's.title',
+				's.ordering',
 			);
 		}
 
