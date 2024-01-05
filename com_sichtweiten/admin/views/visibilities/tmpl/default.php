@@ -60,8 +60,11 @@ if ($saveOrder && !empty($this->items))
 							<th scope="col" style="min-width:100px">
 								<?php echo HTMLHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 's.title', $listDirn, $listOrder); ?>
 							</th>
+							<th scope="col" class="w-10 d-none d-md-table-cell">
+								<?php echo Text::_('COM_SICHTWEITEN_FIELD_VALUE_LABEL'); ?>
+							</th>
 							<th scope="col" class="w-40 d-none d-md-table-cell">
-								<?php echo Text::_('COM_SICHTWEITEN_FIELD_DISPLAYNAME_LABEL'); ?>
+								<?php echo Text::_('COM_SICHTWEITEN_FIELD_LANGUAGESTRING_LABEL'); ?>
 							</th>
 							<th scope="col" class="w-3 d-none d-lg-table-cell">
 								<?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 's.id', $listDirn, $listOrder); ?>
@@ -111,7 +114,10 @@ if ($saveOrder && !empty($this->items))
 									<?php endif; ?>
 								</td>
 								<td class="small d-none d-md-table-cell">
-									<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->id); ?>
+									<?php echo $item->value; ?>
+								</td>
+								<td class="small d-none d-md-table-cell">
+									<?php echo $item->languagestring; ?>
 								</td>
 								<td class="d-none d-lg-table-cell">
 									<?php echo (int) $item->id; ?>
