@@ -96,7 +96,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 							<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
 								<?php $prop = 'sichtweite_id_' . $sw; ?>
 								<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
-									<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText; ?></span>
+									<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '-'; ?></span>
 								</td>
 							<?php endfor; ?>
 							<td class="kommentar">

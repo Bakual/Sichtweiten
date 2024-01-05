@@ -99,7 +99,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 									<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
 										<?php $prop = 'sichtweite_id_' . $sw; ?>
 										<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
-											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText; ?></span>
+											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '-'; ?></span>
 										</td>
 									<?php endfor; ?>
 									<td class="kommentar d-none d-md-table-cell">
