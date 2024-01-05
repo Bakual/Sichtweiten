@@ -28,44 +28,50 @@
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL"
 			class="advancedSelect"
 			required="true"
-			default="112"
 			validate="tiefenbereich"
-		/>
+		>
+			<option value="">COM_SICHTWEITEN_OPTION_SELECT_VISIBILITY</option>
+		</field>
 		<field
 			name="tiefenbereich1"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_LABEL"
 			class="advancedSelect"
-			default="112"
-		/>
+		>
+			<option value="">COM_SICHTWEITEN_OPTION_SELECT_VISIBILITY</option>
+		</field>
 		<field
 			name="tiefenbereich2"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH2_LABEL"
 			class="advancedSelect"
-			default="112"
-		/>
+		>
+			<option value="">COM_SICHTWEITEN_OPTION_SELECT_VISIBILITY</option>
+		</field>
 		<field
 			name="tiefenbereich3"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_LABEL"
 			class="advancedSelect"
-			default="112"
-		/>
+		>
+			<option value="">COM_SICHTWEITEN_OPTION_SELECT_VISIBILITY</option>
+		</field>
 		<field
 			name="tiefenbereich4"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL"
 			class="advancedSelect"
-			default="112"
-		/>
+		>
+			<option value="">COM_SICHTWEITEN_OPTION_SELECT_VISIBILITY</option>
+		</field>
 		<field
 			name="tiefenbereich5"
 			type="sichtweitenlist"
 			label="COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL"
 			class="advancedSelect"
-			default="112"
-		/>
+		>
+			<option value="">COM_SICHTWEITEN_OPTION_SELECT_VISIBILITY</option>
+		</field>
 		<field
 			name="kommentar"
 			type="text"
