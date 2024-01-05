@@ -14,5 +14,18 @@
 			type="text"
 			label="JGLOBAL_TITLE"
 		/>
+		<field
+			name="value"
+			type="number"
+			rule="number"
+			label="COM_SICHTWEITEN_FIELD_VALUE_LABEL"
+			description="COM_SICHTWEITEN_FIELD_VALUE_DESC"
+		/>
+		<field
+			name="languagestring"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_LANGUAGESTRING_LABEL"
+			description="COM_SICHTWEITEN_FIELD_LANGUAGESTRING_DESC"
+		/>
 	</fieldset>
 </form>
