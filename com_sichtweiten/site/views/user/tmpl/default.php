@@ -47,7 +47,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 						<th class="gewaesser"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL', 'g.displayName', $listDirn, $listOrder); ?></th>
 						<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
 						<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
-							<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
+							<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH' . $sw . '_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
 						<?php endfor; ?>
 						<th class="kommentar"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
 					</tr></thead>

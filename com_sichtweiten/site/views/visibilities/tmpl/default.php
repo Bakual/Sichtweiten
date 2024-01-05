@@ -75,7 +75,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 								<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.title', $listDirn, $listOrder); ?></th>
 								<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
 								<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
-									<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
+									<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH' . $sw . '_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
 								<?php endfor; ?>
 								<th class="kommentar d-none d-md-table-cell"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
 								<th class="user d-none d-md-table-cell"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_USER', 'user_id', $listDirn, $listOrder); ?></th>
@@ -99,7 +99,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 									<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
 										<?php $prop = 'sichtweite_id_' . $sw; ?>
 										<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
-											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '-'; ?></span>
+											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '+'; ?></span>
 										</td>
 									<?php endfor; ?>
 									<td class="kommentar d-none d-md-table-cell">
