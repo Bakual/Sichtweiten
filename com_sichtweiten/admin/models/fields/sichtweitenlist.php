@@ -46,7 +46,7 @@ class JFormFieldSichtweitenlist extends ListField
 		$query = $db->getQuery(true);
 		$query->select('a.id AS value');
 		$query->from('#__sicht_sichtweite AS a');
-		$query->order('a.id ASC');
+		$query->order('a.ordering ASC');
 
 		// Get the options.
 		$db->setQuery($query);
@@ -58,6 +58,9 @@ class JFormFieldSichtweitenlist extends ListField
 			$option->text  = Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $option->value);
 			$option->class = 'tiefe sichtweite' . $option->value;
 		}
+
+		$parentOptions = parent::getOptions();
+		$options = array_merge($parentOptions, $options);
 
 		return $options;
 	}
