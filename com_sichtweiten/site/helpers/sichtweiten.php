@@ -23,6 +23,7 @@ class SichtweitenHelperSichtweiten
 	 * @param string $emails
 	 *
 	 * @return string
+	 * @since 1.0
 	 */
 	public static function getBuddies($buddies, $emails)
 	{
