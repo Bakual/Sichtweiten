@@ -31,6 +31,14 @@ class SichtweitenViewLocation extends HtmlView
 	protected $state;
 
 	/**
+	 * Array of visibilities
+	 *
+	 * @var    array
+	 * @since 2.3.0
+	 */
+	protected $visibilities;
+
+	/**
 	 * Array of objects
 	 *
 	 * @var    array
@@ -49,11 +57,11 @@ class SichtweitenViewLocation extends HtmlView
 	/**
 	 * Execute and display a template script.
 	 *
-	 * @param   string $tpl The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @throws  Exception
+	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
 	 * @return  void
+	 *
+	 * @throws  Exception
 	 *
 	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
@@ -80,7 +88,7 @@ class SichtweitenViewLocation extends HtmlView
 
 		/** @var SichtweitenModelVisibilities $visibilities_model */
 		$visibilities_model = BaseDatabaseModel::getInstance('Visibilities', 'SichtweitenModel');
-		$this->vis_state = $visibilities_model->getState();
+		$this->vis_state    = $visibilities_model->getState();
 		$this->vis_state->set('filter.search', '');
 		$this->vis_state->set('filter.period', 0);
 		$this->vis_state->set('filter.location', (int) $this->item->id);
@@ -91,8 +99,9 @@ class SichtweitenViewLocation extends HtmlView
 			$this->vis_state->set('list.direction', 'DESC');
 		}
 
-		$this->items      = $visibilities_model->getItems();
-		$this->pagination = $visibilities_model->getPagination();
+		$this->items        = $visibilities_model->getItems();
+		$this->visibilities = $visibilities_model->getVisibilities();
+		$this->pagination   = $visibilities_model->getPagination();
 
 		$this->_prepareDocument();
 

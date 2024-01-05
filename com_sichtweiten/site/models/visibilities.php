@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Database\QueryInterface;
 use Joomla\Utilities\ArrayHelper;
@@ -249,6 +250,50 @@ class SichtweitenModelVisibilities extends ListModel
 		$query->order($db->escape($this->getState('list.ordering')) . ' ' . $db->escape($this->getState('list.direction', 'ASC')));
 
 		return $query;
+	}
+
+	/**
+	 * Method to get the Visibility list.
+	 *
+	 * @return  Array   An array of visibilities.
+	 *
+	 * @since   2.3.0
+	 */
+	public function getVisibilities()
+	{
+		// Create a new query object.
+		$db    = $this->getDatabase();
+		$query = $db->getQuery(true);
+
+		// Select required fields from the table
+
+		$query->select($db->quoteName('s.id'));
+		$query->select(
+			$db->quoteName(
+				array(
+					's.id',
+					's.title',
+					's.value',
+					's.languagestring',
+				)
+			)
+		);
+
+		$query->from('#__sicht_sichtweite AS s');
+
+		// Add the list ordering clause.
+		$query->order('s.id ASC');
+
+		$db->setQuery($query);
+
+		$list = $db->loadObjectList('id');
+
+		foreach ($list as $visibility)
+		{
+			$visibility->displayText = $visibility->languagestring ? Text::_($visibility->languagestring) : $visibility->title;
+		}
+
+		return $list;
 	}
 
 	/**

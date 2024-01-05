@@ -14,7 +14,7 @@ use Joomla\CMS\MVC\View\HtmlView;
 /**
  * HTML View class for the Sichtweiten Component
  *
-* @since  1.0
+ * @since  1.0
  */
 class SichtweitenViewVisibilities extends HtmlView
 {
@@ -22,6 +22,7 @@ class SichtweitenViewVisibilities extends HtmlView
 	 * Contains model state
 	 *
 	 * @var    Joomla\Registry\Registry
+	 * @since 1.0
 	 */
 	protected $state;
 
@@ -29,13 +30,31 @@ class SichtweitenViewVisibilities extends HtmlView
 	 * Array of objects
 	 *
 	 * @var    array
+	 * @since 1.0
 	 */
 	protected $items;
+
+	/**
+	 * Array of gewaesser
+	 *
+	 * @var    array
+	 * @since 2.1.0
+	 */
+	protected $gewaesser;
+
+	/**
+	 * Array of visibilities
+	 *
+	 * @var    array
+	 * @since 2.3.0
+	 */
+	protected $visibilities;
 
 	/**
 	 * Contains the merged component and menuitem params
 	 *
 	 * @var    \Joomla\Registry\Registry
+	 * @since 1.0
 	 */
 	protected $params;
 
@@ -44,9 +63,9 @@ class SichtweitenViewVisibilities extends HtmlView
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
-	 * @throws  Exception
-	 *
 	 * @return  void
+	 *
+	 * @throws  Exception
 	 *
 	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
@@ -54,10 +73,11 @@ class SichtweitenViewVisibilities extends HtmlView
 	public function display($tpl = null)
 	{
 		// Get data from the models
-		$this->state      = $this->get('State');
+		$this->state = $this->get('State');
 		$this->state->set('list.start', 0);
 		$this->state->set('list.limit', 0);
-		$this->gewaesser  = $this->get('Gewaesser');
+		$this->gewaesser    = $this->get('Gewaesser');
+		$this->visibilities = $this->get('Visibilities');
 
 		foreach ($this->gewaesser as $see)
 		{

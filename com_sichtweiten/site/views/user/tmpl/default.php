@@ -46,12 +46,9 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 						<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.title', $listDirn, $listOrder); ?></th>
 						<th class="gewaesser"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_GEWAESSER_LABEL', 'g.displayName', $listDirn, $listOrder); ?></th>
 						<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
-						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_0', $listDirn, $listOrder); ?></th>
-						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_LABEL', 'sichtweite_id_1', $listDirn, $listOrder); ?></th>
-						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH2_LABEL', 'sichtweite_id_2', $listDirn, $listOrder); ?></th>
-						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_LABEL', 'sichtweite_id_3', $listDirn, $listOrder); ?></th>
-						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL', 'sichtweite_id_4', $listDirn, $listOrder); ?></th>
-						<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL', 'sichtweite_id_5', $listDirn, $listOrder); ?></th>
+						<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
+							<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
+						<?php endfor; ?>
 						<th class="kommentar"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
 					</tr></thead>
 					<tbody>
@@ -68,24 +65,12 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 							<td class="datum">
 								<?php echo HTMLHelper::_('date', $item->datum, Text::_('DATE_FORMAT_LC4'), 'UTC'); ?>
 							</td>
-							<td class="tiefe sichtweite<?php echo $item->sichtweite_id_0; ?>">
-								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_0); ?>
-							</td>
-							<td class="tiefe sichtweite<?php echo $item->sichtweite_id_1; ?>">
-								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_1); ?>
-							</td>
-							<td class="tiefe sichtweite<?php echo $item->sichtweite_id_2; ?>">
-								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_2); ?>
-							</td>
-							<td class="tiefe sichtweite<?php echo $item->sichtweite_id_3; ?>">
-								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_3); ?>
-							</td>
-							<td class="tiefe sichtweite<?php echo $item->sichtweite_id_4; ?>">
-								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_4); ?>
-							</td>
-							<td class="tiefe sichtweite<?php echo $item->sichtweite_id_5; ?>">
-								<?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?>
-							</td>
+							<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
+								<?php $prop = 'sichtweite_id_' . $sw; ?>
+								<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
+									<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText; ?></span>
+								</td>
+							<?php endfor; ?>
 							<td class="kommentar">
 								<?php $kommentar = $item->kommentar ?: ''; ?>
 								<?php $kommentar = htmlspecialchars($kommentar); ?>

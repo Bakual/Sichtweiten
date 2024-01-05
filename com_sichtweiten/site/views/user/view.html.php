@@ -26,13 +26,23 @@ class SichtweitenViewUser extends HtmlView
 	 * Contains model state
 	 *
 	 * @var    Joomla\Registry\Registry
+	 * @since 1.0
 	 */
 	protected $state;
+
+	/**
+	 * Array of visibilities
+	 *
+	 * @var    array
+	 * @since 2.3.0
+	 */
+	protected $visibilities;
 
 	/**
 	 * Array of objects
 	 *
 	 * @var    array
+	 * @since 1.0
 	 */
 	protected $item;
 
@@ -40,17 +50,18 @@ class SichtweitenViewUser extends HtmlView
 	 * Contains the merged component and menuitem params
 	 *
 	 * @var    \Joomla\Registry\Registry
+	 * @since 1.0
 	 */
 	protected $params;
 
 	/**
 	 * Execute and display a template script.
 	 *
-	 * @param   string $tpl The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @throws  Exception
+	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
 	 * @return  void
+	 *
+	 * @throws  Exception
 	 *
 	 * @see     HtmlView::loadTemplate()
 	 * @since   1.0
@@ -77,12 +88,13 @@ class SichtweitenViewUser extends HtmlView
 
 		/** @var SichtweitenModelVisibilities $visibilities_model */
 		$visibilities_model = BaseDatabaseModel::getInstance('Visibilities', 'SichtweitenModel');
-		$this->vis_state = $visibilities_model->getState();
+		$this->vis_state    = $visibilities_model->getState();
 		$this->vis_state->set('filter.period', 0);
 		$this->vis_state->set('filter.user', (int) $this->item->id);
 
-		$this->items      = $visibilities_model->getItems();
-		$this->pagination = $visibilities_model->getPagination();
+		$this->items        = $visibilities_model->getItems();
+		$this->visibilities = $visibilities_model->getVisibilities();
+		$this->pagination   = $visibilities_model->getPagination();
 
 		$this->_prepareDocument();
 

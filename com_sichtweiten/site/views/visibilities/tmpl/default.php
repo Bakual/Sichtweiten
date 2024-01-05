@@ -74,12 +74,9 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 							<tr>
 								<th class="ort"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_LOCATION_LABEL', 'tp.title', $listDirn, $listOrder); ?></th>
 								<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
-								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_0', $listDirn, $listOrder); ?></th>
-								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH1_LABEL', 'sichtweite_id_1', $listDirn, $listOrder); ?></th>
-								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH2_LABEL', 'sichtweite_id_2', $listDirn, $listOrder); ?></th>
-								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH3_LABEL', 'sichtweite_id_3', $listDirn, $listOrder); ?></th>
-								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH4_LABEL', 'sichtweite_id_4', $listDirn, $listOrder); ?></th>
-								<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH5_LABEL', 'sichtweite_id_5', $listDirn, $listOrder); ?></th>
+								<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
+									<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH0_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
+								<?php endfor; ?>
 								<th class="kommentar d-none d-md-table-cell"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
 								<th class="user d-none d-md-table-cell"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_USER', 'user_id', $listDirn, $listOrder); ?></th>
 							</tr>
@@ -99,24 +96,12 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 										<span class="d-none d-md-inline"><?php echo HTMLHelper::_('date', $item->datum, Text::_('DATE_FORMAT_LC4'), 'UTC'); ?></span>
 										<span class="d-md-none"><?php echo HTMLHelper::_('date', $item->datum, Text::_('COM_SICHTWEITEN_DATE_FORMAT_SHORT'), 'UTC'); ?></span>
 									</td>
-									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_0; ?>">
-										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_0); ?></span>
-									</td>
-									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_1; ?>">
-										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_1); ?></span>
-									</td>
-									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_2; ?>">
-										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_2); ?></span>
-									</td>
-									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_3; ?>">
-										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_3); ?></span>
-									</td>
-									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_4; ?>">
-										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_4); ?></span>
-									</td>
-									<td class="tiefe sichtweite<?php echo $item->sichtweite_id_5; ?>">
-										<span class="d-none d-sm-inline"><?php echo Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $item->sichtweite_id_5); ?></span>
-									</td>
+									<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
+										<?php $prop = 'sichtweite_id_' . $sw; ?>
+										<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
+											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText; ?></span>
+										</td>
+									<?php endfor; ?>
 									<td class="kommentar d-none d-md-table-cell">
 										<?php $kommentar = $item->kommentar ?: ''; ?>
 										<?php $kommentar = htmlspecialchars($kommentar); ?>
