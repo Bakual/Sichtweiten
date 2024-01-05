@@ -145,6 +145,22 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 			$db->setQuery($query);
 			$db->execute();
 		}
+
+		if (version_compare($this->oldRelease, '2.3.0', '<'))
+		{
+			// Move the german translated Sichtweiten titles to the "title" field. Translations can be done using the new language string field.
+			$this->app->getLanguage()->load('com_sichtweiten', JPATH_SITE . '/components/com_sichtweiten', 'de-DE');
+			$db = Factory::getDbo();
+
+			for ($i = 105; $i <= 112; $i++)
+			{
+				$query= 'UPDATE ' . $db->quoteName('#__sicht_sichtweite')
+					. 'SET ' . $db->quoteName('title') . ' = ' . $db->quote(Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $i))
+				    . 'WHERE ' . $db->quoteName('id') . ' = ' . $i;
+				$db->setQuery($query);
+				$db->execute();
+			}
+		}
 	}
 
 	/**
