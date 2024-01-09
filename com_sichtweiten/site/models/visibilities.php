@@ -364,6 +364,11 @@ class SichtweitenModelVisibilities extends ListModel
 				$query->where($db->quoteName('tp.state') . ' = ' . (int) $state);
 			}
 
+			// Get Average
+			$query->select('ROUND(AVG(`value`), 0) AS sichtweite_avg');
+			$query->join('LEFT','`#__sicht_sichtweiteneintrag` AS swe ON swe.sichtweitenmeldung_id = swm.id');
+			$query->join('LEFT','`#__sicht_sichtweite` AS s ON swe.sichtweite_id = s.id');
+			$query->group('g.id');
 		}
 
 		// Add the list ordering clause.

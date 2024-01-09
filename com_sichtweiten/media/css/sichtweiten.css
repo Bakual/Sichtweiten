@@ -62,3 +62,13 @@
 .sichtweiten-container td.bemerkungen {
 	width: 60%;
 }
+.sichtweite-average {
+	flex: auto;
+}
+.sichtweite-average > [class*='sichtweite']
+{
+	width: 80px;
+	margin: -10px 10px;
+	height: 40px;
+	float: right;
+}

@@ -68,6 +68,7 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 						<?php if ($see->land_kurzzeichen != 'CH') : ?>
 							<?php $title .= '&nbsp;<small>(' . $see->land_bezeichnung . ')</small>'; ?>
 						<?php endif; ?>
+						<?php $title .= '<div class="sichtweite-average"><div class="sichtweite' . $see->sichtweite_avg . '"></div></div>'; ?>
 						<?php echo HTMLHelper::_('bootstrap.addSlide', 'gewaesserAccordion', $title, 'collapse' . $see->id); ?>
 						<table class="sichtweitentable table table-light table-hover table-responsive">
 							<thead>
@@ -98,8 +99,8 @@ if ($gewaesser = Factory::getApplication()->getInput()->getInt('gewaesser', 0))
 									</td>
 									<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
 										<?php $prop = 'sichtweite_id_' . $sw; ?>
-										<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
-											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '+'; ?></span>
+										<td class="tiefe sichtweite<?php echo $this->visibilities[$item->$prop]->value ?? '0'; ?>">
+											<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '-'; ?></span>
 										</td>
 									<?php endfor; ?>
 									<td class="kommentar d-none d-md-table-cell">
