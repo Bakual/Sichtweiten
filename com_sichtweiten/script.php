@@ -155,8 +155,7 @@ class Com_SichtweitenInstallerScript extends InstallerScript
 			for ($i = 105; $i <= 112; $i++)
 			{
 				$query= 'UPDATE ' . $db->quoteName('#__sicht_sichtweite')
-					. 'SET ' . $db->quoteName('title') . ' = ' . $db->quote(Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $i)) . ','
-						. $db->quoteName('ordering') . ' = ' . $db->quoteName('id')
+					. 'SET ' . $db->quoteName('title') . ' = ' . $db->quote(Text::_('COM_SICHTWEITEN_SICHTWEITE_VALUE_' . $i))
 				    . 'WHERE ' . $db->quoteName('id') . ' = ' . $i;
 				$db->setQuery($query);
 				$db->execute();
