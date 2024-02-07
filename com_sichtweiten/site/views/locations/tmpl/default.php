@@ -88,7 +88,7 @@ HTMLHelper::script('com_sichtweiten/sichtweiten.js', ['relative' => true]);
 							<?php echo $item->alt_names ? htmlspecialchars($item->alt_names) : '-'; ?>
 						</td>
 						<td class="bemerkungen">
-							<?php echo htmlspecialchars($item->bemerkungen); ?>
+							<?php echo $item->bemerkungen; ?>
 						</td>
 					</tr>
 					<?php // Close table if next item has different gewaesser ?>
