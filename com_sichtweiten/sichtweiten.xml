@@ -26,14 +26,15 @@
 		</schemas>
 	</update>
 	<files folder="site">
-		<filename>sichtweiten.php</filename>
 		<filename>controller.php</filename>
 		<filename>router.php</filename>
+		<filename>sichtweiten.php</filename>
 		<folder>controllers</folder>
 		<folder>helpers</folder>
-		<folder>views</folder>
-		<folder>models</folder>
 		<folder>language</folder>
+		<folder>layouts</folder>
+		<folder>models</folder>
+		<folder>views</folder>
 	</files>
 	<media destination="com_sichtweiten" folder="media">
 		<folder>css</folder>
@@ -53,16 +54,16 @@
 			<menu view="help">COM_SICHTWEITEN_MENU_HELP</menu>
 		</submenu>
 		<files folder="admin">
-			<filename>config.xml</filename>
 			<filename>access.xml</filename>
-			<filename>sichtweiten.php</filename>
+			<filename>config.xml</filename>
 			<filename>controller.php</filename>
+			<filename>sichtweiten.php</filename>
 			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
-			<folder>helpers</folder>
-			<folder>language</folder>
 			<folder>views</folder>
 		</files>
 	</administration>

@@ -40,6 +40,18 @@
 			<option value="">COM_SICHTWEITEN_FILTER_ORT_SELECT</option>
 		</field>
 		<field
+			name="longitude"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_LONGITUDE_LABEL"
+			layout="form.geolocation"
+		/>
+		<field
+			name="latitude"
+			type="text"
+			label="COM_SICHTWEITEN_FIELD_LATITUDE_LABEL"
+			layout="form.geolocation"
+		/>
+		<field
 			name="state"
 			type="radio"
 			label="JSTATUS"

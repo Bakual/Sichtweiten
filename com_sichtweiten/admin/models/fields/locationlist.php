@@ -9,13 +9,9 @@
 
 defined('_JEXEC') or die();
 
-use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Field\GroupedlistField;
-use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Language\Text;
-
-FormHelper::loadFieldClass('groupedlist');
 
 /**
  * Locationlist Field class for the Sichtweiten.
@@ -60,9 +56,9 @@ class JFormFieldLocationlist extends GroupedlistField
 		$options = $db->loadObjectList();
 		$groups  = array();
 
-		$default = new stdClass;
-		$default->value = '';
-		$default->text = Text::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION');
+		$default              = new stdClass;
+		$default->value       = '';
+		$default->text        = Text::_('COM_SICHTWEITEN_OPTION_SELECT_LOCATION');
 		$default->displayName = '';
 		array_unshift($options, $default);
 
