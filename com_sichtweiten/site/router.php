@@ -3,7 +3,7 @@
  * @package     Sichtweiten
  * @subpackage  Component.Site
  * @author      Thomas Hunziker <admin@bakual.net>
- * @copyright   © 2023 - Thomas Hunziker
+ * @copyright   © 2024 - Thomas Hunziker
  * @license     http://www.gnu.org/licenses/gpl.html
  **/
 
