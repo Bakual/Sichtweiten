@@ -199,9 +199,13 @@ class SichtweitenRouter extends RouterView
 			case 'location':
 				unset($segments[0]);
 				$vars['view'] = 'location';
-				$id           = explode(':', $segments[1]);
-				$vars['id']   = (int) $id[0];
-				unset($segments[1]);
+
+				if (isset($segments[1]))
+				{
+					$id           = explode(':', $segments[1]);
+					$vars['id']   = (int) $id[0];
+					unset($segments[1]);
+				}
 
 				break;
 			case 'locationform':
