@@ -76,6 +76,8 @@ class SichtweitenModelLocation extends ItemModel
 							'tp.bemerkungen',
 							'tp.state',
 							'tp.alt_names',
+							'tp.longitude',
+							'tp.latitude',
 						)
 					)
 				);

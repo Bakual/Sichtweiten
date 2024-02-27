@@ -62,6 +62,10 @@
 .sichtweiten-container td.bemerkungen {
 	width: 60%;
 }
+.sichtweiten-container .divesitemap {
+	width: 100%;
+	min-height: 150px;
+}
 .sichtweite-average {
 	flex: auto;
 }

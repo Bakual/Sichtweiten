@@ -22,7 +22,7 @@ $user = $this->getCurrentUser();
 
 HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 ?>
-<div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx', '')); ?>">
+<div class="sichtweiten-container<?php echo htmlspecialchars($this->params->get('pageclass_sfx', '')); ?> row">
 	<h1><?php echo $this->escape(Text::_('COM_SICHTWEITEN_LOCATION_VIEW_DEFAULT_TITLE')); ?></h1>
 	<?php if ($user->authorise('core.edit', 'com_sichtweiten')) : ?>
 		<div class="icons">
@@ -37,7 +37,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 			</div>
 		</div>
 	<?php endif; ?>
-	<div class="tauchplatz <?php echo ($this->item->state) ? '' : 'system-unpublished'; ?>">
+	<div class="tauchplatz col-md-8 <?php echo ($this->item->state) ? '' : 'system-unpublished'; ?>">
 		<dl class="dl-horizontal">
 			<dt><?php echo Text::_('COM_SICHTWEITEN_FIELD_TAUCHPLATZ_NAME_LABEL'); ?></dt>
 			<dd><?php echo htmlspecialchars($this->item->title); ?></dd>
@@ -63,9 +63,19 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 			<dd><?php echo $this->item->bemerkungen; ?></dd>
 		</dl>
 	</div>
+	<div class="col-md-4">
+		<?php if ($this->item->longitude && $this->item->latitude) : ?>
+			<?php $urlEmbed = 'https://www.openstreetmap.org/export/embed.html?bbox=' . ($this->item->longitude - 0.0025) . ',' . ($this->item->latitude - 0.01) . ',' . ($this->item->longitude + 0.0025) . ',' . ($this->item->latitude + 0.01) . '&layer=mapnik&marker=' . $this->item->latitude . ',' . $this->item->longitude; ?>
+			<iframe class="divesitemap" src="<?php echo $urlEmbed; ?>"></iframe>
+			<br/>
+			<?php $urlExtern = 'https://www.openstreetmap.org/?mlat=' . $this->item->latitude . '&mlon=' . $this->item->longitude . '#map=15/' . $this->item->latitude . '/' . $this->item->longitude; ?>
+			<small><a href="<?php echo $urlExtern; ?>" target="_blank">Größere Karte anzeigen</a></small>
+		<?php endif; ?>
+	</div>
 	<h3><?php echo Text::_('COM_SICHTWEITEN_HISTORY'); ?></h3>
 	<div class="items">
-		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" id="adminForm" name="adminForm">
+		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" id="adminForm"
+			  name="adminForm">
 			<div class="filters btn-toolbar">
 				<div class="btn-group pull-right">
 					<label class="element-invisible">
@@ -78,21 +88,23 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 				<div class="no_entries alert alert-error"><?php echo Text::sprintf('COM_SICHTWEITEN_NO_ENTRIES', Text::_('COM_SICHTWEITEN_VISIBILITIES')); ?></div>
 			<?php else : ?>
 				<table class="table table-striped table-hover table-condensed">
-					<thead><tr>
+					<thead>
+					<tr>
 						<th class="datum"><?php echo HTMLHelper::_('grid.sort', 'JDATE', 'datum', $listDirn, $listOrder); ?></th>
-						<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
+						<?php for ($sw = 0; $sw <= 5; $sw++) : ?>
 							<th class="tiefe"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_TIEFENBEREICH' . $sw . '_LABEL', 'sichtweite_id_' . $sw, $listDirn, $listOrder); ?></th>
 						<?php endfor; ?>
 						<th class="kommentar"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_FIELD_KOMMENTAR_LABEL', 'kommentar', $listDirn, $listOrder); ?></th>
 						<th class="user"><?php echo HTMLHelper::_('grid.sort', 'COM_SICHTWEITEN_USER', 'user_id', $listDirn, $listOrder); ?></th>
-					</tr></thead>
+					</tr>
+					</thead>
 					<tbody>
-					<?php foreach($this->items as $i => $item) : ?>
+					<?php foreach ($this->items as $i => $item) : ?>
 						<tr>
 							<td class="datum">
 								<?php echo HTMLHelper::_('date', $item->datum, Text::_('DATE_FORMAT_LC4'), 'UTC'); ?>
 							</td>
-							<?php for ($sw = 0; $sw <= 5 ; $sw++) : ?>
+							<?php for ($sw = 0; $sw <= 5; $sw++) : ?>
 								<?php $prop = 'sichtweite_id_' . $sw; ?>
 								<td class="tiefe sichtweite<?php echo $item->$prop; ?>">
 									<span class="d-none d-sm-inline"><?php echo $this->visibilities[$item->$prop]->displayText ?? '-'; ?></span>
@@ -116,7 +128,7 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 							</td>
 							<td class="user">
 								<?php if ($item->user_id) : ?>
-									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id ); ?>">
+									<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=user&id=' . $item->user_id); ?>">
 										<?php echo $item->user_name; ?>
 									</a>
 								<?php endif; ?>
@@ -134,12 +146,13 @@ HTMLHelper::stylesheet('com_sichtweiten/sichtweiten.css', ['relative' => true]);
 					<?php echo $this->pagination->getPagesLinks(); ?>
 				</div>
 			<?php endif; ?>
-			<input type="hidden" name="task" value="" />
-			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
-			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
+			<input type="hidden" name="task" value=""/>
+			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
+			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 		</form>
 		<div class="mb-2">
-			<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung&tp=' . $this->item->id); ?>" role="button" class="btn btn-primary"><?php echo Text::_('COM_SICHTWEITEN_NEW_SICHTWEITE'); ?></a>
+			<a href="<?php echo Route::_('index.php?option=com_sichtweiten&view=sichtweitenmeldung&tp=' . $this->item->id); ?>"
+			   role="button" class="btn btn-primary"><?php echo Text::_('COM_SICHTWEITEN_NEW_SICHTWEITE'); ?></a>
 		</div>
 	</div>
 	<?php if ($this->params->get('copyright')) : ?>
