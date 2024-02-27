@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lat =  document.getElementById('jform_latitude').value;
 
         if (long && lat)
-            window.open('https://www.google.com/maps/search/?api=1&query=' + lat + ',' + longs, 'SichtweitenMap');
+            window.open('https://www.google.com/maps/search/?api=1&query=' + lat + ',' + long, 'SichtweitenMap');
         else alert('Bitte Längen- und Breitengrad angeben.')
     }
 })
