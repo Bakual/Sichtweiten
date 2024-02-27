@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lat =  document.getElementById('jform_latitude').value;
 
         if (long && lat)
-            window.open('https://google.ch/maps/@' + lat + ',' + long + ',15z', 'SichtweitenMap');
+            window.open('https://www.google.com/maps/search/?api=1&query=' + lat + ',' + longs, 'SichtweitenMap');
         else alert('Bitte Längen- und Breitengrad angeben.')
     }
 })
