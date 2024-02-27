@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
@@ -47,7 +48,9 @@ class SichtweitenViewDivesite extends HtmlView
 	 * @param null $tpl
 	 *
 	 * @since   1.3.0
-	 * @return mixed
+	 *
+	 * @return void
+	 *
 	 * @throws \Exception
 	 */
 	public function display($tpl = null)
@@ -64,7 +67,7 @@ class SichtweitenViewDivesite extends HtmlView
 
 		$this->addToolbar();
 
-		return parent::display($tpl);
+		parent::display($tpl);
 	}
 
 	/**

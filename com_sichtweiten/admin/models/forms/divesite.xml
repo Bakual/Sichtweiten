@@ -46,11 +46,13 @@
 			name="longitude"
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_LONGITUDE_LABEL"
+			layout="form.geolocation"
 		/>
 		<field
 			name="latitude"
 			type="text"
 			label="COM_SICHTWEITEN_FIELD_LATITUDE_LABEL"
+			layout="form.geolocation"
 		/>
 		<field
 			name="state"
