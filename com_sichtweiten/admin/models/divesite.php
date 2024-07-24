@@ -142,6 +142,12 @@ class SichtweitenModelDivesite extends AdminModel
 	 */
 	protected function prepareTable($table)
 	{
+		if ($table->longitude === '')
+			$table->longitude = NULL;
+
+		if ($table->latitude === '')
+			$table->latitude = NULL;
+
 		// Increment the content version number.
 		$table->version++;
 	}
